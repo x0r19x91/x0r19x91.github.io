@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>movfuscator on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/tags/movfuscator/</link>
+    <description>Recent content in movfuscator on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Apr 2019 00:00:00 +0530</lastBuildDate><atom:link href="http://localhost:1313/tags/movfuscator/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deobfuscating MoVfuscator - Part 2</title>
+      <link>http://localhost:1313/post/deobfuscating-movfuscator-part-2/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/deobfuscating-movfuscator-part-2/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ll be analyzing another MoVfuscated binary, from Swamp CTF 2019 using IDA Free&lt;br&gt;
+Deep on the web, I discovered a secret key validation.&lt;br&gt;
+It appeared to be from the future, and it only had one sentence: &amp;ldquo;Risk speed for security&amp;rdquo;.&lt;br&gt;
+Something seems fishy, you should try to break the key and find the secret inside!&lt;br&gt;
+-= Created by noopnoop =-&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Understanding the Movfuscator</title>
+      <link>http://localhost:1313/post/understanding-the-movfuscator/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/understanding-the-movfuscator/</guid>
+      <description>&lt;p&gt;MoVfuscator is the PoC for the &lt;strong&gt;Turing Completeness of Mov instruction&lt;/strong&gt;.&lt;br&gt;
+Yes, you guessed it right. It uses only mov&amp;rsquo;s, except for a few places.&lt;br&gt;
+This makes reversing difficult, because the control flow is obfuscated.&lt;br&gt;
+I&amp;rsquo;ll be analyzing the challenge &lt;strong&gt;Mov&lt;/strong&gt; of &lt;strong&gt;UTCTF&#39;19&lt;/strong&gt; using IDA Free.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

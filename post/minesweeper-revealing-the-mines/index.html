@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Hacking Minesweeper'><title>Minesweeper - Revealing the Mines</title>
+
+<link rel='canonical' href='http://localhost:1313/post/minesweeper-revealing-the-mines/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Minesweeper - Revealing the Mines'>
+<meta property='og:description' content='Hacking Minesweeper'>
+<meta property='og:url' content='http://localhost:1313/post/minesweeper-revealing-the-mines/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:published_time' content='2018-06-29T00:00:00&#43;05:30'/><meta property='article:modified_time' content='2018-06-29T00:00:00&#43;05:30'/>
+<meta name="twitter:title" content="Minesweeper - Revealing the Mines">
+<meta name="twitter:description" content="Hacking Minesweeper">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/minesweeper-revealing-the-mines/">Minesweeper - Revealing the Mines</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Hacking Minesweeper
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 29, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>We all know about <a class="link" href="http://www.minesweeper.info/downloads/games/Winmine__XP.exe"  target="_blank" rel="noopener"
+    >Minesweeper</a>. Its all about random numbers (pseudorandom though). Is it possible to win every time ?</p>
+<p>Yes it is. Let&rsquo;s check it out</p>
+<p><img src="/images/ms/mines_failed.png" alt="Image0"  /></p>
+<p>Open the binary in x32dbg.<br>
+From 0x10036C2, things become interesting.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    ;   ....
+        mov dword ptr ds:[&lt;n_mines&gt;], eax
+
+    put_mines:
+
+        push dword ptr ds:[0x1005334]    ; argument
+        call rand_mod                    ; rand() % argument
+
+        push dword ptr ds:[0x1005338]
+        mov esi, eax
+        inc esi
+        call rand_mod
+
+        inc eax
+        mov ecx, eax
+        shl ecx, 0x5
+
+        test byte ptr ds:[ecx + esi + &lt;mines&gt;], 0x80
+        jne put_mines
+
+        shl eax, 0x5
+        lea eax, dword ptr ds:[eax + esi + &lt;mines&gt;]
+        or byte ptr ds:[eax], 0x80
+
+        dec dword ptr ds:[&lt;n_mines&gt;]
+        jne put_mines
+    ;   ...
+</code></pre><p>Dump the memory at 0x1005338 and run the executable. You can see that the 0x1005338 is an 2D array where each row is 32 bytes.<br>
+The field is bounded by bytes of value <strong>0x10</strong>.<br>
+Mines correspond to <strong>0x8F</strong> and other areas are marked by <strong>0xf</strong> bytes.</p>
+<p>Now we can just read the memory at 0x1005338 and find out the position of mines :)</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;tlhelp32.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>
+    <span style="color:#999;font-style:italic">/*
+</span><span style="color:#999;font-style:italic">     * Author : x0r19x91
+</span><span style="color:#999;font-style:italic">     * Revealing the mines - Minesweeper
+</span><span style="color:#999;font-style:italic">     */</span>
+
+    <span style="color:#cd2828;font-weight:bold">#pragma comment(lib, &#34;user32&#34;)
+</span><span style="color:#cd2828;font-weight:bold"></span>
+    <span style="color:#6ab825;font-weight:bold">typedef</span> <span style="color:#447fcf">LONG</span> (WINAPI* NT_ROUTINE) (HANDLE);
+
+    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>(<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span>** argv)
+    {
+        <span style="color:#6ab825;font-weight:bold">int</span> n_mines = <span style="color:#3677a9">0</span>, width, height, i;
+        <span style="color:#6ab825;font-weight:bold">char</span>* base;
+        <span style="color:#6ab825;font-weight:bold">char</span> row[<span style="color:#3677a9">32</span>];
+        HWND hWnd, hProcSnap, hProcess = (HANDLE)-<span style="color:#3677a9">1</span>;
+        <span style="color:#6ab825;font-weight:bold">char</span>* exe_name;
+        PROCESSENTRY32 pInfo;
+        HANDLE hNt;
+        NT_ROUTINE NtSuspendProcess, NtResumeProcess;
+
+        exe_name = <span style="color:#ed9d13">&#34;winmine.exe&#34;</span>;
+        <span style="color:#6ab825;font-weight:bold">if</span> (argc == <span style="color:#3677a9">2</span>)
+        {
+            exe_name = strlwr(argv[<span style="color:#3677a9">1</span>]);
+        }
+
+        <span style="color:#999;font-style:italic">// already loaded, just return module base
+</span><span style="color:#999;font-style:italic"></span>        hNt = LoadLibrary(<span style="color:#ed9d13">&#34;ntdll.dll&#34;</span>);
+        NtSuspendProcess = (NT_ROUTINE) GetProcAddress(hNt, <span style="color:#ed9d13">&#34;NtSuspendProcess&#34;</span>);
+        NtResumeProcess = (NT_ROUTINE) GetProcAddress(hNt, <span style="color:#ed9d13">&#34;NtResumeProcess&#34;</span>);
+
+        hProcSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span style="color:#3677a9">0</span>);
+        Process32First(hProcSnap, &amp;pInfo);
+        <span style="color:#6ab825;font-weight:bold">do</span>
+        {
+            <span style="color:#6ab825;font-weight:bold">if</span> (strstr(strlwr(pInfo.szExeFile), exe_name))
+            {
+                hProcess = OpenProcess(PROCESS_SUSPEND_RESUME | PROCESS_VM_READ, FALSE, pInfo.th32ProcessID);
+                printf(<span style="color:#ed9d13">&#34;[*] Found Minesweeper (%s) ... PiD = %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, pInfo.szExeFile, pInfo.th32ProcessID);
+                <span style="color:#6ab825;font-weight:bold">break</span>;
+            }
+        } <span style="color:#6ab825;font-weight:bold">while</span> (Process32Next(hProcSnap, &amp;pInfo));
+
+        CloseHandle(hProcSnap);
+        <span style="color:#6ab825;font-weight:bold">if</span> (! hProcess)
+        {
+            printf(<span style="color:#ed9d13">&#34;[-] Failed to open process !!</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            exit(<span style="color:#3677a9">2</span>);
+        }
+        <span style="color:#6ab825;font-weight:bold">else</span> <span style="color:#6ab825;font-weight:bold">if</span> (hProcess == (HANDLE)-<span style="color:#3677a9">1</span>)
+        {
+            printf(<span style="color:#ed9d13">&#34;[ Usage ]</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">    %s [minesweeper_binary_name]</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, *argv);
+            printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">[ Note ]</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">    Execute this program only after starting minesweeper</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            printf(<span style="color:#ed9d13">&#34;    If no argument is provided, the program searches for WinMine.exe</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            printf(<span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">[~ x0r19x91 ~]</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            exit(<span style="color:#3677a9">0</span>);
+        }
+
+        printf(<span style="color:#ed9d13">&#34;[*] Waiting for Minesweeper window to appear ...</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+        <span style="color:#6ab825;font-weight:bold">while</span> (!(hWnd = FindWindow(<span style="color:#ed9d13">&#34;Minesweeper&#34;</span>, <span style="color:#ed9d13">&#34;Minesweeper&#34;</span>)));
+        printf(<span style="color:#ed9d13">&#34;[*] HWnd : %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, (<span style="color:#6ab825;font-weight:bold">long</span>*) hWnd);
+
+        <span style="color:#6ab825;font-weight:bold">while</span> (!n_mines)
+            ReadProcessMemory(hProcess, (<span style="color:#6ab825;font-weight:bold">char</span>*) <span style="color:#3677a9">0x1005330</span>, &amp;n_mines, <span style="color:#3677a9">4</span>, <span style="color:#24909d">NULL</span>);
+
+        NtSuspendProcess(hProcess);
+        ReadProcessMemory(hProcess, (<span style="color:#6ab825;font-weight:bold">char</span>*) <span style="color:#3677a9">0x1005334</span>, &amp;width, <span style="color:#3677a9">4</span>, <span style="color:#24909d">NULL</span>);
+        ReadProcessMemory(hProcess, (<span style="color:#6ab825;font-weight:bold">char</span>*) <span style="color:#3677a9">0x1005338</span>, &amp;height, <span style="color:#3677a9">4</span>, <span style="color:#24909d">NULL</span>);
+
+        printf(<span style="color:#ed9d13">&#34;[*] # mines : %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, n_mines);
+        printf(<span style="color:#ed9d13">&#34;[*] Dimensions : %d x %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, height, width);
+        printf(<span style="color:#ed9d13">&#34;[ Note ] X represents Mine</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+        printf(<span style="color:#ed9d13">&#34;[*] Mine Layout ...</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+        base = (<span style="color:#6ab825;font-weight:bold">char</span>*) <span style="color:#3677a9">0x1005360</span>;
+
+        <span style="color:#6ab825;font-weight:bold">while</span> (height--) {
+            ReadProcessMemory(hProcess, base, row, <span style="color:#3677a9">32</span>, <span style="color:#24909d">NULL</span>);
+            base += <span style="color:#3677a9">0x20</span>;
+            i = <span style="color:#3677a9">1</span>;
+            <span style="color:#6ab825;font-weight:bold">do</span> {
+                <span style="color:#6ab825;font-weight:bold">if</span> ((row[i] &amp; <span style="color:#3677a9">0xffu</span>) == <span style="color:#3677a9">0x8f</span>)
+                    row[i] = <span style="color:#ed9d13">&#39;X&#39;</span>;
+                <span style="color:#6ab825;font-weight:bold">else</span>
+                    row[i] = <span style="color:#ed9d13">&#39;.&#39;</span>;
+            } <span style="color:#6ab825;font-weight:bold">while</span> (row[++i] != <span style="color:#3677a9">0x10</span>);
+            printf(<span style="color:#ed9d13">&#34;%.*s</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, width, row+<span style="color:#3677a9">1</span>);
+        }
+
+        NtResumeProcess(hProcess);
+        WaitForSingleObject(hProcess, -<span style="color:#3677a9">1</span>);
+        CloseHandle(hProcess);
+    }
+</code></pre></div><p><img src="/images/ms/mines_success.png" alt="Image1"  /></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/code-injection-mstasklist/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Code Injection: Windows Taskbar</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/google-ctf-2020-.net/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Google CTF 2020 - .NET</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/analysing-jigsaw-ransomware/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Analysing Jigsaw Ransomware</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/eset-crackme-challenge/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ESET Crackme Challenge</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/deobfuscating-movfuscator-part-2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deobfuscating MoVfuscator - Part 2</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

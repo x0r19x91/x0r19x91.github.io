@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Counting n length strings accepted by a regular language'><title>Counting Strings - Part 1</title>
+
+<link rel='canonical' href='http://localhost:1313/post/counting-strings-1/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Counting Strings - Part 1'>
+<meta property='og:description' content='Counting n length strings accepted by a regular language'>
+<meta property='og:url' content='http://localhost:1313/post/counting-strings-1/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='automata' /><meta property='article:tag' content='math' /><meta property='article:published_time' content='2020-11-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-11-25T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Counting Strings - Part 1">
+<meta name="twitter:description" content="Counting n length strings accepted by a regular language">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/automata/">automata</a>
+            
+        
+            
+                <a href="/categories/math/">math</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/counting-strings-1/">Counting Strings - Part 1</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Counting n length strings accepted by a regular language
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 25, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>One day, I was solving a recurrence problem from Kenneth Rosen&rsquo;s Discrete Math book.</p>
+<h2 id="question-1">Question 1</h2>
+<blockquote>
+<p>Find the recurrence for the number of bitstrings of length n, containing no two consecutive zeros</p>
+</blockquote>
+<p>This is quite easy, right?</p>
+<p>Let \(a_n\) be the number of strings of length n.</p>
+<ul>
+<li>If the string starts with \(1\), we have \(a_{n-1}\) choices since there&rsquo;s no restriction.</li>
+<li>If the string starts with \(0\), we must have \(0\) after it, so \(a_{n-2}\) choices.</li>
+</ul>
+<p>And since these cases don&rsquo;t overlap, we can sum them to compute \(a_n\)<br>
+So, $$a_n = a_{n-1}+a_{n-2}$$</p>
+<p>Sweet and simple fibonacci.
+Here comes the fun part. The next problem.</p>
+<h2 id="question-2">Question 2</h2>
+<blockquote>
+<p>Find a recurrence relation for the number of n-digit strings over \(\{0,9\}^*\), with an even number of zeros.</p>
+</blockquote>
+<p>I couldn&rsquo;t construct a case easily. I thought of it, (didn&rsquo;t look at the solution yet) and I got an idea -</p>
+<p>Let \(e_n\) denote the number of n-length strings with even number of zeros<br>
+Let \(o_n\) denote the number of n-length strings with odd number of zeros</p>
+<p>If we are in \(e_n\)</p>
+<ul>
+<li>we are looking at \(0\), then we have consumed a \(0\) and we need to consume odd number of zeros, i.e. \(o_{n-1}\)</li>
+<li>we are looking at any other digit, then we consumed one digit, so we need \(9e_{n-1}\) for the other digits</li>
+</ul>
+<p>If we are in \(o_n\)</p>
+<ul>
+<li>we are looking at \(0\), then we have consumed a \(0\) and we need to consume even number of zeros, i.e. \(e_{n-1}\)</li>
+<li>we are looking at any other digit, then we consumed one digit, so we need \(9o_{n-1}\) since we are still in an odd parity</li>
+</ul>
+<p><span id="orgeq"></span>
+So,</p>
+<p>$$
+e_n = o_{n-1}+9e_{n-1} \newline
+o_n = e_{n-1}+9o_{n-1}
+$$</p>
+<p>Now, it&rsquo;s time to solve them 
+$$
+a_n = e_n+o_n = o_{n-1}+e_{n-1}+9(o_{n-1}+e_{n-1}) = 10a_{n-1}
+\tag{1}
+$$</p>
+<p>Also,</p>
+<p>$$
+d_n = e_n-o_n = 9(e_{n-1}-o_{n-1}) - (e_{n-1}-o_{n-1}) = 8d_{n-1}
+\tag{2}
+$$</p>
+<p>The Base case:<br>
+\(e_1 = 9, o_1 = 1 \implies a_1 = 10,\space d_1 = 8 \implies a_n = 10^n, \space d_n = 8^n\)</p>
+<p>From \((1)\) and \((2)\) we have, 
+$$e_n = \frac{10^n+8^n}{2}$$</p>
+<h3 id="why-did-we-construct-two-recurrences-">Why did we construct two recurrences ?</h3>
+<p>We constructed two recurrence relations since we need to count the number of zeros mod 2.<br>
+Let&rsquo;s look more closely. In the problem, we are counting strings with even number of zeros, in the alphabet \(\{0-9\}^*\). Infact, this is a regular language since we can construct a DFA to accept it.</p>
+<p><figure>
+		<a href="/post/counting-strings-1/a1.png" data-size="2968x2789">
+			<img srcset="/post/counting-strings-1/a1_hu3c0a6ef0706ff21f5576ec81b30eb595_59526_480x0_resize_box_2.png 480w, /post/counting-strings-1/a1_hu3c0a6ef0706ff21f5576ec81b30eb595_59526_1024x0_resize_box_2.png 1024w"
+				src="/post/counting-strings-1/a1.png" width="2968" height="2789" loading="lazy"
+				alt="DFA">
+		</a>
+		
+		<figcaption>DFA</figcaption>
+		
+	</figure></p>
+<p>Cool! Now let&rsquo;s tweak this DFA a bit to count strings. Lets index each state with an integer \(i\) to represent the number of strings of length \(i\) accepted by that state.</p>
+<p>Let \(s_n\) represent number of strings of length \(n\) accepted by the DFA starting at state \(s\)</p>
+<p>So,</p>
+<p>$$ init_n = odd_{n-1} + 9even_{n-1} \tag{1} $$ 
+because we have only one way to reach \(odd\) and \(9\) ways to reach \(even\) from \(init\). In either way we consume one symbol, so \(n \rightarrow n-1\)</p>
+<p>Similarly, $$even_n = 9even_{n-1}+odd_{n-1} \tag{2}$$
+$$odd_n = 9odd_{n-1}+even_{n-1} \tag{3}$$</p>
+<p>Wait! \((2)\) and \((3)\) are the <a class="link" href="#orgeq" >recurrences</a> we used to solve this problem. So, we can define recurrences now, but we also need the base cases.</p>
+<p>\(even_0 = 1, odd_0 = init_0 = 0\) since \(even\) is a final state (if we start at \(even\), we can accept only \(\epsilon\)) whereas \(odd\) and \(init\) are non-final states.</p>
+<h2 id="generalization">Generalization</h2>
+<p>To generalize this concept, we need to define some rules.</p>
+<h3 id="case-1">Case 1</h3>
+<p><span id="case1"></span></p>
+<p><figure>
+		<a href="/post/counting-strings-1/a2.png" data-size="3768x1012">
+			<img srcset="/post/counting-strings-1/a2_hub3967cbfd2efbcbed6fae1c618dd2b41_25433_480x0_resize_box_2.png 480w, /post/counting-strings-1/a2_hub3967cbfd2efbcbed6fae1c618dd2b41_25433_1024x0_resize_box_2.png 1024w"
+				src="/post/counting-strings-1/a2.png" width="3768" height="1012" loading="lazy"
+				alt="Case 1">
+		</a>
+		
+		<figcaption>Case 1</figcaption>
+		
+	</figure></p>
+<p>Then</p>
+<p>$$
+A_n = B_{n-\lvert \alpha \rvert}
+$$</p>
+<h4 id="proof">Proof</h4>
+<blockquote>
+<p>In this step, we consume \(\alpha\) to move from \(A\) to \(B\). So if we count n-length strings from state \(A\), we have to count strings of length \(n-\lvert \alpha \rvert\) from state \(B\), as we are removing the prefix \(\alpha\) in the transition.</p>
+</blockquote>
+<h3 id="case-2">Case 2</h3>
+<p><figure>
+		<a href="/post/counting-strings-1/a3.png" data-size="2261x1777">
+			<img srcset="/post/counting-strings-1/a3_hu7b3b18179f39dd19b04d73b9350de6d6_30270_480x0_resize_box_2.png 480w, /post/counting-strings-1/a3_hu7b3b18179f39dd19b04d73b9350de6d6_30270_1024x0_resize_box_2.png 1024w"
+				src="/post/counting-strings-1/a3.png" width="2261" height="1777" loading="lazy"
+				alt="Case 2">
+		</a>
+		
+		<figcaption>Case 2</figcaption>
+		
+	</figure></p>
+<p>Then</p>
+<p>$$
+A_n = B_{n-\lvert \alpha \rvert} + C_{n-\lvert \beta \rvert}
+$$</p>
+<p>where \(\alpha\) and \(\beta\) have no common prefix</p>
+<h4 id="proof-1">Proof</h4>
+<blockquote>
+<p>Applying <a class="link" href="#case1" >Case 1</a> for \(A \longrightarrow B\) and \(A \longrightarrow C \), we get the result. And since we are defining the rules for DFA, \(\alpha\) and \(\beta\) have no common prefix except \(\epsilon\), so \(B_{n-\lvert \alpha \rvert}\) and \(C_{n-\lvert \beta \rvert}\) have no strings in common</p>
+</blockquote>
+<h3 id="case-3">Case 3</h3>
+<p><figure>
+		<a href="/post/counting-strings-1/a4.png" data-size="400x612">
+			<img srcset="/post/counting-strings-1/a4_hu02d08a08cf619cb5f98af06f979705ad_6543_480x0_resize_box_2.png 480w, /post/counting-strings-1/a4_hu02d08a08cf619cb5f98af06f979705ad_6543_1024x0_resize_box_2.png 1024w"
+				src="/post/counting-strings-1/a4.png" width="400" height="612" loading="lazy"
+				alt="Case 3">
+		</a>
+		
+		<figcaption>Case 3</figcaption>
+		
+	</figure></p>
+<p>Then</p>
+<p>$$
+A_n = A_{n-\lvert \alpha \rvert}
+$$</p>
+<p>where \(\alpha\) and \(\beta\) have no common prefix</p>
+<h4 id="proof-2">Proof</h4>
+<blockquote>
+<p>Applying <a class="link" href="#case1" >Case 1</a> for \(A \longrightarrow A\)</p>
+</blockquote>
+<p>Now let&rsquo;s solve a difficult recurrence using DFA</p>
+<h3 id="base-cases">Base Cases</h3>
+<p>$$A_0 = \begin{cases} 1 &amp;\text{if A is final} \\ 0 &amp;\text{if A is non final} \end{cases}$$</p>
+<h4 id="proof-3">Proof</h4>
+<blockquote>
+<p>If \(A\) is final, we accept \(\epsilon\) at \(A\).</p>
+</blockquote>
+<h2 id="question-3">Question 3</h2>
+<blockquote>
+<p>Find a recurrence for the number of ternary strings that do not contain consecutive symbols that are same</p>
+</blockquote>
+<p>So, we cannot have <code>00</code>, <code>11</code>, and <code>22</code> as substrings.</p>
+<p>Let&rsquo;s construct the DFA first</p>
+<p><figure>
+		<a href="/post/counting-strings-1/a5.png" data-size="2470x1829">
+			<img srcset="/post/counting-strings-1/a5_hue5cba305745796ca2effad1c08cd03ae_46411_480x0_resize_box_2.png 480w, /post/counting-strings-1/a5_hue5cba305745796ca2effad1c08cd03ae_46411_1024x0_resize_box_2.png 1024w"
+				src="/post/counting-strings-1/a5.png" width="2470" height="1829" loading="lazy"
+				alt="DFA for Q.3">
+		</a>
+		
+		<figcaption>DFA for Q.3</figcaption>
+		
+	</figure></p>
+<p>Now, let&rsquo;s write the recurrences</p>
+<p>$$ {\lbrack\epsilon\rbrack}_n = {\lbrack 0\rbrack}_{n-1} + {\lbrack 1\rbrack}_{n-1} + {\lbrack 2\rbrack}_{n-1} \\ {\lbrack 0\rbrack}_n = {\lbrack \phi\rbrack}_{n-1} + {\lbrack 1\rbrack}_{n-1} + {\lbrack 2\rbrack}_{n-1} \\ {\lbrack 1\rbrack}_n = {\lbrack \phi\rbrack}_{n-1} + {\lbrack 0\rbrack}_{n-1} + {\lbrack 2\rbrack}_{n-1} \\ {\lbrack 2\rbrack}_n = {\lbrack \phi\rbrack}_{n-1} + {\lbrack 0\rbrack}_{n-1} + {\lbrack 1\rbrack}_{n-1} \\ {\lbrack \phi\rbrack}_n = {\lbrack \phi\rbrack}_{n-1} + {\lbrack \phi\rbrack}_{n-1} + {\lbrack \phi\rbrack}_{n-1} = 3{\lbrack\phi\rbrack}_{n-1} $$</p>
+<p>$$ {\lbrack\epsilon\rbrack}_0 = {\lbrack 0\rbrack}_0 = {\lbrack 1\rbrack}_0 = {\lbrack 2\rbrack}_0 = 1 \\ {\lbrack\phi\rbrack}_0 = 0 $$</p>
+<p>We have \({\lbrack\phi\rbrack}_n\ = 0\), so we can simplify the above recurrences</p>
+<p>$$ {\lbrack\epsilon\rbrack}_n = {\lbrack 0\rbrack}_{n-1} + {\lbrack 1\rbrack}_{n-1} + {\lbrack 2\rbrack}_{n-1} $$ $$ \tag{1} {\lbrack 0\rbrack}_n = {\lbrack 1\rbrack}_{n-1} + {\lbrack 2\rbrack}_{n-1} $$ $$ \tag{2} {\lbrack 1\rbrack}_n = {\lbrack 0\rbrack}_{n-1} + {\lbrack 2\rbrack}_{n-1} $$ $$ \tag{3} {\lbrack 2\rbrack}_n = {\lbrack 0\rbrack}_{n-1} + {\lbrack 1\rbrack}_{n-1} $$</p>
+<p>Adding \(1\), \(2\) and \(3\), we have</p>
+<p>$$ {\lbrack 012\rbrack}_n = {\lbrack 0\rbrack}_n + {\lbrack 1\rbrack}_n + {\lbrack 2\rbrack}_n = 2{\lbrack 012\rbrack}_{n-1} = 2^{n}{\lbrack 012\rbrack}_0 = 3\cdot 2^n $$</p>
+<p>$$ {\lbrack\epsilon\rbrack}_n = {\lbrack 012\rbrack}_{n-1} = \begin{cases} 1 &amp;\text{if n = 0} \\ 3\cdot 2^{n-1} &amp;\text{n &gt; 0} \end{cases} $$</p>
+<blockquote>
+<p>Alt Proof.: We can place 0, 1, or 2 in the first place in 3 ways. And for the remaining places, we must make sure not to place the previous symbol, so, 2 ways for every other place. Implies \(3\cdot 2^{n-1}\) ways in total.</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/automata/">automata</a>
+        
+            <a href="/tags/math/">math</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/counting-strings-2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Counting Strings - Part 2</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/counting-strings-part-3/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Counting Strings - Part 3</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

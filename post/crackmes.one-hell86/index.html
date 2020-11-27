@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Crackmes.one'><title>crackmes.one - hell86</title>
+
+<link rel='canonical' href='http://localhost:1313/post/crackmes.one-hell86/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='crackmes.one - hell86'>
+<meta property='og:description' content='Crackmes.one'>
+<meta property='og:url' content='http://localhost:1313/post/crackmes.one-hell86/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:tag' content='crackmes.one' /><meta property='article:published_time' content='2019-01-13T00:00:00&#43;05:30'/><meta property='article:modified_time' content='2019-01-13T00:00:00&#43;05:30'/>
+<meta name="twitter:title" content="crackmes.one - hell86">
+<meta name="twitter:description" content="Crackmes.one">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/crackmes.one/">crackmes.one</a>
+            
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/crackmes.one-hell86/">crackmes.one - hell86</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Crackmes.one
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 13, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>This is a beautiful challenge by ttlhacker from <a class="link" href="https://crackmes.one"  target="_blank" rel="noopener"
+    >crackmes.one</a>.</p>
+<h4 id="description">Description</h4>
+<blockquote>
+<p>x86_64 linux binary (tested on debian 9 and ubuntu 18.04, should run on any distro). Takes one command line argument and outputs &ldquo;OK!&rdquo; if it&rsquo;s correct, &ldquo;Wrong&rdquo; if it&rsquo;s not.<br>
+Partially written in C, actual verification routine is assembly.<br>
+Don&rsquo;t patch the binary, of course - find the correct input.</p>
+</blockquote>
+<p>Let&rsquo;s get started :-)</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    ╭ (fcn) main 110
+    │   int main (int argc, char **argv, char **envp);
+    │           ; arg int argc @ rdi
+    │           ; arg char **argv @ rsi
+    │           ; DATA XREF from entry0 (0x107d)
+    │           0x00000fc0      55             push rbp
+    │           0x00000fc1      53             push rbx
+    │           0x00000fc2      4889f5         mov rbp, rsi                ; argv
+    │           0x00000fc5      89fb           mov ebx, edi                ; argc
+    │           0x00000fc7      4883ec08       sub rsp, 8
+    │           0x00000fcb      e8f6090000     call make_alt_stack
+    │           0x00000fd0      84c0           test al, al
+    │           0x00000fd2      ba01000000     mov edx, 1
+    │       ╭─&lt; 0x00000fd7      744f           je 0x1028
+    │       │   0x00000fd9      e887090000     call register_sigill
+    │       │   0x00000fde      84c0           test al, al
+    │       │   0x00000fe0      ba02000000     mov edx, 2
+    │      ╭──&lt; 0x00000fe5      7441           je 0x1028
+    │      ││   0x00000fe7      4863fb         movsxd rdi, ebx
+    │      ││   0x00000fea      4889ee         mov rsi, rbp
+    │      ││   0x00000fed      e89e010000     call verify_flag
+    │      ││   0x00000ff2      4883f801       cmp rax, 1
+    │      ││   0x00000ff6      488d3dda1000.  lea rdi, str.Wrong          ; 0x20d7 ; &quot;Wrong&quot;
+    │     ╭───&lt; 0x00000ffd      7422           je 0x1021
+    │     │││   0x00000fff      4883f802       cmp rax, 2
+    │     │││   0x00001003      488d3dd31000.  lea rdi, str.hell86_crackme__    ; 0x20dd
+    │    ╭────&lt; 0x0000100a      7415           je 0x1021
+    │    ││││   0x0000100c      4885c0         test rax, rax
+    │    ││││   0x0000100f      488d3dbd1000.  lea rdi, [0x000020d3]       ; &quot;OK!&quot;
+    │    ││││   0x00001016      488d05021100.  lea rax, str.You_have__a_bug ; 0x211f ; &quot;You have encountered a bug&quot;
+    │    ││││   0x0000101d      480f45f8       cmovne rdi, rax
+    │    ││││   ; CODE XREFS from main (0xffd, 0x100a)
+    │    ╰╰───&gt; 0x00001021      e80affffff     call sym.imp.puts           ; int puts(const char *s)
+    │      ││   0x00001026      31d2           xor edx, edx
+    │      ││   ; CODE XREFS from main (0xfd7, 0xfe5)
+    │      ╰╰─&gt; 0x00001028      89d0           mov eax, edx
+    │           0x0000102a      5a             pop rdx
+    │           0x0000102b      5b             pop rbx
+    │           0x0000102c      5d             pop rbp
+    ╰           0x0000102d      c3             ret
+</code></pre><p><strong>make_alt_stack</strong> allocates 8192 bytes from the heap which will be used as a stack for the signal handler which has been registered with <strong>SA_ONSTACK</strong> (<strong>sigaltstack</strong> syscall)</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    [0x00000fc0]&gt; pdf @register_sigill
+    ╭ (fcn) register_sigill 97
+    │   register_sigill ();
+    │           ; var int local_8h @ rsp+0x8
+    │           ; var int local_10h @ rsp+0x10
+    │           ; var int local_90h @ rsp+0x90
+    │           ; CALL XREF from main (0xfd9)
+    │           0x00001965      53             push rbx
+    │           0x00001966      31c0           xor eax, eax
+    │           0x00001968      b926000000     mov ecx, 0x26
+    │           0x0000196d      4881eca00000.  sub rsp, 0xa0
+    │           0x00001974      488d7c2408     lea rdi, [local_8h]
+    │           0x00001979      f3ab           rep stosd dword [rdi], eax
+    │           0x0000197b      488d05c4ffff.  lea rax, [0x00001946]    ; SIGILL handler
+    │           0x00001982      488d7c2410     lea rdi, [local_10h]
+    │           0x00001987      c78424900000.  mov dword [local_90h], 0x8000004 ; SA_ONSTACK | SA_SIGINFO
+    │           0x00001992      4889442408     mov qword [local_8h], rax
+    │           0x00001997      e8c4f5ffff     call sym.imp.sigfillset
+    │           0x0000199c      31d2           xor edx, edx
+    │           0x0000199e      85c0           test eax, eax
+    │       ╭─&lt; 0x000019a0      7519           jne 0x19bb
+    │       │   0x000019a2      488d5c2408     lea rbx, [local_8h]
+    │       │   0x000019a7      31d2           xor edx, edx
+    │       │   0x000019a9      bf04000000     mov edi, SIGILL
+    │       │   0x000019ae      4889de         mov rsi, rbx
+    │       │   0x000019b1      e8daf5ffff     call sym.imp.sigaction
+    │       │   0x000019b6      85c0           test eax, eax
+    │       │   0x000019b8      0f94c2         sete dl
+    │       │   ; CODE XREF from register_sigill (0x19a0)
+    │       ╰─&gt; 0x000019bb      4881c4a00000.  add rsp, 0xa0
+    │           0x000019c2      88d0           mov al, dl
+    │           0x000019c4      5b             pop rbx
+    ╰           0x000019c5      c3             ret
+</code></pre><p><strong>register_sigill</strong> registers a SIGILL handler using the flags <strong>SA_ONSTACK</strong> and <strong>SA_SIGINFO</strong>. So when the handler gets called, the alternate stack is used. And the handler has the following signature</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">handler</span>(<span style="color:#6ab825;font-weight:bold">int</span> sig, siginfo_t *info, <span style="color:#6ab825;font-weight:bold">void</span> *ucontext);
+</code></pre></div><p>Let&rsquo;s try to disassemble <strong>verify_flag</strong></p>
+<pre><code class="language-x86asm" data-lang="x86asm">    [0x00000fc0]&gt; pd 10 @ verify_flag
+    ╭ (fcn) verify_flag 115
+    │   verify_flag ();
+    │           ; CALL XREF from main (0xfed)
+    │           0x00001190      0f0b           ud2
+    │           0x00001192      0200           add al, byte [rax]
+    │           0x00001194      0000           add byte [rax], al
+    │           0x00001196      0000           add byte [rax], al
+    │           0x00001198      0000           add byte [rax], al
+    │           0x0000119a      090d00000f0b   or dword [0x0b0f11a0], ecx
+    │           0x000011a0      0200           add al, byte [rax]
+    │           0x000011a2      0000           add byte [rax], al
+    │           0x000011a4      0000           add byte [rax], al
+    │           0x000011a6      0000           add byte [rax], al
+</code></pre><blockquote>
+<p>Woah! That&rsquo;s garbage ! How does the flag gets verified ??</p>
+</blockquote>
+<p>Well, the first instruction is <strong>ud2</strong>. This generates an Invalid Opcode Exception, ie., it triggers <strong>SIGILL</strong>.<br>
+Let&rsquo;s dive into the sigill_handler routine.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    [0x00000fc0]&gt; pd 6 @0x1946
+                ; DATA XREF from register_sigill (0x197b)
+                0x00001946      488b82a80000.  mov rax, qword [rdx + 0xa8] ; gp_regs.rip
+                0x0000194d      488d7228       lea rsi, [rdx + 0x28]       ; &amp; ucontext-&gt;gp_regs
+                0x00001951      488d7802       lea rdi, [rax + 2]
+                0x00001955      4883c00e       add rax, 0xe
+                0x00001959      488982a80000.  mov qword [rdx + 0xa8], rax
+            ╭─&lt; 0x00001960      e97b050000     jmp 0x1ee0
+    [0x00000fc0]&gt; pd 3 @0x1ee0
+                ; CODE XREF from verify_flag (+0x7d0)
+                0x00001ee0      0fb65708       movzx edx, byte [rdi + 8]
+                0x00001ee4      488d05951120.  lea rax, [0x00203080]
+                0x00001eeb      ff24d0         jmp qword [rax + rdx*8]
+    [0x00000fc0]&gt; px/4xg @0x203080
+    0x00203080  0x0000000000001a1f  0x0000000000001a20
+    0x00203090  0x0000000000001a39  0x0000000000001a52
+</code></pre><p>The handler increments the instruction pointer by 14 bytes and jumps to the instruction specified by the index <strong>[rdi+8]</strong>. The array at 0x203080 contains addresses of routines for emulating instructions.<br>
+For example the routine at 0x1a20 has</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    [0x00000fc0]&gt; pd 7 @0x1a20
+                0x00001a20      0fb64f0a       movzx ecx, byte [rdi + 0xa]
+                0x00001a24      0fb6470b       movzx eax, byte [rdi + 0xb]
+                0x00001a28      0fb65709       movzx edx, byte [rdi + 9]
+                0x00001a2c      488b04c6       mov rax, qword [rsi + rax*8]
+                0x00001a30      480304ce       add rax, qword [rsi + rcx*8]
+                0x00001a34      488904d6       mov qword [rsi + rdx*8], rax
+                0x00001a38      c3             ret
+</code></pre><p><strong>rsi</strong> stores the base address of the array of GPRs in the <strong>ucontext</strong>. So, this routine adds registers (indexed by <strong>rdi</strong>).<br>
+Recall that <strong>rip</strong> is incremented by 14 bytes. Those 14 bytes are used to store the information for each instruction. Each of the 14 byte block starts with a <strong>ud2</strong>.<br>
+So we have,</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">struct</span> insn_t
+    {
+        int16_t ud2_op;         <span style="color:#999;font-style:italic">// marks the beginning of instruction. rip points here
+</span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">char</span> __unknown[<span style="color:#3677a9">8</span>];      <span style="color:#999;font-style:italic">// rdi points here. rdi = rip+2
+</span><span style="color:#999;font-style:italic"></span>        uint8_t instr;          <span style="color:#999;font-style:italic">// instruction index
+</span><span style="color:#999;font-style:italic"></span>        uint8_t dest;           <span style="color:#999;font-style:italic">// destination register
+</span><span style="color:#999;font-style:italic"></span>        uint8_t src_regs[<span style="color:#3677a9">2</span>];    <span style="color:#999;font-style:italic">// source registers
+</span><span style="color:#999;font-style:italic"></span>    };
+</code></pre></div><p>We need to figure out the &lsquo;__unknown&rsquo; member and the order of the source registers.<br>
+Let&rsquo;s move to the next routine at <strong>0x1a39</strong></p>
+<pre><code class="language-x86asm" data-lang="x86asm">    [0x00000fc0]&gt; pd 7 @0x1a39
+                0x00001a39      0fb6470a       movzx eax, byte [rdi + 0xa]  ; src1
+                0x00001a3d      0fb64f0b       movzx ecx, byte [rdi + 0xb]  ; src2
+                0x00001a41      0fb65709       movzx edx, byte [rdi + 9]    ; dst
+                0x00001a45      488b04c6       mov rax, qword [rsi + rax*8]
+                0x00001a49      482b04ce       sub rax, qword [rsi + rcx*8]
+                0x00001a4d      488904d6       mov qword [rsi + rdx*8], rax ; dst = src1-src2
+                0x00001a51      c3             ret
+</code></pre><p>Great! Now we get the order of the source registers. Let&rsquo;s rewrite the instruction struct</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">struct</span> insn_t
+    {
+        int16_t ud2_op;     <span style="color:#999;font-style:italic">// marks the beginning of instruction. rip points here
+</span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">char</span> __unknown[<span style="color:#3677a9">8</span>];  <span style="color:#999;font-style:italic">// rdi points here. rdi = rip+2
+</span><span style="color:#999;font-style:italic"></span>        uint8_t instr;      <span style="color:#999;font-style:italic">// instruction index
+</span><span style="color:#999;font-style:italic"></span>        uint8_t dest;       <span style="color:#999;font-style:italic">// destination register
+</span><span style="color:#999;font-style:italic"></span>        uint8_t src1;       <span style="color:#999;font-style:italic">// source register 1
+</span><span style="color:#999;font-style:italic"></span>        uint8_t src2;       <span style="color:#999;font-style:italic">// source register 2
+</span><span style="color:#999;font-style:italic"></span>    };
+</code></pre></div><p>Let&rsquo;s move to the function at <strong>0x1ada</strong></p>
+<pre><code class="language-x86asm" data-lang="x86asm">    [0x00000fc0]&gt; pd 7 @0x1ada
+                0x00001ada      0fb64709       movzx eax, byte [rdi + 9]    ; dst
+                0x00001ade      488b17         mov rdx, qword [rdi]         ; __unknown
+                0x00001ae1      488914c6       mov qword [rsi + rax*8], rdx
+                0x00001ae5      c3             ret
+</code></pre><p>Cool ! this copies <strong>__unknown</strong> to the dest register. So, this is emulates move immediate.<br>
+Great ! now we have figured out the __unknown</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">struct</span> insn_t
+    {
+        int16_t ud2_op;     <span style="color:#999;font-style:italic">// marks the beginning of instruction. rip points here
+</span><span style="color:#999;font-style:italic"></span>        int64_t imm;        <span style="color:#999;font-style:italic">// immediate value
+</span><span style="color:#999;font-style:italic"></span>        uint8_t instr;      <span style="color:#999;font-style:italic">// instruction index
+</span><span style="color:#999;font-style:italic"></span>        uint8_t dest;       <span style="color:#999;font-style:italic">// destination register
+</span><span style="color:#999;font-style:italic"></span>        uint8_t src1;       <span style="color:#999;font-style:italic">// source register 1
+</span><span style="color:#999;font-style:italic"></span>        uint8_t src2;       <span style="color:#999;font-style:italic">// source register 2
+</span><span style="color:#999;font-style:italic"></span>    };
+</code></pre></div><p>I&rsquo;ve renamed the functions at <strong>0x203080</strong></p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .data:0000000000203080 off_203080      dq offset nullsub_2
+    .data:0000000000203088                 dq offset add
+    .data:0000000000203090                 dq offset sub
+    .data:0000000000203098                 dq offset mul
+    .data:00000000002030A0                 dq offset quot
+    .data:00000000002030A8                 dq offset rem
+    .data:00000000002030B0                 dq offset sar
+    .data:00000000002030B8                 dq offset shl
+    .data:00000000002030C0                 dq offset neg
+    .data:00000000002030C8                 dq offset mov_imm
+    .data:00000000002030D0                 dq offset movzx_byte_reg_imm
+    .data:00000000002030D8                 dq offset movsx_byte_reg_imm
+    .data:00000000002030E0                 dq offset movzx_word_reg_imm
+    .data:00000000002030E8                 dq offset movsx_word_reg_imm
+    .data:00000000002030F0                 dq offset mov_dword_reg_imm
+    .data:00000000002030F8                 dq offset movsx_dword_reg_imm
+    .data:0000000000203100                 dq offset mov_reg_qmem
+    .data:0000000000203108                 dq offset mov_mem_byte
+    .data:0000000000203110                 dq offset mov_mem_word
+    .data:0000000000203118                 dq offset mov_mem_dword
+    .data:0000000000203120                 dq offset mov_mem_qword
+    .data:0000000000203128                 dq offset push_reg
+    .data:0000000000203130                 dq offset push_imm
+    .data:0000000000203138                 dq offset pop_reg
+    .data:0000000000203140                 dq offset mov_reg_reg
+    .data:0000000000203148                 dq offset or
+    .data:0000000000203150                 dq offset and
+    .data:0000000000203158                 dq offset xor
+    .data:0000000000203160                 dq offset not
+    .data:0000000000203168                 dq offset cmp_lt
+    .data:0000000000203170                 dq offset cmp_le
+    .data:0000000000203178                 dq offset cmp_gt
+    .data:0000000000203180                 dq offset cmp_ge
+    .data:0000000000203188                 dq offset cmp_eq
+    .data:0000000000203190                 dq offset cmp_neq
+    .data:0000000000203198                 dq offset cmp_eq_imm
+    .data:00000000002031A0                 dq offset cmp_neq_imm
+    .data:00000000002031A8                 dq offset cmp_reg_zero
+    .data:00000000002031B0                 dq offset jmp_imm_if_zero
+    .data:00000000002031B8                 dq offset jmp_imm_if_notzero
+    .data:00000000002031C0                 dq offset call_imm
+    .data:00000000002031C8                 dq offset ret
+    .data:00000000002031D0                 dq offset ret_if_reg_not_zero
+    .data:00000000002031D8                 dq offset ret_if_reg_zero
+    .data:00000000002031E0                 dq offset lea_reg_imm
+    .data:00000000002031E8                 dq offset sar_imm
+    .data:00000000002031F0                 dq offset shl_imm
+    .data:00000000002031F8                 dq offset or_imm
+    .data:0000000000203200                 dq offset and_imm
+    .data:0000000000203208                 dd offset xor_imm
+</code></pre><p>So, the verify_flag routine is an array of <strong>insn_t</strong>. The flag is verified by emulating the instructions through a <strong>SIGILL</strong>. Now we need to write a disassembler for <strong>verify_flag</strong></p>
+<p>Here&rsquo;s the disassembly of <code>verify_flag</code>. I&rsquo;ve defined some new instructions like</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Instruction</th>
+<th style="text-align:center">Syntax</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ret.z</td>
+<td style="text-align:center"><code>ret.z reg</code></td>
+<td style="text-align:left">returns if <em>reg</em> is zero</td>
+</tr>
+<tr>
+<td style="text-align:center">ret.nz</td>
+<td style="text-align:center"><code>ret.nz reg</code></td>
+<td style="text-align:left">returns if <em>reg</em> is non zero</td>
+</tr>
+<tr>
+<td style="text-align:center">if.z</td>
+<td style="text-align:center"><code>if.z reg, jmp offset</code></td>
+<td style="text-align:left">if <em>reg</em> is zero, goto <em>offset</em></td>
+</tr>
+<tr>
+<td style="text-align:center">if.nz</td>
+<td style="text-align:center"><code>if.nz reg, jmp offset</code></td>
+<td style="text-align:left">if <em>reg</em> is not zero, goto <em>offset</em></td>
+</tr>
+<tr>
+<td style="text-align:center">cmp.cc</td>
+<td style="text-align:center"><code>cmp.cc Rd, Rs, Rt</code></td>
+<td style="text-align:left">compare registers <em>Rs</em> and <em>Rt</em> and set the result of condition <em>cc</em> into <em>Rd</em></td>
+</tr>
+<tr>
+<td style="text-align:center">div.quot</td>
+<td style="text-align:center"><code>div.quot Rd, Rs, Rt</code></td>
+<td style="text-align:left">Rd = ⌊Rs/Rt⌋</td>
+</tr>
+<tr>
+<td style="text-align:center">div.rem</td>
+<td style="text-align:center"><code>div.rem Rd, Rs, Rt</code></td>
+<td style="text-align:left">Rd = Rs mod Rt</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-x86asm" data-lang="x86asm">    00000000          mov rax, 0x2
+    00000001          cmp.neq r8, rdi, 0x2      ; argc must be 2
+    00000002          ret.nz r8
+    00000003          lea rsi, [rsi + 0x8]
+    00000004          mov rdi, qword [rsi + 0]  ; argv[1]
+    00000005          jmp 0x6
+
+    00000006          push rbp
+    00000007          mov rbp, rsp
+    00000008          lea rsp, [rsp + 0xfffffff0]
+    00000009          mov qword [rbp + 0xfffffff0], rdi
+    0000000a          call 0x73                 ; find length
+    0000000b          cmp.neq rax, rax, 0x24    ; len(argv[1]) == 0x24
+    0000000c          if.nz rax, jmp 0x29
+    0000000d          mov rdi, 0x20cd           ; &quot;abdfgehikmanoqrstucvwlxyz-01h23p456u78j9-_.+&quot;
+    0000000e          call 0x73
+    0000000f          mov qword [rbp + 0xfffffff8], rax
+    00000010          mov rdi, qword [rbp + 0xfffffff0]
+    00000011          mov rsi, 0x20cd           ; &quot;FLAG{&quot;
+    00000012          mov rdx, rax
+    00000013          call 0x79                 ; compare strings
+    00000014          if.nz rax, jmp 0x29
+    00000015          mov rdi, qword [rbp + 0xfffffff0]
+    00000016          movzx rsi, byte [rdi + 0x23]
+    00000017          cmp.neq rsi, rsi, 0x7d    ; input[0x23] == '}'
+    00000018          if.nz rsi, jmp 0x29
+    00000019          mov rsi, qword [rbp + 0xfffffff8]
+    0000001a          add rdi, rdi, rsi         ; rdi += len(&quot;FLAG{&quot;)
+    0000001b          neg rsi, rsi
+    0000001c          lea rsi, [rsi + 0x23]     ; rsi = 0x23-5 = 0x1e
+    0000001d          push rsi
+    0000001e          call 0x2d                 ; compute indices
+    0000001f          pop rsi
+    00000020          if.z rax, jmp 0x29
+    00000021          mov rdi, rax
+    00000022          push rdi                  ; array of indices
+    00000023          call 0x51                 ; validate the flag
+    00000024          pop rdi
+    00000025          push rax
+    00000026          call [free]
+    00000027          pop rax
+    00000028          jmp 0x2a                  ; good jump
+    00000029          mov rax, 0x1              ; bad jump
+    0000002a          mov rsp, rbp
+    0000002b          pop rbp
+    0000002c          ret
+
+    0000002d          mov rax, 0
+    0000002e          ret.z rsi
+    0000002f          push rdi                  ; string
+    00000030          push rsi                  ; len
+    00000031          shl rdi, rsi, 0x3
+    00000032          call [malloc]             ; allocate len*8 bytes
+    00000033          pop rsi
+    00000034          pop rdi
+    00000035          ret.z rax                 ; return 0 if malloc failed
+    00000036          mov r8, rax
+    00000037          mov r9, rax
+    00000038          push r9
+    00000039          push r8
+    0000003a          push rdi
+    0000003b          push rsi
+    0000003c          movzx rsi, byte [rdi + 0] ; char
+    0000003d          mov rdi, 0x20a0           ; &quot;abdfgehikmanoqrstucvwlxyz-01h23p456u78j9-_.+&quot;
+    0000003e          call 0x84                 ; strchr
+    0000003f          pop rsi
+    00000040          pop rdi
+    00000041          pop r8
+    00000042          pop r9
+    00000043          if.z rax, jmp 0x4d
+    00000044          mov r10, 0x20a0
+    00000045          sub rax, rax, r10         ; index of char
+    00000046          mov qword [r9 + 0], rax   ; store index
+    00000047          lea r9, [r9 + 0x8]
+    00000048          lea rdi, [rdi + 0x1]      ; next char
+    00000049          lea rsi, [rsi + 0xffffffff]
+    0000004a          if.nz rsi, jmp 0x38
+    0000004b          mov rax, r8               ; return array of indices
+    0000004c          ret
+
+    0000004d          mov rdi, r8
+    0000004e          call [free]
+    0000004f          mov rax, 0
+    00000050          ret
+
+    00000051          mov rax, 0x1
+    00000052          ret.z rsi
+    00000053          mov r8, qword [rdi + 0]
+    00000054          cmp.neq r8, r8, 0x16      ; the first index is 0x16
+    00000055          ret.nz r8
+    00000056          push rdi                  ; indices array
+    00000057          push rsi                  ; no.of elements
+    00000058          call 0x66                 ; some transformation applied
+    00000059          pop rsi
+    0000005a          pop rdi
+    0000005b          lea rsi, [rsi + 0xffffffff]
+    0000005c          push rdi                  ; transformed array
+    0000005d          shl rdx, rsi, 0x3         ; #bytes = #qwords * 8
+    0000005e          mov rsi, 0x1fa0           ; magic array
+    0000005f          call 0x79                 ; compare arrays
+    00000060          pop rdi
+    00000061          mov r8, rax               ; must return 0
+    00000062          mov rax, 0x1
+    00000063          ret.nz r8
+    00000064          mov rax, 0
+    00000065          ret
+
+    00000066          ret.z rsi                 ; the transformation
+    00000067          lea rsi, [rsi + 0xffffffff]
+    00000068          ret.z rsi
+    00000069          mov r8, qword [rdi + 0]
+    0000006a          mov r9, qword [rdi + 0x8]
+    0000006b          sub r8, r9, r8            ; rdi[1]-rdi[0]
+    0000006c          xor r8, r8, rsi           ; rsi ^ rdi[1]-rdi[0]
+    0000006d          mul r9, r8, r8
+    0000006e          mul r8, r9, r8            ; r8 = (rsi ^ rdi[1]-rdi[0])**3
+    0000006f          mov qword [rdi + 0], r8
+    00000070          lea rdi, [rdi + 0x8]
+    00000071          lea rsi, [rsi + 0xffffffff]
+    00000072          jmp 0x68
+
+    00000073          mov rax, 0
+    00000074          movzx r10, byte [rdi + 0]
+    00000075          ret.z r10
+    00000076          lea rdi, [rdi + 0x1]
+    00000077          lea rax, [rax + 0x1]
+    00000078          jmp 0x74
+
+    00000079          mov rax, 0
+    0000007a          ret.z rdx
+    0000007b          movzx r8, byte [rdi + 0]
+    0000007c          movzx r9, byte [rsi + 0]
+    0000007d          xor r8, r8, r9
+    0000007e          or rax, rax, r8
+    0000007f          lea rdx, [rdx + 0xffffffff]
+    00000080          lea rdi, [rdi + 0x1]
+    00000081          lea rsi, [rsi + 0x1]
+    00000082          if.nz rdx, jmp 0x7b
+    00000083          ret
+
+    00000084          mov rax, rdi
+    00000085          movzx r8, byte [rax + 0]
+    00000086          if.z r8, jmp 0x8b
+    00000087          cmp.eq r8, r8, rsi
+    00000088          ret.nz r8
+    00000089          lea rax, [rax + 0x1]
+    0000008a          jmp 0x85
+    0000008b          mov rax, 0
+    0000008c          ret
+</code></pre><p>Now let&rsquo;s analyze the disassembled code.<br>
+The routine at <strong>0x73</strong> finds the length of the string pointed to by <strong>rdi</strong>.<br>
+<strong>0x79</strong> compares byte arrays for equality. It xor&rsquo;s the respective bytes and performs a bitwise-or of the xor&rsquo;s. If the strings are equal then the result will be zero.<br>
+The routine at 0x2d is like this</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">long</span>* <span style="color:#447fcf">get_indices</span>(<span style="color:#6ab825;font-weight:bold">char</span>* buf, <span style="color:#6ab825;font-weight:bold">int</span> size)
+    {
+        <span style="color:#6ab825;font-weight:bold">long</span>* words = (<span style="color:#6ab825;font-weight:bold">long</span>*) malloc(size &lt;&lt; <span style="color:#3677a9">3</span>);
+        <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">char</span> set[] = <span style="color:#ed9d13">&#34;abdfgehikmanoqrstucvwlxyz-01h23p456u78j9-_.+&#34;</span>;
+        <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; size; ++i) {
+            words[i] = strchr(set, buf[i])-buf;
+        }
+        <span style="color:#6ab825;font-weight:bold">return</span> words;
+    }
+</code></pre></div><p>Now the function at 0x51 is called with the array of indices. It applies a transformation on the array of indices and compares the modified array with the array of bytes at <strong>0x1fa0</strong>. If they are equal we get to return 0 (success).<br>
+<strong>0x66</strong> works like this</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">modify</span>(<span style="color:#6ab825;font-weight:bold">long</span>* words, <span style="color:#6ab825;font-weight:bold">int</span> count)
+    {
+        <span style="color:#6ab825;font-weight:bold">while</span> (--count &gt; <span style="color:#3677a9">0</span>) {
+            <span style="color:#6ab825;font-weight:bold">long</span> temp = words[<span style="color:#3677a9">1</span>]-words[<span style="color:#3677a9">0</span>] ^ count;
+            *words++ = temp*temp*temp;
+        }
+    }
+</code></pre></div><p>To find the flag, we have the modified array at <strong>0x1fa0</strong>, the starting index as <strong>0x16</strong>. Here&rsquo;s the code</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">solve</span>(<span style="color:#6ab825;font-weight:bold">char</span>* elf)
+    {
+        int64_t* delta = (int64_t*) (elf+<span style="color:#3677a9">0x1fa0</span>);
+        printf(<span style="color:#ed9d13">&#34;-=-=-=- FLAG{&#34;</span>);
+        <span style="color:#6ab825;font-weight:bold">char</span> set[] = <span style="color:#ed9d13">&#34;abdfgehikmanoqrstucvwlxyz-01h23p456u78j9-_.+&#34;</span>;
+        <span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0x16</span>, count = <span style="color:#3677a9">0x1e</span>;
+        <span style="color:#6ab825;font-weight:bold">while</span> (count--) {
+            printf(<span style="color:#ed9d13">&#34;%c&#34;</span>, set[i]);
+            <span style="color:#6ab825;font-weight:bold">int</span> m = (<span style="color:#6ab825;font-weight:bold">int</span>) round(cbrt(*delta++));
+            i += m^count;
+        }
+        printf(<span style="color:#ed9d13">&#34;} -=-=-=-</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+    }
+
+    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+    {
+        <span style="color:#6ab825;font-weight:bold">int</span> fd = open(<span style="color:#ed9d13">&#34;hell86&#34;</span>, <span style="color:#3677a9">0</span>);
+        <span style="color:#6ab825;font-weight:bold">if</span> (fd == -<span style="color:#3677a9">1</span>) {
+            fprintf(stderr, <span style="color:#ed9d13">&#34;open failed !</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            exit(<span style="color:#3677a9">1</span>);
+        }
+
+        <span style="color:#6ab825;font-weight:bold">struct</span> stat stbuf = {<span style="color:#3677a9">0</span>};
+        fstat(fd, &amp;stbuf);
+
+        <span style="color:#6ab825;font-weight:bold">char</span>* buffer = mmap(<span style="color:#24909d">NULL</span>, stbuf.st_size, PROT_READ, MAP_PRIVATE, fd, <span style="color:#3677a9">0</span>);
+        <span style="color:#6ab825;font-weight:bold">if</span> (! buffer) {
+            close(fd);
+            fprintf(stderr, <span style="color:#ed9d13">&#34;mmap failed !</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            exit(<span style="color:#3677a9">2</span>);
+        }
+
+        solve(buffer);
+
+        munmap(buffer, stbuf.st_size);
+        close(fd);
+    }
+</code></pre></div><p>Which outputs</p>
+<pre><code>-=-=-=- FLAG{x86-1s-s0-fund4m3nt4lly-br0k3n} -=-=-=-
+</code></pre>
+<p>Here&rsquo;s the complete code (including the disassembler)</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;math.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;string.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;fcntl.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;sys/stat.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;unistd.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdint.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;sys/mman.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;elf.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>
+    <span style="color:#6ab825;font-weight:bold">char</span>* regs[] = {
+        <span style="color:#ed9d13">&#34;r8&#34;</span>, <span style="color:#ed9d13">&#34;r9&#34;</span>, <span style="color:#ed9d13">&#34;r10&#34;</span>, <span style="color:#ed9d13">&#34;r11&#34;</span>, <span style="color:#ed9d13">&#34;r12&#34;</span>, <span style="color:#ed9d13">&#34;r13&#34;</span>, <span style="color:#ed9d13">&#34;r14&#34;</span>, <span style="color:#ed9d13">&#34;r15&#34;</span>,
+        <span style="color:#ed9d13">&#34;rdi&#34;</span>, <span style="color:#ed9d13">&#34;rsi&#34;</span>, <span style="color:#ed9d13">&#34;rbp&#34;</span>, <span style="color:#ed9d13">&#34;rbx&#34;</span>, <span style="color:#ed9d13">&#34;rdx&#34;</span>, <span style="color:#ed9d13">&#34;rax&#34;</span>, <span style="color:#ed9d13">&#34;rcx&#34;</span>, <span style="color:#ed9d13">&#34;rsp&#34;</span>,
+        <span style="color:#ed9d13">&#34;rip&#34;</span>
+    };
+
+    <span style="color:#cd2828;font-weight:bold">#pragma pack(push, 1)
+</span><span style="color:#cd2828;font-weight:bold"></span>    <span style="color:#6ab825;font-weight:bold">struct</span> instr_t
+    {
+        uint16_t ud2;
+        uint64_t imm;
+        uint8_t instr;
+        uint8_t dest;
+        uint8_t src1;
+        uint8_t src2;
+    };
+    <span style="color:#cd2828;font-weight:bold">#pragma pack(pop)
+</span><span style="color:#cd2828;font-weight:bold"></span>
+    <span style="color:#999;font-style:italic">// printf(fmt_strings[i], imm, dest, src1, src2)
+</span><span style="color:#999;font-style:italic"></span>
+    <span style="color:#6ab825;font-weight:bold">char</span>* fmt_strings[] = {
+        <span style="color:#ed9d13">&#34;nop&#34;</span>,
+        <span style="color:#ed9d13">&#34;add %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;sub %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;mul %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;div.quot %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;div.rem %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;sar %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;shl %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;neg %2$s, %3$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov %2$s, %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;movzx %2$s, byte [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;movsx %2$s, byte [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;movzx %2$s, word [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;movsx %2$s, word [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov %2$s, dword [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;movsxd %2$s, dword [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov %2$s, qword [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov byte [%3$s + %1$#x], %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov word [%3$s + %1$#x], %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov dword [%3$s + %1$#x], %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov qword [%3$s + %1$#x], %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;push %3$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;push %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;pop %2$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;mov %2$s, %3$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;or %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;and %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;xor %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;not %2$s, %3$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.lt %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.le %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.gt %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.ge %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.eq %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.neq %2$s, %3$s, %4$s&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.eq %2$s, %3$s, %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.neq %2$s, %3$s, %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;cmp.z %2$s, %3$s       ; %2$s = %3$s == 0&#34;</span>,
+        <span style="color:#ed9d13">&#34;if.z %3$s, jmp %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;if.nz %3$s, jmp %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;call %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;ret&#34;</span>,
+        <span style="color:#ed9d13">&#34;ret.nz %3$s        ; return if %3$s is not zero&#34;</span>,
+        <span style="color:#ed9d13">&#34;ret.z %3$s         ; return if %3$s is zero&#34;</span>,
+        <span style="color:#ed9d13">&#34;lea %2$s, [%3$s + %1$#x]&#34;</span>,
+        <span style="color:#ed9d13">&#34;sar %2$s, %3$s, %1$#hx&#34;</span>,
+        <span style="color:#ed9d13">&#34;shl %2$s, %3$s, %1$#hx&#34;</span>,
+        <span style="color:#ed9d13">&#34;or %2$s, %3$s, %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;and %2$s, %3$s, %1$#x&#34;</span>,
+        <span style="color:#ed9d13">&#34;xor %2$s, %3$s, %1$#x&#34;</span>
+    };
+
+    <span style="color:#6ab825;font-weight:bold">char</span>* <span style="color:#447fcf">resolve</span>(<span style="color:#6ab825;font-weight:bold">char</span>* elf, uint64_t addr)
+    {
+        <span style="color:#999;font-style:italic">// resolve address
+</span><span style="color:#999;font-style:italic"></span>        Elf64_Ehdr* header = (Elf64_Ehdr*) elf;
+        Elf64_Shdr* section = (Elf64_Shdr*) (elf + header-&gt;e_shoff);
+        <span style="color:#6ab825;font-weight:bold">int</span> n_sections = header-&gt;e_shnum;
+        Elf64_Shdr *strtab = <span style="color:#3677a9">0</span>, *symtab = <span style="color:#3677a9">0</span>, *rela = <span style="color:#3677a9">0</span>;
+        <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; n_sections; ++i) {
+            <span style="color:#6ab825;font-weight:bold">if</span> (!strtab &amp;&amp; section-&gt;sh_type == SHT_STRTAB &amp;&amp; section-&gt;sh_offset != header-&gt;e_shstrndx)
+                strtab = section;
+            <span style="color:#6ab825;font-weight:bold">else</span> <span style="color:#6ab825;font-weight:bold">if</span> (!symtab &amp;&amp; (section-&gt;sh_type == SHT_SYMTAB || section-&gt;sh_type == SHT_DYNSYM))
+                symtab = section;
+            <span style="color:#6ab825;font-weight:bold">else</span> <span style="color:#6ab825;font-weight:bold">if</span> (!rela &amp;&amp; section-&gt;sh_type == SHT_RELA)
+                rela = section;
+            section++;
+        }
+        Elf64_Sym* sym = (Elf64_Sym*) (elf+symtab-&gt;sh_offset);
+        <span style="color:#6ab825;font-weight:bold">char</span>* names = elf+strtab-&gt;sh_offset;
+        Elf64_Rela* reloc = (Elf64_Rela*) (elf+rela-&gt;sh_offset);
+        <span style="color:#6ab825;font-weight:bold">int</span> n_relocs = rela-&gt;sh_size / <span style="color:#6ab825;font-weight:bold">sizeof</span>(Elf64_Rela);
+        <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; n_relocs; ++i) {
+            <span style="color:#6ab825;font-weight:bold">if</span> (reloc-&gt;r_offset == addr) {
+                <span style="color:#999;font-style:italic">// addr has an entry in reloc
+</span><span style="color:#999;font-style:italic"></span>                <span style="color:#6ab825;font-weight:bold">int</span> sym_idx = reloc-&gt;r_info &gt;&gt; <span style="color:#3677a9">32</span>;
+                Elf64_Sym* symb = sym+sym_idx;;
+                <span style="color:#6ab825;font-weight:bold">return</span> names+symb-&gt;st_name;
+            }
+            reloc++;
+        }
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">NULL</span>;
+    }
+
+    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">solve</span>(<span style="color:#6ab825;font-weight:bold">char</span>* elf)
+    {
+        int64_t* delta = (int64_t*) (elf+<span style="color:#3677a9">0x1fa0</span>);
+        printf(<span style="color:#ed9d13">&#34;-=-=-=- FLAG{&#34;</span>);
+        <span style="color:#6ab825;font-weight:bold">char</span> set[] = <span style="color:#ed9d13">&#34;abdfgehikmanoqrstucvwlxyz-01h23p456u78j9-_.+&#34;</span>;
+        <span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0x16</span>, count = <span style="color:#3677a9">0x1e</span>;
+        <span style="color:#6ab825;font-weight:bold">while</span> (count--) {
+            printf(<span style="color:#ed9d13">&#34;%c&#34;</span>, set[i]);
+            <span style="color:#6ab825;font-weight:bold">int</span> m = (<span style="color:#6ab825;font-weight:bold">int</span>) round(cbrt(*delta++));
+            i += m^count;
+        }
+        printf(<span style="color:#ed9d13">&#34;} -=-=-=-</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+    }
+
+    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+    {
+        <span style="color:#6ab825;font-weight:bold">int</span> fd = open(<span style="color:#ed9d13">&#34;hell86&#34;</span>, <span style="color:#3677a9">0</span>);
+        <span style="color:#6ab825;font-weight:bold">if</span> (fd == -<span style="color:#3677a9">1</span>) {
+            fprintf(stderr, <span style="color:#ed9d13">&#34;open failed !</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            exit(<span style="color:#3677a9">1</span>);
+        }
+
+        <span style="color:#6ab825;font-weight:bold">struct</span> stat stbuf = {<span style="color:#3677a9">0</span>};
+        fstat(fd, &amp;stbuf);
+
+        <span style="color:#6ab825;font-weight:bold">char</span>* buffer = mmap(<span style="color:#24909d">NULL</span>, stbuf.st_size, PROT_READ, MAP_PRIVATE, fd, <span style="color:#3677a9">0</span>);
+        <span style="color:#6ab825;font-weight:bold">if</span> (! buffer) {
+            close(fd);
+            fprintf(stderr, <span style="color:#ed9d13">&#34;mmap failed !</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+            exit(<span style="color:#3677a9">2</span>);
+        }
+
+        <span style="color:#6ab825;font-weight:bold">char</span>* start = buffer+<span style="color:#3677a9">0x1190</span>;
+        uint32_t eip = <span style="color:#3677a9">0</span>;
+
+        <span style="color:#6ab825;font-weight:bold">while</span> (start &lt; buffer+<span style="color:#3677a9">0x1946</span>) {
+            <span style="color:#6ab825;font-weight:bold">struct</span> instr_t* i = (<span style="color:#6ab825;font-weight:bold">struct</span> instr_t*) start;
+            printf(<span style="color:#ed9d13">&#34;%08x%10s&#34;</span>, eip, <span style="color:#ed9d13">&#34;&#34;</span>);
+            eip++;
+            <span style="color:#6ab825;font-weight:bold">if</span> (i-&gt;instr == <span style="color:#3677a9">40</span> &amp;&amp; <span style="color:#3677a9">0</span> == i-&gt;imm)
+                printf(<span style="color:#ed9d13">&#34;call [%s]&#34;</span>, resolve(buffer, (<span style="color:#6ab825;font-weight:bold">char</span>*)(&amp;i-&gt;imm)-buffer));
+            <span style="color:#6ab825;font-weight:bold">else</span> {
+                uint64_t offset = (i-&gt;imm-<span style="color:#3677a9">0x1190</span>)/<span style="color:#6ab825;font-weight:bold">sizeof</span>(<span style="color:#6ab825;font-weight:bold">struct</span> instr_t);
+                uint64_t imm = i-&gt;imm;
+                <span style="color:#6ab825;font-weight:bold">if</span> (i-&gt;instr == <span style="color:#3677a9">9</span> &amp;&amp; i-&gt;dest == <span style="color:#3677a9">0x10</span>)
+                    printf(<span style="color:#ed9d13">&#34;jmp %#lx&#34;</span>, offset);
+                <span style="color:#6ab825;font-weight:bold">else</span> {
+                    <span style="color:#6ab825;font-weight:bold">if</span> (i-&gt;instr &gt;= <span style="color:#3677a9">38</span> &amp;&amp; i-&gt;instr &lt;= <span style="color:#3677a9">40</span>)
+                        imm = offset;
+                    printf(fmt_strings[i-&gt;instr], imm, regs[i-&gt;dest], regs[i-&gt;src1], regs[i-&gt;src2]);
+                }
+            }
+            putchar(<span style="color:#3677a9">10</span>);
+            start += <span style="color:#6ab825;font-weight:bold">sizeof</span> (<span style="color:#6ab825;font-weight:bold">struct</span> instr_t);
+        }
+
+        solve(buffer);
+
+        munmap(buffer, stbuf.st_size);
+        close(fd);
+    }
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+            <a href="/tags/crackmes.one/">crackmes.one</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/code-injection-mstasklist/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Code Injection: Windows Taskbar</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/google-ctf-2020-.net/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Google CTF 2020 - .NET</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/analysing-jigsaw-ransomware/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Analysing Jigsaw Ransomware</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/eset-crackme-challenge/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ESET Crackme Challenge</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/deobfuscating-movfuscator-part-2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deobfuscating MoVfuscator - Part 2</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

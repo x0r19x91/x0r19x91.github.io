@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='InCTF'><title>INCTF - Confuse Me</title>
+
+<link rel='canonical' href='http://localhost:1313/post/inctf-confuse-me/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='INCTF - Confuse Me'>
+<meta property='og:description' content='InCTF'>
+<meta property='og:url' content='http://localhost:1313/post/inctf-confuse-me/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='ctf' /><meta property='article:tag' content='reversing' /><meta property='article:published_time' content='2018-09-12T00:00:00&#43;05:30'/><meta property='article:modified_time' content='2018-09-12T00:00:00&#43;05:30'/>
+<meta name="twitter:title" content="INCTF - Confuse Me">
+<meta name="twitter:description" content="InCTF">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/ctf/">ctf</a>
+            
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/inctf-confuse-me/">INCTF - Confuse Me</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        InCTF
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 12, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>Fire up Radare and open the binary</p>
+<p><img src="/images/confuseme/i0.png" alt="Image1"  /></p>
+<pre><code class="language-x86asm" data-lang="x86asm">    push   rbp
+    mov    rbp,rsp
+    sub    rsp,0x50
+    mov    rax,QWORD PTR fs:0x28
+
+    mov    QWORD PTR [rbp-0x8],rax
+    xor    eax,eax
+    mov    esi,0x40109b
+    mov    edi,0xb
+    call   0x4abd40
+    mov    BYTE PTR [rbp-0x20],0x4d        ; &quot;MGNCHXWIZDJAOKPELYSFUTV&quot;
+    mov    BYTE PTR [rbp-0x1f],0x47
+    mov    BYTE PTR [rbp-0x1e],0x4e
+    mov    BYTE PTR [rbp-0x1d],0x43
+    mov    BYTE PTR [rbp-0x1c],0x48
+    mov    BYTE PTR [rbp-0x1b],0x58
+    mov    BYTE PTR [rbp-0x1a],0x57
+    mov    BYTE PTR [rbp-0x19],0x49
+    mov    BYTE PTR [rbp-0x18],0x5a
+    mov    BYTE PTR [rbp-0x17],0x44
+    mov    BYTE PTR [rbp-0x16],0x4a
+    mov    BYTE PTR [rbp-0x15],0x41
+    mov    BYTE PTR [rbp-0x14],0x4f
+    mov    BYTE PTR [rbp-0x13],0x4b
+    mov    BYTE PTR [rbp-0x12],0x50
+    mov    BYTE PTR [rbp-0x11],0x45
+    mov    BYTE PTR [rbp-0x10],0x4c
+    mov    BYTE PTR [rbp-0xf],0x59
+    mov    BYTE PTR [rbp-0xe],0x53
+    mov    BYTE PTR [rbp-0xd],0x46
+    mov    BYTE PTR [rbp-0xc],0x55
+    mov    BYTE PTR [rbp-0xb],0x54
+    mov    BYTE PTR [rbp-0xa],0x56
+    mov    esi,0x54fa2a                     ; &quot;Enter Input:&quot;
+    mov    edi,0x7accc0
+    call   0x40e670
+    mov    DWORD PTR [rbp-0x48],0x0
+    loop_0:
+        cmp    DWORD PTR [rbp-0x48],0x16
+        jg     end_0
+        lea    rdx,[rbp-0x40]
+        mov    eax,DWORD PTR [rbp-0x48]
+        cdqe   
+        add    rax,rdx
+        mov    rsi,rax
+        mov    edi,0x7acde0
+        call   0x408ca0
+        add    DWORD PTR [rbp-0x48],0x1
+        jmp    loop_0
+
+    end_0:
+    mov    eax,0x17
+    mov    DWORD PTR [rbp-0x44],eax
+    mov    edx,DWORD PTR [rbp-0x44]         ; length
+    lea    rcx,[rbp-0x40]
+    lea    rax,[rbp-0x20]
+    mov    rsi,rcx                          ; our input string
+    mov    rdi,rax                          ; magic string
+    call   check
+    mov    eax,DWORD PTR [rip+0x3aabc7]        # 0x7abd70
+    cmp    eax,0x17
+    jne    invalid_input
+    lea    rax,[rbp-0x40]
+    mov    rdi,rax
+    call   print_flag
+    jmp    finish
+
+    invalid_input:
+        mov    esi,0x54fa25                ; &quot;Nope&quot;
+        mov    edi,0x7accc0
+        call   0x40e670
+
+    finish:
+        mov    eax,0x0
+        mov    rcx,QWORD PTR [rbp-0x8]
+        xor    rcx,QWORD PTR fs:0x28
+
+        je     $+7
+        call   0x50a840
+        leave  
+        ret
+</code></pre><p>The routine validates a string of length atleast 23 bytes using the magic string &ldquo;MGNCHXWIZDJAOKPELYSFUTV&rdquo;.
+Let&rsquo;s take a look at check routine.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">           0x00400eb4      55             push rbp
+           0x00400eb5      4889e5         mov rbp, rsp
+           0x00400eb8      4883ec30       sub rsp, 0x30               ; '0'
+           0x00400ebc      48897de8       mov qword [local_18h], rdi
+           0x00400ec0      488975e0       mov qword [local_20h], rsi
+           0x00400ec4      8955dc         mov dword [local_24h], edx
+           0x00400ec7      488b45e0       mov rax, qword [local_20h]
+           0x00400ecb      0fb600         movzx eax, byte [rax]
+           0x00400ece      0fbec8         movsx ecx, al
+           0x00400ed1      8b55dc         mov edx, dword [local_24h]
+           0x00400ed4      488b45e8       mov rax, qword [local_18h]
+           0x00400ed8      89ce           mov esi, ecx
+           0x00400eda      4889c7         mov rdi, rax
+           0x00400edd      e88cffffff     call fcn.00400e6e
+           0x00400ee2      8945fc         mov dword [local_4h], eax
+           0x00400ee5      837dfc00       cmp dword [local_4h], 0
+       ┌─&lt; 0x00400ee9      741a           je 0x400f05
+       │   0x00400eeb      488b45e0       mov rax, qword [local_20h]
+       │   0x00400eef      488d4801       lea rcx, rax + 1            ; 1
+       │   0x00400ef3      8b55fc         mov edx, dword [local_4h]
+       │   0x00400ef6      488b45e8       mov rax, qword [local_18h]
+       │   0x00400efa      4889ce         mov rsi, rcx
+       │   0x00400efd      4889c7         mov rdi, rax
+       │   0x00400f00      e8afffffff     call fcn.00400eb4
+       └─&gt; 0x00400f05      8b45dc         mov eax, dword [local_24h]
+           0x00400f08      83e801         sub eax, 1
+           0x00400f0b      3b45fc         cmp eax, dword [local_4h]
+       ┌─&lt; 0x00400f0e      7434           je 0x400f44
+       │   0x00400f10      8b45dc         mov eax, dword [local_24h]
+       │   0x00400f13      2b45fc         sub eax, dword [local_4h]
+       │   0x00400f16      8d50ff         lea edx, rax - 1
+       │   0x00400f19      8b45fc         mov eax, dword [local_4h]
+       │   0x00400f1c      4898           cdqe
+       │   0x00400f1e      488d4801       lea rcx, rax + 1            ; 1
+       │   0x00400f22      488b45e0       mov rax, qword [local_20h]
+       │   0x00400f26      4801c1         add rcx, rax                ; '#'
+       │   0x00400f29      8b45fc         mov eax, dword [local_4h]
+       │   0x00400f2c      4898           cdqe
+       │   0x00400f2e      488d7001       lea rsi, rax + 1            ; 1
+       │   0x00400f32      488b45e8       mov rax, qword [local_18h]
+       │   0x00400f36      4801f0         add rax, rsi                ; '+'
+       │   0x00400f39      4889ce         mov rsi, rcx
+       │   0x00400f3c      4889c7         mov rdi, rax
+       │   0x00400f3f      e870ffffff     call fcn.00400eb4
+       └─&gt; 0x00400f44      488b45e0       mov rax, qword [local_20h]
+           0x00400f48      0fb600         movzx eax, byte [rax]
+           0x00400f4b      0fbec0         movsx eax, al
+           0x00400f4e      89c7           mov edi, eax
+           0x00400f50      e869feffff     call fcn.00400dbe
+           0x00400f55      90             nop
+           0x00400f56      c9             leave
+           0x00400f57      c3             ret
+</code></pre><p>The above routine is equivalent to the following</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">int</span> count = <span style="color:#3677a9">0</span>;
+    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">match</span>(<span style="color:#6ab825;font-weight:bold">char</span> ch)  <span style="color:#999;font-style:italic">// fcn.00400dbe
+</span><span style="color:#999;font-style:italic"></span>    {
+        <span style="color:#6ab825;font-weight:bold">char</span> buf[] = <span style="color:#ed9d13">&#34;MNGHCWZIJDXOPKLESUVTFYA&#34;</span>;
+        <span style="color:#6ab825;font-weight:bold">if</span> (buf[count] == ch) ++count;
+    }
+
+    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">check</span>(<span style="color:#6ab825;font-weight:bold">char</span>* str, <span style="color:#6ab825;font-weight:bold">char</span>* answer, <span style="color:#6ab825;font-weight:bold">int</span> n) <span style="color:#999;font-style:italic">// fcn.00400eb4
+</span><span style="color:#999;font-style:italic"></span>    {
+        <span style="color:#6ab825;font-weight:bold">int</span> pos = find_char(str, answer[<span style="color:#3677a9">0</span>], n);
+        <span style="color:#6ab825;font-weight:bold">if</span> (pos != <span style="color:#3677a9">0</span>)
+            check(str, answer+<span style="color:#3677a9">1</span>, pos);
+        <span style="color:#6ab825;font-weight:bold">if</span> (pos != n-<span style="color:#3677a9">1</span>)
+            check(str+pos+<span style="color:#3677a9">1</span>, answer+pos+<span style="color:#3677a9">1</span>, n-pos-<span style="color:#3677a9">1</span>);
+        match(answer[<span style="color:#3677a9">0</span>]);
+    }
+
+    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+    {
+        <span style="color:#6ab825;font-weight:bold">char</span> magic[] = <span style="color:#ed9d13">&#34;MGNCHXWIZDJAOKPELYSFUTV&#34;</span>;
+        <span style="color:#6ab825;font-weight:bold">char</span> answer[<span style="color:#3677a9">1024</span>];
+        <span style="color:#999;font-style:italic">// read answer of length atleast 23 bytes
+</span><span style="color:#999;font-style:italic"></span>        check(magic, answer, <span style="color:#3677a9">0x17</span>);
+        <span style="color:#6ab825;font-weight:bold">if</span> (count == <span style="color:#3677a9">0x17</span>) {
+          <span style="color:#999;font-style:italic">// print flag
+</span><span style="color:#999;font-style:italic"></span>        } <span style="color:#6ab825;font-weight:bold">else</span> {
+          <span style="color:#999;font-style:italic">// print &#34;Nope&#34;
+</span><span style="color:#999;font-style:italic"></span>        }
+    }
+</code></pre></div><p>Let the value of count be 0x16. So we need to match only one character. Since count is 0x16, so the character expected is buf[count] = &lsquo;A&rsquo;. So this must be the first character of answer.</p>
+<p>The routine check finds the offset of the first character in the answer and splits the search into two halves. The first half must be a permutation of magic[0..pos] and the second half must be a permutation of magic[pos+1..0x16]. Now answer is &lsquo;A&rsquo; :: {MGNCHXWIZDJ} :: {OKPELYSFUTV}.</p>
+<p>Now we need to split using &lsquo;Y&rsquo; because it&rsquo;s the second last match - &lsquo;A&rsquo; :: {MGNCHXWIZDJ} :: &lsquo;Y&rsquo; :: {OKPEL} :: {FSTUV}, and so on.</p>
+<p>To simplify, lets see the first five characters of magic and buf.</p>
+<p>magic[:5] = &ldquo;MGNCH&rdquo;
+buf[:5] = &ldquo;MNGHC&rdquo;</p>
+<p>We can make a binary tree</p>
+<pre><code>        C
+       / \
+    {MGN} H
+</code></pre><p>C is matched last, preceded by H which is preceded by G. We can observe that the character that is matched is the root of a subtree denoted by the magic string as</p>
+<p>{left subtree of R} :: R :: {Right Subtree of R}</p>
+<pre><code>        C
+       / \
+      G   H
+     / \
+    M   N
+</code></pre><p>Therefore the required input is the preorder traversal of the binary tree where &lsquo;magic&rsquo; denotes the <em>inorder traversal</em> and &lsquo;buf&rsquo; denotes the <em>postorder traversal</em></p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>
+    <span style="color:#6ab825;font-weight:bold">char</span> magic[] = <span style="color:#ed9d13">&#34;MGNCHXWIZDJAOKPELYSFUTV&#34;</span>;
+    <span style="color:#6ab825;font-weight:bold">char</span> buffer[] = <span style="color:#ed9d13">&#34;MNGHCWZIJDXOPKLESUVTFYA&#34;</span>;
+    <span style="color:#6ab825;font-weight:bold">char</span> answer[<span style="color:#6ab825;font-weight:bold">sizeof</span> magic];
+    <span style="color:#6ab825;font-weight:bold">int</span> last = <span style="color:#3677a9">0x16</span>;
+    <span style="color:#999;font-style:italic">/*
+</span><span style="color:#999;font-style:italic">     * Observation
+</span><span style="color:#999;font-style:italic">     * ---------------------------------------------------------------------------
+</span><span style="color:#999;font-style:italic">     * the count must be 0x17
+</span><span style="color:#999;font-style:italic">     * Let the value of count be 0x16, i.e., the last char of buf
+</span><span style="color:#999;font-style:italic">     * needs to be matched with the input&#39;s first character (backtrack)
+</span><span style="color:#999;font-style:italic">     * and the routine terminates.
+</span><span style="color:#999;font-style:italic">     * the last character of buf is &#39;A&#39; which needs to be the first character
+</span><span style="color:#999;font-style:italic">     * of our input.
+</span><span style="color:#999;font-style:italic">     * With observation, one can find out that the magic string:
+</span><span style="color:#999;font-style:italic">     * &#34;MGNCHXWIZDJAOKPELYSFUTV&#34; is the inorder traversal of a binary tree
+</span><span style="color:#999;font-style:italic">     * and buf:&#34;MNGHCWZIJDXOPKLESUVTFYA&#34; is the postorder traversal of the binary
+</span><span style="color:#999;font-style:italic">     * tree. The valid input is the preorder traversal
+</span><span style="color:#999;font-style:italic">     * ---------------------------------------------------------------------------
+</span><span style="color:#999;font-style:italic">     */</span>
+
+    <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">solve</span>(<span style="color:#6ab825;font-weight:bold">int</span> low, <span style="color:#6ab825;font-weight:bold">int</span> high, <span style="color:#6ab825;font-weight:bold">int</span> index)
+    {
+      <span style="color:#6ab825;font-weight:bold">if</span> (low == high) {
+        answer[index] = magic[low];
+        --last;
+      } <span style="color:#6ab825;font-weight:bold">else</span> {
+        <span style="color:#6ab825;font-weight:bold">char</span> root = buffer[last];
+        <span style="color:#6ab825;font-weight:bold">int</span> pos = low;
+        <span style="color:#6ab825;font-weight:bold">for</span> (; pos &lt;= high; ++pos) {
+          <span style="color:#6ab825;font-weight:bold">if</span> (magic[pos] == root) {
+            last--;
+            <span style="color:#6ab825;font-weight:bold">break</span>;
+          }
+        }
+        answer[index] = root;
+        solve(pos+<span style="color:#3677a9">1</span>, high, pos-low+index+<span style="color:#3677a9">1</span>);
+        solve(low, pos-<span style="color:#3677a9">1</span>, index+<span style="color:#3677a9">1</span>);
+      }
+    }
+
+    <span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>(<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span> <span style="color:#6ab825;font-weight:bold">const</span> *argv[]) {
+      solve(<span style="color:#3677a9">0</span>, last, <span style="color:#3677a9">0</span>);
+      printf(<span style="color:#ed9d13">&#34;[*] %s</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, answer);
+      <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#3677a9">0</span>;
+    }
+</code></pre></div><p>And here&rsquo;s the output</p>
+<p><img src="/images/confuseme/i1.png" alt="Output"  /></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/ctf/">ctf</a>
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/hacklu-2018-forgetful-commander/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HackLu 2018 - Forgetful Commander</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-decoy/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - Decoy</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-ultimate-goal/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - Ultimate GOal</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-mast3r/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - mast3r</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/bsides-ctf-2019-opendoor/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BSides CTF 2019 - opendoor</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

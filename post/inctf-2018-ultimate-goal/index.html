@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='InCTF 2018'><title>InCTF 2018 - Ultimate GOal</title>
+
+<link rel='canonical' href='http://localhost:1313/post/inctf-2018-ultimate-goal/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='InCTF 2018 - Ultimate GOal'>
+<meta property='og:description' content='InCTF 2018'>
+<meta property='og:url' content='http://localhost:1313/post/inctf-2018-ultimate-goal/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:tag' content='ctf' /><meta property='article:tag' content='golang' /><meta property='article:published_time' content='2018-10-07T00:00:00&#43;05:30'/><meta property='article:modified_time' content='2018-10-07T00:00:00&#43;05:30'/>
+<meta name="twitter:title" content="InCTF 2018 - Ultimate GOal">
+<meta name="twitter:description" content="InCTF 2018">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+            
+                <a href="/categories/ctf/">ctf</a>
+            
+        
+            
+                <a href="/categories/golang/">golang</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/inctf-2018-ultimate-goal/">InCTF 2018 - Ultimate GOal</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        InCTF 2018
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 07, 2018</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p><img src="/images/inctf18_ultimategoal.png" alt="Image0"  /></p>
+<p>Its a golang binary. The first task is to find <strong>&lsquo;main_main&rsquo;</strong> routine. Its located at 0x4ebcc0</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .text:00000000004EBD15                 lea     rax, off_53B6E8
+    .text:00000000004EBD1C                 mov     [rsp+198h+var_190], rax
+    .text:00000000004EBD21                 call    runtime_deferproc
+
+    .rodata:000000000053B6E8 off_53B6E8    dq      offset main_final
+    .rodata:000000000053B6F0 off_53B6F0    dq      offset main_handleit
+</code></pre><p>Okay, so we have a deferred call to <strong>&lsquo;main_final&rsquo;</strong>. It prints &lsquo;Enter pass:&rsquo; and calls Reader_Read to read a string which is converted to a byte array using runtime_stringtoslicebyte and calls <strong>main_obfus</strong>, which looks like this</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">main_obfus</span>(<span style="color:#24909d">bytes</span>)
+        temp = <span style="color:#24909d">bytes</span>[::-<span style="color:#3677a9">1</span>]
+        <span style="color:#6ab825;font-weight:bold">return</span> temp[<span style="color:#3677a9">9</span>:<span style="color:#3677a9">11</span>]+temp[<span style="color:#3677a9">11</span>:<span style="color:#3677a9">13</span>]+temp[:<span style="color:#3677a9">9</span>]
+</code></pre></div><p><strong>main_main</strong> then stores the array of bytes returned by <strong>main_obfus</strong> and stores into a global variable at 0x5de130. It stores len(temp[9:11])+len(temp[11:13]) in 0x5de138, len(temp[:9]) in 0x5de148, and len(temp[:9]) in 0x5de140.</p>
+<p><strong>main_final</strong> calls <strong>main_swap</strong> with four arguments - the string at 0x5de130, 4, 0x5de134, 9. Let&rsquo;s take a look at <strong>main_swap</strong></p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">main_swap</span>(a, b, c, d)
+        <span style="color:#6ab825;font-weight:bold">if</span> main_check(a, b):
+            <span style="color:#24909d">exit</span>()
+        <span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#ed9d13">&#39;.&#39;</span> <span style="color:#6ab825;font-weight:bold">in</span> c[:d]:
+            <span style="color:#24909d">exit</span>()
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">main_check</span>(string, <span style="color:#24909d">len</span>):
+        <span style="color:#6ab825;font-weight:bold">try</span>:
+            <span style="color:#24909d">int</span>(string[:<span style="color:#24909d">len</span>])
+        <span style="color:#6ab825;font-weight:bold">except</span>:
+            <span style="color:#24909d">exit</span>()
+</code></pre></div><p>So, 0x5de130 must contain 4 digits, followed by a string of length 9 without any &lsquo;.&rsquo;.
+It calls <strong>net_Listen</strong> on the string &ldquo;%s:%s&rdquo; % (0x5de134, 0x5de130)
+Now, the password is clear. 0x5de134 stores the hostname which is of 9 letters without any dot - &ldquo;localhost&rdquo;. And the 4 digits at 0x5de130 represent the port, for the tcp server.</p>
+<p>Let&rsquo;s take the port as 1234. So, what will be our password ?
+Go to <strong>main_obfus</strong> and take a look. The first two characters of the input are insignificant the remaining is <strong>&ldquo;localhost1234&rdquo;[::-1]</strong>.</p>
+<p>Let&rsquo;s try &ldquo;xx4321tsohlacol&rdquo; as input. Which will make <strong>main_final</strong> start a tcp server at localhost:1234.</p>
+<p>For every incoming connection, <strong>main_handleit</strong> is called. In <strong>main_handleit</strong>, the string written to the socket must be of length 16.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .text:00000000004ED125      call    rcx             ; net__ptr_TCPConn_Read
+    .text:00000000004ED127      mov     rax, [rsp+1D0h+var_98]
+    .text:00000000004ED12F      mov     [rsp+1D0h+var_1D0], rax
+    .text:00000000004ED133      mov     rcx, [rsp+1D0h+var_178]
+    .text:00000000004ED138      mov     [rsp+1D0h+var_1C8], rcx
+    .text:00000000004ED13D      mov     rdx, [rsp+1D0h+var_170]
+    .text:00000000004ED142      mov     [rsp+1D0h+var_1C0], rdx
+    .text:00000000004ED147      call    main_findlen
+    .text:00000000004ED14C      mov     rax, [rsp+1D0h+var_1B8]
+    .text:00000000004ED151      cmp     rax, 10h
+    .text:00000000004ED155      jnz     loc_4ED4D7
+    .text:00000000004ED15B      mov     rcx, [rsp+1D0h+port]
+    .text:00000000004ED160      xor     edx, edx
+    .text:00000000004ED162      jmp     short loc_4ED18E
+</code></pre><p>We have an array of qwords computed as follows</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    var_130 = [<span style="color:#3677a9">0x327</span>, <span style="color:#3677a9">0x125</span>, <span style="color:#3677a9">0x436</span>, <span style="color:#3677a9">0xc91</span>, <span style="color:#3677a9">0x167</span>, <span style="color:#3677a9">0x282</span>]
+    var_100 = [<span style="color:#3677a9">0</span> <span style="color:#6ab825;font-weight:bold">for</span> _ <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#24909d">len</span>(var_130))]
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#24909d">len</span>(var_130)):
+        var_100[i] = port % var_130[i]
+</code></pre></div><p>It then calls <strong>main_obfus2</strong> with the string read from the socket as argument</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .text:00000000004ECD01      mov     rax, cs:port_len         ; 0x5de138
+    .text:00000000004ECD08      mov     rcx, cs:socket_address   ; 0x5de130
+    .text:00000000004ECD0F      mov     rdx, [rsp+60h+arg_8]     ; string length
+    .text:00000000004ECD14      cmp     rdx, rax
+    .text:00000000004ECD17      jge     loc_4ECF0C
+
+    [ ... snip ... ]
+
+    .text:00000000004ECF0C loc_4ECF0C:
+    .text:00000000004ECF0C      mov     rdx, [rsp+60h+arg_0]
+    .text:00000000004ECF11      mov     [rsp+60h+var_60], rdx    ; string read
+    .text:00000000004ECF15      mov     [rsp+60h+var_58], rax    ; port length
+    .text:00000000004ECF1A      mov     [rsp+60h+var_50], rcx    ; socket address - 1234localhost
+    .text:00000000004ECF1F      mov     [rsp+60h+var_48], rax    ; port length
+    .text:00000000004ECF24      call    runtime_eqstring
+    .text:00000000004ECF29      movzx   eax, byte ptr [rsp+60h+var_40]
+    .text:00000000004ECF2E      mov     rdx, [rsp+60h+arg_8]
+    .text:00000000004ECF33      jmp     loc_4ECD1F
+</code></pre><p>Great, so the first 4 bytes of the input must be the port of the tcp server.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .text:00000000004ECD1F      test    al, al
+    .text:00000000004ECD21      jz      loc_4ECEFD
+    .text:00000000004ECD27      mov     rax, cs:host_len         ; length of host (in password)
+    .text:00000000004ECD2E      mov     rcx, cs:aHost            ; address in 0x5de140
+    .text:00000000004ECD35      cmp     rax, 7
+    .text:00000000004ECD39      jb      loc_4ECF3F
+    .text:00000000004ECD3F      mov     rax, [rsp+60h+arg_0]
+    .text:00000000004ECD44      mov     [rsp+60h+var_60], rax    ; string read from socket
+    .text:00000000004ECD48      mov     [rsp+60h+var_58], rdx    ; string length
+    .text:00000000004ECD4D      add     rcx, 4
+    .text:00000000004ECD51      mov     [rsp+60h+var_50], rcx    ; &amp;hostname[0]+4
+    .text:00000000004ECD56      mov     [rsp+60h+var_48], 3      ; 3 chars substring
+    .text:00000000004ECD5F      call    strings_Index
+    .text:00000000004ECD64      mov     rax, [rsp+60h+var_40]
+    .text:00000000004ECD69      cmp     rax, 4
+    .text:00000000004ECD6D      jnz     loc_4ECEEE
+    .text:00000000004ECD73      mov     rax, [rsp+60h+arg_8]
+    .text:00000000004ECD78      cmp     rax, 0Ch
+    .text:00000000004ECD7C      jb      loc_4ECF38
+    .text:00000000004ECD82      mov     rax, [rsp+60h+arg_0]
+    .text:00000000004ECD87      add     rax, 7
+    .text:00000000004ECD8B      mov     [rsp+60h+var_10], rax
+    .text:00000000004ECD90      mov     [rsp+60h+var_60], rax
+    .text:00000000004ECD94      mov     [rsp+60h+var_58], 5
+    .text:00000000004ECD9D      call    main_check
+</code></pre><p>hostName must be of length atleast 7. The index of hostname[4:7] in the string must be 4. The string length must be atleast 12
+So, we have - the string is of the format <strong>&ldquo;1234????????????&quot;</strong> where &lsquo;?&rsquo; is unknown.</p>
+<p>Now, <strong>string[4:7] == &ldquo;localhost&rdquo;[4:7]</strong>. Thus the string now is <strong>&ldquo;1234lho?????????&quot;</strong>. It then calls <strong>main_check</strong> on string[7:12], which implies, the 5 characters from offset 7 must be digits.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .text:00000000004ECDBA loc_4ECDBA:
+    .text:00000000004ECDBA      mov     rax, [rsp+60h+var_10]
+    .text:00000000004ECDBF      mov     [rsp+60h+var_60], rax
+    .text:00000000004ECDC3      mov     [rsp+60h+var_58], 5
+    .text:00000000004ECDCC      call    strconv_Atoi
+    .text:00000000004ECDD1      mov     rax, [rsp+60h+var_48]
+    .text:00000000004ECDD6      mov     rcx, [rsp+60h+var_50]
+    .text:00000000004ECDDB      test    rax, rax
+    .text:00000000004ECDDE      jnz     loc_4ECEDF
+
+    .text:00000000004ECDE4      mov     [rsp+60h+var_60], rcx
+    .text:00000000004ECDE8      call    math_big_NewInt
+    .text:00000000004ECDED      mov     rax, [rsp+60h+var_58]
+    .text:00000000004ECDF2      mov     [rsp+60h+var_30], rax        ; var_30 = int(string[7:12])
+    .text:00000000004ECDF7      mov     [rsp+60h+var_60], 7Bh
+    .text:00000000004ECDFF      call    math_big_NewInt
+    .text:00000000004ECE04      mov     rax, [rsp+60h+var_58]
+    .text:00000000004ECE09      mov     [rsp+60h+var_38], rax        ; var_38 = 0x7b
+    .text:00000000004ECE0E      mov     [rsp+60h+var_60], 81BBh
+    .text:00000000004ECE16      call    math_big_NewInt
+    .text:00000000004ECE1B      mov     rax, [rsp+60h+var_58]
+    .text:00000000004ECE20      mov     [rsp+60h+var_28], rax        ; var_28 = 0x81bb
+    .text:00000000004ECE25      mov     [rsp+60h+var_60], 84h
+    .text:00000000004ECE2D      call    math_big_NewInt
+    .text:00000000004ECE32      mov     rax, [rsp+60h+var_58]
+    .text:00000000004ECE37      mov     [rsp+60h+var_20], rax        ; var_20 = 0x84
+    .text:00000000004ECE3C      mov     [rsp+60h+var_60], 0A7D5h
+    .text:00000000004ECE44      call    math_big_NewInt
+    .text:00000000004ECE49      mov     rax, [rsp+60h+var_58]
+    .text:00000000004ECE4E      mov     [rsp+60h+var_18], rax        ; var_18 = 0xa7d5
+</code></pre><p>Now we have, <strong>(var_30 + var_38 ^ var_28) - var_20 == var_18</strong>. Thus var_30 = (var_18+var_20 ^ var_28)-var_38 = 10599<br>
+The string, now is <strong>1234lho10599???</strong> as a newline is appended as the 15th char.</p>
+<p><strong>main_handleit</strong> now calls <strong>main_hasherboy</strong>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">hasherboy</span>(string):
+        <span style="color:#24909d">hash</span> = <span style="color:#24909d">map</span>(<span style="color:#24909d">ord</span>, md5(string[:<span style="color:#3677a9">12</span>]).hexdigest())
+        magic = [<span style="color:#3677a9">124</span>, <span style="color:#3677a9">81</span>, <span style="color:#3677a9">11</span>, <span style="color:#3677a9">120</span>, <span style="color:#3677a9">106</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">95</span>, <span style="color:#3677a9">6</span>, <span style="color:#3677a9">65</span>, <span style="color:#3677a9">102</span>, <span style="color:#3677a9">97</span>, <span style="color:#3677a9">7</span>, <span style="color:#3677a9">22</span>, <span style="color:#3677a9">103</span>, <span style="color:#3677a9">98</span>, <span style="color:#3677a9">4</span>, <span style="color:#3677a9">17</span>, <span style="color:#3677a9">15</span>, <span style="color:#3677a9">12</span>, <span style="color:#3677a9">114</span>, <span style="color:#3677a9">18</span>, <span style="color:#3677a9">20</span>, <span style="color:#3677a9">69</span>, <span style="color:#3677a9">117</span>, <span style="color:#3677a9">4</span>, <span style="color:#3677a9">78</span>, <span style="color:#3677a9">82</span>, <span style="color:#3677a9">59</span>, <span style="color:#3677a9">54</span>, <span style="color:#3677a9">81</span>, <span style="color:#3677a9">28</span>, <span style="color:#3677a9">67</span>]
+        ans = []
+        <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#24909d">len</span>(magic)):
+            ans.append(<span style="color:#24909d">hash</span>[i] ^ magic[i])
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#ed9d13">&#39;&#39;</span>.join(<span style="color:#24909d">map</span>(<span style="color:#24909d">chr</span>, ans))
+
+    <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#39;The Flag is  :   &#39;</span>,
+    ans = <span style="color:#ed9d13">&#39;&#39;</span>
+    var_D0 = [i <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> var_100]
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> var_D0:
+        <span style="color:#6ab825;font-weight:bold">print</span>(end=<span style="color:#ed9d13">&#39;&#39;</span>, <span style="color:#24909d">chr</span>(i))
+    <span style="color:#6ab825;font-weight:bold">print</span> hasherboy(string) + <span style="color:#ed9d13">&#34;}&#34;</span>
+</code></pre></div><p>Great! now we can find the port of the tcp server easily. Recall that, <strong>var_100 = [port % i for i in [0x327, 0x125, 0x436, 0xc91, 0x167, 0x282]]</strong> and since the flag starts with <strong>&ldquo;inctf{&quot;</strong>, we have</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    ┌─[x0r19x91@x0r19x91]─[~/Desktop/ctf/inctf]
+    └──╼ $ cat solve.py
+    <span style="color:#999;font-style:italic">#!/usr/bin/env python</span>
+
+    <span style="color:#40ffff">magic</span> = [0x327, 0x125, 0x436, 0xc91, 0x167, 0x282]
+
+    <span style="color:#6ab825;font-weight:bold">for</span> port in xrange(0x10000):
+        <span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#ed9d13">&#39;inctf{&#39;</span> == <span style="color:#ed9d13">&#39;&#39;</span>.join([chr(port % i &amp; 0xff) <span style="color:#6ab825;font-weight:bold">for</span> i in magic]):
+            print <span style="color:#ed9d13">&#39;[*] Port: %d&#39;</span> % port
+            <span style="color:#24909d">break</span>
+    ┌─[x0r19x91@x0r19x91]─[~/Desktop/ctf/inctf]
+    └──╼ $ python solve.py
+    [*] Port: <span style="color:#3677a9">3333</span>
+    ┌─[x0r19x91@x0r19x91]─[~/Desktop/ctf/inctf]
+    └──╼ $
+</code></pre></div><p>So, the password is <strong>&ldquo;XX3333tsohlacol&rdquo;</strong> and the string to be sent to the server at localhost:3333 is <strong>&ldquo;3333lho10599XXX&rdquo;</strong> where X can be any character. The flag is <strong>&ldquo;inctf{&rdquo; + hasherboy(&ldquo;3333lho10599&rdquo;) + &ldquo;}&quot;</strong> which is <code>&quot;inctf{D4mN_7h4t_W4s_T1rinG!!!L0v3_R3x!}&quot;</code></p>
+<p><img src="/images/inctf18_ultimategoal0.png" alt="Image1"  /></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+            <a href="/tags/ctf/">ctf</a>
+        
+            <a href="/tags/golang/">golang</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/hacklu-2018-forgetful-commander/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HackLu 2018 - Forgetful Commander</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-decoy/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - Decoy</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-mast3r/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - mast3r</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-confuse-me/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">INCTF - Confuse Me</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/bsides-ctf-2019-opendoor/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BSides CTF 2019 - opendoor</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

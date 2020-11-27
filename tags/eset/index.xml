@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>eset on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/tags/eset/</link>
+    <description>Recent content in eset on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/eset/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESET Crackme Challenge</title>
+      <link>http://localhost:1313/post/eset-crackme-challenge/</link>
+      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/eset-crackme-challenge/</guid>
+      <description>&lt;p&gt;While searching the internet for good crackmes, I found this one!&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://join.eset.com/en/challenges/crack-me&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ESET Crackme&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

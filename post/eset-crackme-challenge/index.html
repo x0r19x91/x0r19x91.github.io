@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Solution for ESET Crackme'><title>ESET Crackme Challenge</title>
+
+<link rel='canonical' href='http://localhost:1313/post/eset-crackme-challenge/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='ESET Crackme Challenge'>
+<meta property='og:description' content='Solution for ESET Crackme'>
+<meta property='og:url' content='http://localhost:1313/post/eset-crackme-challenge/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:tag' content='eset' /><meta property='article:published_time' content='2019-11-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-11-16T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="ESET Crackme Challenge">
+<meta name="twitter:description" content="Solution for ESET Crackme">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+            
+                <a href="/categories/eset/">eset</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/eset-crackme-challenge/">ESET Crackme Challenge</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Solution for ESET Crackme
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 16, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>While searching the internet for good crackmes, I found this one!</p>
+<p><a class="link" href="https://join.eset.com/en/challenges/crack-me"  target="_blank" rel="noopener"
+    >ESET Crackme</a></p>
+<p>I first tried to solve it in 2018. Out of 3 passwords, I could only find two! The second time I tried was on October 19, 2019. This time I could solve it completely.</p>
+<p>Let&rsquo;s dive into it :-)</p>
+<h1 id="task-1">Task-1</h1>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:004013F6                 call    ds:IsDebuggerPresent
+.text:004013FC                 test    eax, eax
+.text:004013FE                 jz      short loc_401408
+.text:00401400                 push    0               ; uExitCode
+.text:00401402                 call    ds:ExitProcess
+.text:00401408 ; ---------------------------------------------------------------------------
+.text:00401408
+.text:00401408 loc_401408:                             ; CODE XREF: _main+E↑j
+.text:00401408                 mov     [ebp+NumberOfCharsWritten], 0
+.text:0040140F                 push    3
+.text:00401411                 push    25h
+.text:00401413                 push    1Fh
+.text:00401415                 push    offset aPleaseEnterVal ; &quot;Please enter valid password : &quot;
+.text:0040141A                 call    EncodeDecode
+.text:0040141F                 push    0               ; lpReserved
+.text:00401421                 lea     eax, [ebp+NumberOfCharsWritten]
+.text:00401424                 push    eax             ; lpNumberOfCharsWritten
+.text:00401425                 push    offset aPleaseEnterVal ; &quot;Please enter valid password : &quot;
+.text:0040142A                 call    _strlen
+.text:0040142F                 add     esp, 4
+.text:00401432                 push    eax             ; nNumberOfCharsToWrite
+.text:00401433                 push    offset aPleaseEnterVal ; lpBuffer
+.text:00401438                 mov     ecx, hConsoleOutput
+.text:0040143E                 push    ecx             ; hConsoleOutput
+.text:0040143F                 call    ds:WriteConsoleA
+</code></pre><p><strong>EncodeDecode</strong> is a simple xor encoding. A small IDA script can save the time :-)</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">EncodeDecode</span>(ea, size, xor, inc):
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(size):
+        PatchByte(ea, Byte(ea)^xor)
+        xor = xor+inc &amp; <span style="color:#3677a9">0xff</span>
+</code></pre></div><p>The second anti-debugging check is present at</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401622                 mov     eax, large fs:30h        ; PEB
+.text:00401628                 movzx   eax, byte ptr [eax+2]    ; PEB.BeingDebugged
+.text:0040162C                 test    eax, eax
+.text:0040162E                 jnz     short loc_401632
+.text:00401630                 jmp     short loc_40163A
+.text:00401632 ; ---------------------------------------------------------------------------
+.text:00401632
+.text:00401632 loc_401632:                             ; CODE XREF: _main+23E↑j
+.text:00401632                 push    0               ; uExitCode
+.text:00401634                 call    ds:ExitProcess
+</code></pre><p>The third anti-debugging check uses <code>GetTickCount</code></p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401475                 call    ds:GetTickCount
+.text:0040147B                 mov     [ebp+var_14], eax
+;
+;   ... flag checking stuff ...
+;
+.text:0040163A loc_40163A:                             ; CODE XREF: _main+240↑j
+.text:0040163A                 call    ds:GetTickCount
+.text:00401640                 mov     [ebp+var_10], eax
+.text:00401643                 mov     eax, [ebp+var_10]
+.text:00401646                 sub     eax, [ebp+var_14]
+.text:00401649                 cmp     eax, 64h
+.text:0040164C                 jbe     short loc_401656
+.text:0040164E                 push    0               ; uExitCode
+.text:00401650                 call    ds:ExitProcess
+</code></pre><p>The flag checking stuff is a series of equations which are validated</p>
+<pre><code>szInput[7]+szInput[6] == 0xcd &amp;&amp;
+szInput[8]+szInput[5] == 0xc9 &amp;&amp;
+szInput[7]+szInput[6]+szInput[3] == 0x13a &amp;&amp;
+szInput[9]+szInput[4]+szInput[8]+szInput[5] == 0x16f &amp;&amp;
+szInput[1]+szInput[0] == 0xc2 &amp;&amp;
+szInput[0]+...+szInput[9] == 0x39b
+</code></pre><p>From the above equations, we get</p>
+<pre><code>szInput[3] = 0x13a-0xcd
+szInput[2] = 0x39b-(0x16f+0x13a+0xc2)
+szInput[0] = ?
+szInput[1] = 0xc2-szInput[0]
+szInput[4] = ?
+szInput[9] = 0x16f-0xc9-szInput[4]
+szInput[5] = ?
+szInput[8] = 0xc9-szInput[5]
+szInput[6] = ?
+szInput[7] = 0xcd-szInput[6]
+</code></pre><p>If these equations are satisfied, and you bypass the anti-debugging checks, you get</p>
+<pre><code>.text:00401656 loc_401656:
+.text:00401656                 push    0Ah
+.text:00401658                 lea     ecx, [ebp+Buffer]
+.text:0040165B                 push    ecx
+.text:0040165C                 call    Ror9Hash         ; compute hash
+.text:00401661                 cmp     eax, 1928F914h
+.text:00401666                 jnz     short loc_4016C9
+</code></pre><p><strong>Ror9Hash</strong> does something like this</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">Ror9Hash</span>(buf, size):
+    ans = <span style="color:#3677a9">0</span>
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(size):
+        ans = ror(ans, <span style="color:#3677a9">9</span>)^buf[i]
+    <span style="color:#6ab825;font-weight:bold">return</span> ans
+</code></pre></div><p>So, now do we need to brute 4 bytes for matching the hash? No! Why ??? Analyze a bit more before looking below &hellip;.</p>
+<p>If the hash matches, the following is printed</p>
+<pre><code>.data:00418038 aGoodWorkLittle db '!Good work. Little help:',0Ah
+.data:00418038                                         ; DATA XREF: _main+2DF↑o
+.data:00418038                                         ; _main+2EF↑o ...
+.data:00418038                 db 'char[8] = 85',0Ah
+.data:00418038                 db 'char[0] + char[2] = 128',0Ah
+.data:00418038                 db 'char[4] - char[7] = -50',0Ah
+.data:00418038                 db 'char[6] + char[9] = 219',0Ah,0
+</code></pre><p>From these equations, we get the key</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># solution.py</span>
+N = <span style="color:#3677a9">10</span>
+b = [<span style="color:#ed9d13">&#39;&#39;</span> <span style="color:#6ab825;font-weight:bold">for</span> _ <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(N)]
+b[<span style="color:#3677a9">8</span>] = <span style="color:#3677a9">85</span>
+<span style="color:#999;font-style:italic"># 0+2 = 128, 4-7 = -50, 6+9 = 219</span>
+<span style="color:#999;font-style:italic"># 7+6 = 0xcd</span>
+<span style="color:#999;font-style:italic"># 8+5 = 0xc9</span>
+b[<span style="color:#3677a9">5</span>] = <span style="color:#3677a9">0xc9</span>-b[<span style="color:#3677a9">8</span>]
+<span style="color:#999;font-style:italic"># 7+6+3 = 0x13a</span>
+b[<span style="color:#3677a9">3</span>] = <span style="color:#3677a9">0x13a</span>-<span style="color:#3677a9">0xcd</span>
+<span style="color:#999;font-style:italic"># 9+4+8+5 = 0x16f</span>
+<span style="color:#999;font-style:italic"># 1+0 = 0xc2</span>
+<span style="color:#999;font-style:italic"># sum = 0x39b</span>
+<span style="color:#999;font-style:italic"># sum(0..3) = 351</span>
+
+<span style="color:#999;font-style:italic"># 4+5+6+7+8+9 = 572</span>
+<span style="color:#999;font-style:italic"># 4+7 = 152</span>
+<span style="color:#999;font-style:italic"># 4-7 = -50</span>
+
+b[<span style="color:#3677a9">4</span>] = <span style="color:#3677a9">51</span>
+b[<span style="color:#3677a9">7</span>] = <span style="color:#3677a9">50</span>+b[<span style="color:#3677a9">4</span>]
+b[<span style="color:#3677a9">6</span>] = <span style="color:#3677a9">0xcd</span>-b[<span style="color:#3677a9">7</span>]
+b[<span style="color:#3677a9">9</span>] = <span style="color:#3677a9">219</span>-b[<span style="color:#3677a9">6</span>]
+<span style="color:#999;font-style:italic"># 0+1+2 = 242</span>
+b[<span style="color:#3677a9">2</span>] = <span style="color:#3677a9">242</span>-<span style="color:#3677a9">0xc2</span>
+b[<span style="color:#3677a9">1</span>] = <span style="color:#3677a9">242</span>-<span style="color:#3677a9">128</span>
+b[<span style="color:#3677a9">0</span>] = <span style="color:#3677a9">0xc2</span> - b[<span style="color:#3677a9">1</span>]
+
+<span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;&#34;</span>.join(<span style="color:#24909d">map</span>(<span style="color:#24909d">chr</span>, b))
+</code></pre></div><p>Which yields - <code>Pr0m3theUs</code></p>
+<p>But on entering the key, it prints out</p>
+<blockquote>
+<p>Congratulations! You guessed the right password, but the message you see is wrong.
+Try to look for some unreferenced data, that can be decrypted the same way as this text.</p>
+</blockquote>
+<p>So, we missed out something :(</p>
+<p>Let&rsquo;s take a step back and look at the ctors (called by <code>__cinit</code>)</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00402AE8                 mov     esi, offset dword_412144
+.text:00402AED                 mov     edi, offset dword_412154
+.text:00402AF2                 jmp     short loc_402AFF
+.text:00402AF4 ; ---------------------------------------------------------------------------
+.text:00402AF4
+.text:00402AF4 loc_402AF4:                             ; CODE XREF: __cinit+65↓j
+.text:00402AF4                 mov     eax, [esi]
+.text:00402AF6                 test    eax, eax
+.text:00402AF8                 jz      short loc_402AFC
+.text:00402AFA                 call    eax
+.text:00402AFC
+.text:00402AFC loc_402AFC:                             ; CODE XREF: __cinit+5C↑j
+.text:00402AFC                 add     esi, 4
+.text:00402AFF
+.text:00402AFF loc_402AFF:                             ; CODE XREF: __cinit+56↑j
+.text:00402AFF                 cmp     esi, edi
+.text:00402B01                 jb      short loc_402AF4
+;
+; .... stuff ...
+;
+.rdata:00412144 dword_412144    dd 0                    ; DATA XREF: __cinit+4C↑o
+.rdata:00412148                 dd offset InitStdIn
+.rdata:0041214C                 dd offset InitStdOut
+.rdata:00412150                 dd offset sub_411390
+</code></pre><p><strong>sub_411390</strong> searches for the module whose <em>Ror9Hash</em> matches <strong>19B9AC28h</strong>. It happens to be kernel32. The routine then searches the export table for the hash - <strong>0D9A63D0Dh</strong> which resolves to <code>GetModuleFileName</code></p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:0040124B                 mov     ecx, [ebp+var_48]
+.text:0040124E                 mov     [ebp+fnGetModuleFileName], ecx
+.text:00401251                 push    104h
+.text:00401256                 lea     edx, [ebp+szModuleName]
+.text:0040125C                 push    edx
+.text:0040125D                 push    0
+.text:0040125F                 call    [ebp+fnGetModuleFileName]
+.text:00401262                 mov     [ebp+var_74], eax
+.text:00401265                 push    0               ; char *
+.text:00401267                 lea     eax, [ebp+var_478]
+.text:0040126D                 push    eax             ; char *
+.text:0040126E                 push    0               ; char *
+.text:00401270                 push    0               ; char *
+.text:00401272                 lea     ecx, [ebp+szModuleName]
+.text:00401278                 push    ecx             ; char *
+.text:00401279                 call    __splitpath
+.text:0040127E                 add     esp, 14h
+.text:00401281                 mov     [ebp+var_38], 'C'
+.text:00401285                 mov     [ebp+var_37], 'r'
+.text:00401289                 mov     [ebp+var_36], '4'
+.text:0040128D                 mov     [ebp+var_35], 'c'
+.text:00401291                 mov     [ebp+var_34], 'k'
+.text:00401295                 mov     [ebp+var_33], 'M'
+.text:00401299                 mov     [ebp+var_32], '3'
+.text:0040129D                 mov     [ebp+var_31], 0
+.text:004012A1                 lea     edx, [ebp+var_38]
+.text:004012A4                 push    edx             ; char *
+.text:004012A5                 lea     eax, [ebp+var_478]
+.text:004012AB                 push    eax             ; char *
+.text:004012AC                 call    _strcmp
+</code></pre><p>Now I guess we know what to do. Just rename the file <code>crackme.exe</code> to <code>Cr4ckM3.exe</code> and</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">x0r19x91@x0r19x91 /cygdrive/c/Users/x0r19x91/Desktop/ESET
+$ ./Cr4ckM3.exe
+Please enter valid password : Pr0m3theUs
+https://join.eset.com/ae50b61499d27d7da010c718f265a9a1/crackme.zip
+</code></pre></div><p>Yeah !! Now we have the actual crackme!</p>
+<h1 id="task-2">Task-2</h1>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00402375                 push    104h            ; nSize
+.text:0040237A                 lea     eax, [ebp+Filename]
+.text:00402380                 push    eax             ; lpFilename
+.text:00402381                 push    0               ; hModule
+.text:00402383                 call    GetModuleFileNameA
+.text:00402389                 lea     eax, [ebp+Filename]
+.text:0040238F                 lea     ecx, [eax+1]
+.text:00402392
+.text:00402392 loc_402392:                             ; CODE XREF: start+55↓j
+.text:00402392                 mov     dl, [eax]
+.text:00402394                 inc     eax
+.text:00402395                 test    dl, dl
+.text:00402397                 jnz     short loc_402392
+.text:00402399                 sub     eax, ecx
+.text:0040239B                 mov     [ebp+eax+var_105], 'l'
+.text:004023A3                 lea     eax, [ebp+eax+var_106]
+.text:004023AA                 mov     word ptr [eax-1], 'ld'
+.text:004023B0                 lea     eax, [ebp+Filename]
+.text:004023B6                 push    eax             ; lpLibFileName
+.text:004023B7                 call    LoadLibraryA
+.text:004023BD                 mov     eset_dll, eax
+</code></pre><p>The entry point is simple, it just loads EsetCrackme2015.dll</p>
+<p>Now in the DllEntryPoint we have</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:10000231                 mov     eax, large fs:30h
+.text:10000237                 mov     eax, [eax+0Ch]
+.text:1000023A                 mov     eax, [eax+14h]   ; InMemoryOrderModuleList
+.text:1000023D                 push    esi
+.text:1000023E                 mov     esi, eax
+.text:10000240                 test    eax, eax
+.text:10000242                 jz      loc_100002E2
+.text:10000248                 push    ebx
+.text:10000249                 push    edi
+.text:1000024A
+.text:1000024A loc_1000024A:                           ; CODE XREF: DllEntryPoint+6B↓j
+.text:1000024A                 mov     ecx, [eax+28h]   ; BaseDllName
+.text:1000024D                 test    ecx, ecx
+.text:1000024F                 jz      loc_100002E0
+.text:10000255                 cmp     word ptr [ecx], 0
+.text:10000259                 mov     edi, 811C9DC5h
+.text:1000025E                 jz      short loc_1000028B
+.text:10000260
+.text:10000260 loc_10000260:                           ; CODE XREF: DllEntryPoint+5B↓j
+.text:10000260                 mov     dl, [ecx]
+.text:10000262                 add     ecx, 2
+.text:10000265                 lea     ebx, [edx-61h]
+.text:10000268                 cmp     bl, 19h
+.text:1000026B                 ja      short loc_10000270
+.text:1000026D                 add     dl, -20h
+.text:10000270
+.text:10000270 loc_10000270:                           ; CODE XREF: DllEntryPoint+45↑j
+.text:10000270                 movsx   edx, dl
+.text:10000273                 xor     edx, edi
+.text:10000275                 imul    edx, 1000193h
+.text:1000027B                 cmp     word ptr [ecx], 0
+.text:1000027F                 mov     edi, edx
+.text:10000281                 jnz     short loc_10000260
+.text:10000283                 cmp     edi, 0FC706866h
+.text:10000289                 jz      short loc_10000295
+.text:1000028B
+.text:1000028B loc_1000028B:                           ; CODE XREF: DllEntryPoint+38↑j
+.text:1000028B                 mov     esi, [esi]
+.text:1000028D                 mov     eax, [esi]
+.text:1000028F                 test    eax, eax
+.text:10000291                 jnz     short loc_1000024A
+</code></pre><p>It searches through the list of loaded modules for the hash <strong>0FC706866h</strong> which happens to be <strong>EsetCrackme2015.exe</strong>. The hash algorithm used is</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># fnv hash</span>
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">hash16</span>(name):
+    ans = <span style="color:#3677a9">0x811c9dc5</span>
+    <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> name:
+        ans = (ans^<span style="color:#24909d">ord</span>(i.upper()))*<span style="color:#3677a9">0x1000193</span> &amp; <span style="color:#3677a9">0xffffffff</span>
+    <span style="color:#6ab825;font-weight:bold">return</span> ans
+</code></pre></div><pre><code class="language-x86asm" data-lang="x86asm">.text:10000295                 mov     eax, [eax+10h]   ; BaseAddress
+.text:10000298                 test    eax, eax
+.text:1000029A                 jz      short loc_100002E0
+.text:1000029C                 mov     ecx, 1000h
+.text:100002A1                 mov     edx, 1010101h
+.text:100002A6
+.text:100002A6 loc_100002A6:                           ; CODE XREF: DllEntryPoint+B0↓j
+.text:100002A6                 mov     esi, [ecx+eax]
+.text:100002A9                 add     esi, edx
+.text:100002AB                 cmp     esi, 0FB131506h
+.text:100002B1                 jnz     short loc_100002CF
+.text:100002B3                 mov     esi, [ecx+eax+4]
+.text:100002B7                 add     esi, edx
+.text:100002B9                 cmp     esi, 20C16ADFh
+.text:100002BF                 jnz     short loc_100002CF
+.text:100002C1                 mov     esi, [ecx+eax+8]
+.text:100002C5                 add     esi, edx
+.text:100002C7                 cmp     esi, 0C43360A2h
+.text:100002CD                 jz      short loc_100002DA
+.text:100002CF
+.text:100002CF loc_100002CF:                           ; CODE XREF: DllEntryPoint+8B↑j
+.text:100002CF                                         ; DllEntryPoint+99↑j
+.text:100002CF                 inc     ecx
+.text:100002D0                 cmp     ecx, 2F00h
+.text:100002D6                 jb      short loc_100002A6
+.text:100002D8                 jmp     short loc_100002E0
+.text:100002DA ; ---------------------------------------------------------------------------
+.text:100002DA
+.text:100002DA loc_100002DA:                           ; CODE XREF: DllEntryPoint+A7↑j
+.text:100002DA                 lea     eax, [ecx+eax+0Ch]
+.text:100002DE                 call    eax
+</code></pre><p>So, it finds the address of the following sequence of bytes in <strong>EsetCrackme2015.exe</strong><br>
+<code>05 14 12 fa de 69 c0 1f a1 5f 32 c3​</code>, which happens to be</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401E93 add eax, 0DEFA1214h
+.text:00401E98 imul eax, 325FA11Fh
+.text:00401E9E retn
+</code></pre><p>So, the real entry point is 0x401e93+0xc = <code>0x401e9f</code></p>
+<p>I&rsquo;ve renamed the real entry point as <strong>Main</strong></p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401E9F Main            proc near
+.text:00401E9F                 push    edi
+.text:00401EA0                 xor     edi, edi
+.text:00401EA2                 cmp     zero, edi
+.text:00401EA8                 jz      short loc_401ED9
+.text:00401EAA                 push    esi
+.text:00401EAB                 call    getKernel32
+.text:00401EB0                 mov     esi, eax
+.text:00401EB2                 push    Sleep           ; Sleep
+.text:00401EB7                 call    resolve_export_hash
+.text:00401EBC                 push    edi
+.text:00401EBD                 push    edi
+.text:00401EBE                 push    eax
+.text:00401EBF                 push    offset Thread1_Proc
+.text:00401EC4                 push    edi
+.text:00401EC5                 push    edi
+.text:00401EC6                 push    CreateThread    ; CreateThread
+.text:00401ECB                 mov     zero, edi
+.text:00401ED1                 call    resolve_export_hash
+.text:00401ED6                 call    eax
+.text:00401ED8                 pop     esi
+.text:00401ED9
+.text:00401ED9 loc_401ED9:                             ; CODE XREF: Main+9↑j
+.text:00401ED9                 pop     edi
+.text:00401EDA                 retn
+.text:00401EDA Main            endp
+;
+;   ...
+;
+.text:0040101C Name            db 'EsetCrackme2015',0  ; DATA XREF: start+9↓o
+.text:0040102C eset_dll        dd 0CCCCCCCCh           ; DATA XREF: start+7B↓w
+.text:00401030 zero            dd 0ED174512h
+</code></pre><p>Here&rsquo;s a small IDAPython script to rename imported hashes</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">hashIt</span>(name):
+    ans = <span style="color:#3677a9">0x811c9dc5</span>
+    <span style="color:#6ab825;font-weight:bold">for</span> ch <span style="color:#6ab825;font-weight:bold">in</span> name:
+        ans = (ans ^ <span style="color:#24909d">ord</span>(ch)) * <span style="color:#3677a9">0x1000193</span> &amp; <span style="color:#3677a9">0xffffffff</span>
+    <span style="color:#6ab825;font-weight:bold">return</span> ans
+
+x = AddEnum(-<span style="color:#3677a9">1</span>, <span style="color:#ed9d13">&#34;Global&#34;</span>, idaapi.decflag())
+names = <span style="color:#24909d">open</span>(<span style="color:#ed9d13">&#34;kernel_user32.txt&#34;</span>).read().split()
+<span style="color:#6ab825;font-weight:bold">for</span> name <span style="color:#6ab825;font-weight:bold">in</span> names:
+    AddConstEx(x, name, hashIt(name), -<span style="color:#3677a9">1</span>)
+</code></pre></div><p>where <strong>kernel_user32.txt</strong> contains a list of kernel32+user32 exports</p>
+<p><code>resolve_export_hash</code> uses <strong>hash16</strong> algorithm to find a function, given a hash, from the export table of the module base in <strong>esi</strong>. <strong>Thread1_Proc</strong> calls <strong>sub_40213B</strong> with <strong>eax</strong> pointing to <strong>EsetCrackme2015.dll</strong>&rsquo;s base address.</p>
+<p>The routine <strong>sub_40213B</strong> is interesting. It sets up a data structure at <strong>ebp-0x138</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Offset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">+0</td>
+<td>Base address of EsetCrackme2015.dll</td>
+</tr>
+<tr>
+<td style="text-align:right">+4</td>
+<td>EsetCrackme2015_dll.SizeofImage</td>
+</tr>
+<tr>
+<td style="text-align:right">+8</td>
+<td>128 words initialized to 0 (Marked Array), Initially Unmarked</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x108</td>
+<td>bStopProcessing (initially 0)</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x109</td>
+<td>bResourcesLoaded (initially 0)</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x10b</td>
+<td>dwTagToExtract (initially 1)</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x10d</td>
+<td>Handle returned by CreateEvent</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x111</td>
+<td>_resolve_export</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x115</td>
+<td>xor_string</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x119</td>
+<td>unpack_pe</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x11d</td>
+<td>unpack_pe_key (“SXJyZW4lMjBpc3QlMjBtZW5zY2hsaWNo”)</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x121</td>
+<td>hPipe (&quot;\.\pipe\EsetCrackmePipe&quot;)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:004021E8                 push    101h
+.text:004021ED                 mov     [esi+125h], eax
+.text:004021F3                 mov     dword ptr [esi+115h], offset xor_string
+.text:004021FD                 mov     dword ptr [esi+111h], offset _resolve_export
+.text:00402207                 mov     [esi+108h], bl
+.text:0040220D                 call    _lookup_tag
+.text:00402212                 push    3
+.text:00402214                 mov     edi, eax
+.text:00402216                 call    _lookup_tag
+.text:0040221B                 pop     ecx
+.text:0040221C                 pop     ecx
+.text:0040221D                 cmp     edi, ebx
+.text:0040221F                 jz      loc_4022D5
+.text:00402225                 cmp     eax, ebx
+.text:00402227                 jz      loc_4022D5
+</code></pre><p>Here the binary loads some resources with id&rsquo;s 3 and 0x101. The resources have the following layout</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6ab825;font-weight:bold">struct</span> resource_t
+{
+    uint16_t tag;
+    uint32_t size;
+    uint8_t data[];
+};
+</code></pre></div><pre><code class="language-x86asm" data-lang="x86asm">.text:0040222D                 mov     edx, [ebp+hKernel32]
+.text:00402230                 push    20h
+.text:00402232                 add     edx, 4Dh
+.text:00402235                 push    edx
+.text:00402236                 push    dword ptr [eax+2]
+.text:00402239                 lea     ecx, [eax+6]
+.text:0040223C                 push    ecx
+.text:0040223D                 mov     [ebp+pe], ecx
+.text:00402240                 call    xor_string
+.text:00402245                 mov     eax, [ebp+pe]
+.text:00402248                 push    eax
+.text:00402249                 mov     [esi+11Dh], eax
+.text:0040224F                 push    dword ptr [edi+2]
+.text:00402252                 lea     esi, [edi+6]
+.text:00402255                 push    esi
+.text:00402256                 call    unpack_pe
+.text:0040225B                 push    esi
+.text:0040225C                 push    esi
+.text:0040225D                 call    relocate_pe
+.text:00402262                 mov     eax, [edi+406h]
+.text:00402268                 add     esp, 24h
+.text:0040226B                 mov     [ebp+pe], eax
+</code></pre><p>From this code, its certain that resource <strong>0x151</strong> is a PE file and resource <strong>3</strong> is the key for unpacking the PE file.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">xor_string</span>(<span style="color:#6ab825;font-weight:bold">char</span>* buf, <span style="color:#6ab825;font-weight:bold">int</span> size, <span style="color:#6ab825;font-weight:bold">char</span>* str, <span style="color:#6ab825;font-weight:bold">int</span> len)
+{
+    <span style="color:#6ab825;font-weight:bold">for</span> (i = <span style="color:#3677a9">0</span>; i &lt; size; ++i)
+        buf[i] ^= str[i%len];
+}
+</code></pre></div><p>The resource with id 3 is decoded with the above algorithm, by passing 32 for len and &ldquo;!This program cannot be run in DOS mode.&rdquo; for str.<br>
+So, resource with id 3 contains <code>SXJyZW4lMjBpc3QlMjBtZW5zY2hsaWNo​</code> which is base64 of ​<code>escape(&quot;Irren ist menschlich&quot;)</code>​.  The address of the data is stored in [ebp-0x1B]</p>
+<p>Finally the thread calls <strong>[ebp+pe]</strong> in a loop, with a single argument to ecx which is the address of the data structure (ebp-0x138)</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00402270 loc_402270:                             ; CODE XREF: sub_40213B+14D↓j
+.text:00402270                                         ; sub_40213B+198↓j
+.text:00402270                 pushaw
+.text:00402272                 mov     ecx, ebp_138h
+.text:00402278                 call    [ebp+pe]
+.text:0040227B                 movzx   eax, ax
+.text:0040227E                 mov     [ebp+hKernel32], eax
+.text:00402281                 popaw
+.text:00402283                 xor     ebx, ebx
+.text:00402285                 cmp     [ebp+hKernel32], ebx
+.text:00402288                 jnz     short loc_402270
+.text:0040228A                 mov     esi, ebp_138h
+.text:00402290                 cmp     [esi+108h], bl
+.text:00402296                 jnz     short loc_4022D5
+.text:00402298                 push    0FFFFFFFFh
+.text:0040229A                 push    dword ptr [esi+10Dh]
+.text:004022A0                 xor     eax, eax
+.text:004022A2                 mov     [esi+10Bh], ax
+.text:004022A9                 mov     esi, [esi+129h]
+.text:004022AF                 sub     esi, 54ED3267h
+.text:004022B5                 push    WaitForSingleObject
+.text:004022BA                 xor     esi, 0AB12CD99h
+.text:004022C0                 call    resolve_export_hash
+.text:004022C5                 call    eax
+.text:004022C7
+.text:004022C7 loc_4022C7:                             ; CODE XREF: sub_40213B+133↑j
+.text:004022C7                 mov     esi, ebp_138h
+.text:004022CD                 cmp     [esi+108h], bl
+.text:004022D3                 jz      short loc_402270
+</code></pre><p>Let’s take a look at the function executed by Thread 2 at 0x0401F13. Let’s call it <strong>Thread2_Proc</strong>.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401F19                 push    2
+.text:00401F1B                 call    _lookup_tag
+.text:00401F20                 pop     ecx
+.text:00401F21                 test    eax, eax
+.text:00401F23                 jnz     short loc_401F2D
+.text:00401F25                 or      eax, 0FFFFFFFFh
+.text:00401F28                 jmp     locret_402099
+.text:00401F2D ; ---------------------------------------------------------------------------
+.text:00401F2D
+.text:00401F2D loc_401F2D:                             ; CODE XREF: Thread2_Proc+10↑j
+.text:00401F2D                 mov     [ebp+var_4], 223F043Eh
+.text:00401F34                 add     [ebp+var_4], 23114512h   ; &quot;PIPE&quot;
+.text:00401F3B                 push    4
+.text:00401F3D                 lea     edx, [ebp+var_4]
+.text:00401F40                 push    edx
+.text:00401F41                 push    dword ptr [eax+2]
+.text:00401F44                 lea     ecx, [eax+6]
+.text:00401F47                 push    ecx
+.text:00401F48                 mov     [ebp+szPipeName], ecx
+.text:00401F4B                 call    xor_string
+</code></pre><p>Cool. So resource 2 contains the pipe path, xor encoded using the string <code>&quot;PIPE&quot;</code>.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401F50                 mov     eax, ebp_138h
+.text:00401F55                 add     esp, 10h
+.text:00401F58                 cmp     byte ptr [eax+108h], 0
+.text:00401F5F                 jnz     loc_402097
+.text:00401F65                 push    ebx
+.text:00401F66                 push    esi
+.text:00401F67                 push    edi
+.text:00401F68                 mov     ebx, 54ED3267h
+.text:00401F6D                 mov     edi, 0AB12CD99h
+.text:00401F72
+.text:00401F72 loc_401F72:                             ; CODE XREF: Thread2_Proc+17B↓j
+.text:00401F72                 mov     esi, [eax+129h]
+.text:00401F78                 xor     edx, edx
+.text:00401F7A                 push    edx
+.text:00401F7B                 push    edx
+.text:00401F7C                 mov     ecx, 200h
+.text:00401F81                 push    ecx
+.text:00401F82                 push    ecx
+.text:00401F83                 push    0FFh
+.text:00401F88                 push    edx
+.text:00401F89                 push    3
+.text:00401F8B                 push    [ebp+szPipeName] ; &quot;\\.\pipe\EsetCrackmePipe&quot;
+.text:00401F8E                 sub     esi, ebx
+.text:00401F90                 push    CreateNamedPipeA
+.text:00401F95                 xor     esi, edi
+.text:00401F97                 call    resolve_export_hash
+.text:00401F9C                 call    eax
+</code></pre><p>So, it creates a named pipe &ldquo;\.\pipe\EsetCrackmePipe&rdquo;</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401FEE                 lea     eax, [ebp+b1]
+.text:00401FF1                 push    eax             ; buffer
+.text:00401FF2                 push    1               ; size
+.text:00401FF4                 call    read_pipe
+.text:00401FF9                 lea     eax, [ebp+b2]
+.text:00401FFC                 push    eax             ; buffer
+.text:00401FFD                 push    2               ; size
+.text:00401FFF                 call    read_pipe
+.text:00402004                 push    dword ptr [ebp+b2]
+.text:00402007                 push    dword ptr [ebp+b1]
+.text:0040200A                 call    process
+.text:0040200F                 mov     eax, ebp_138h
+.text:00402014                 mov     esi, [eax+129h]
+.text:0040201A                 add     esp, 18h
+.text:0040201D                 push    dword ptr [eax+121h]
+.text:00402023                 sub     esi, ebx
+.text:00402025                 push    FlushFileBuffers
+.text:0040202A                 xor     esi, edi
+.text:0040202C                 call    resolve_export_hash
+.text:00402031                 call    eax
+.text:00402033                 mov     eax, ebp_138h
+.text:00402038                 mov     esi, [eax+129h]
+.text:0040203E                 push    dword ptr [eax+121h]
+.text:00402044                 sub     esi, ebx
+.text:00402046                 push    DisconnectNamedPipe
+.text:0040204B                 xor     esi, edi
+.text:0040204D                 call    resolve_export_hash
+.text:00402052                 call    eax
+</code></pre><p>It reads a byte followed by a int16 and then processes it. This is repeated while <strong>bStopProcessing</strong> is 0.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00401E1C                 lea     eax, [ebp+b1]
+.text:00401E1F                 push    eax             ; buffer
+.text:00401E20                 push    1               ; size
+.text:00401E22                 call    write_pipe
+.text:00401E27                 lea     eax, [ebp+b2]
+.text:00401E2A                 push    eax             ; buffer
+.text:00401E2B                 push    2               ; size
+.text:00401E2D                 call    write_pipe
+.text:00401E32                 add     esp, 10h
+.text:00401E35                 cmp     [ebp+b1], 1
+.text:00401E39                 jnz     short loc_401E65
+.text:00401E3B                 push    [ebp+b2]
+.text:00401E3E                 call    _lookup_tag
+.text:00401E43                 mov     edi, eax
+.text:00401E45                 pop     ecx
+.text:00401E46                 test    edi, edi
+.text:00401E48                 jz      short loc_401E87
+.text:00401E4A                 lea     esi, [edi+2]
+.text:00401E4D                 push    esi             ; buffer
+.text:00401E4E                 push    4               ; size
+.text:00401E50                 call    write_pipe
+.text:00401E55                 add     edi, 6
+.text:00401E58                 push    edi             ; buffer
+.text:00401E59                 push    dword ptr [esi] ; size
+.text:00401E5B                 call    write_pipe
+.text:00401E60                 add     esp, 10h
+.text:00401E63                 jmp     short loc_401E8F
+.text:00401E65 ; ---------------------------------------------------------------------------
+.text:00401E65
+.text:00401E65 loc_401E65:                             ; CODE XREF: process+22↑j
+.text:00401E65                 cmp     [ebp+b1], 2
+.text:00401E69                 jnz     short loc_401E77
+.text:00401E6B                 mov     esi, [ebp+b2]
+.text:00401E6E                 call    _mark
+.text:00401E73
+.text:00401E73 loc_401E73:                             ; CODE XREF: process+6E↓j
+.text:00401E73                 push    0
+.text:00401E75                 jmp     short loc_401E89
+.text:00401E77 ; ---------------------------------------------------------------------------
+.text:00401E77
+.text:00401E77 loc_401E77:                             ; CODE XREF: process+52↑j
+.text:00401E77                 cmp     [ebp+b1], 3
+.text:00401E7B                 jnz     short loc_401E87
+.text:00401E7D                 mov     esi, [ebp+b2]
+.text:00401E80                 call    _clear_mark
+</code></pre><p>So, process writes the bytes into the pipe in the order they were read. The first byte can take three values only - 1, 2 and 3.</p>
+<ol>
+<li>Lookup tag whose id is the next two bytes and write the resource preceded by its length</li>
+<li>Mark tag of the given 2 byte id (in the marked array, at offset +8 wrt ebp-0x138)</li>
+<li>Clear marked tag</li>
+</ol>
+<h3 id="extracting-resources">Extracting Resources</h3>
+<p>Here&rsquo;s a small C program to extract the resources</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="color:#cd2828;font-weight:bold"></span>
+<span style="color:#6ab825;font-weight:bold">typedef</span> <span style="color:#447fcf">void</span> (*FUNC) (<span style="color:#6ab825;font-weight:bold">void</span>*, DWORD, <span style="color:#6ab825;font-weight:bold">char</span>*);
+
+<span style="color:#6ab825;font-weight:bold">char</span> g_szKey[] = <span style="color:#ed9d13">&#34;SXJyZW4lMjBpc3QlMjBtZW5zY2hsaWNo&#34;</span>;
+
+<span style="color:#6ab825;font-weight:bold">char</span>* <span style="color:#447fcf">lookup</span>(<span style="color:#6ab825;font-weight:bold">void</span>* hDll, <span style="color:#6ab825;font-weight:bold">short</span> tag)
+{
+    <span style="color:#6ab825;font-weight:bold">char</span>* ptr = (<span style="color:#6ab825;font-weight:bold">char</span>*) hDll;
+    <span style="color:#6ab825;font-weight:bold">while</span> (*(<span style="color:#6ab825;font-weight:bold">short</span>*)(ptr) != tag)
+    {
+        ptr += <span style="color:#3677a9">6</span>+*(<span style="color:#6ab825;font-weight:bold">int</span>*)(ptr+<span style="color:#3677a9">2</span>);
+    }
+    <span style="color:#6ab825;font-weight:bold">return</span> ptr;
+}
+
+<span style="color:#6ab825;font-weight:bold">int</span> <span style="color:#447fcf">main</span>(<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span>** argv)
+{
+    <span style="color:#6ab825;font-weight:bold">if</span> (argc == <span style="color:#3677a9">1</span>)
+    {
+        printf(<span style="color:#ed9d13">&#34;Usage: %s [tag bUnpack? file_name]*</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, argv[<span style="color:#3677a9">0</span>]);
+        exit(<span style="color:#3677a9">0</span>);
+    }
+
+    HMODULE hExe = LoadLibrary(<span style="color:#ed9d13">&#34;EsetCrackme2015.exe&#34;</span>);
+    HMODULE hDll = LoadLibraryEx(<span style="color:#ed9d13">&#34;EsetCrackme2015.dll&#34;</span>, <span style="color:#24909d">NULL</span>, <span style="color:#3677a9">1</span>);
+
+    FUNC unpackMe = (FUNC) ((<span style="color:#6ab825;font-weight:bold">char</span>*) hExe + <span style="color:#3677a9">0x1000</span> + <span style="color:#3677a9">0xd11</span> - <span style="color:#3677a9">0x200</span>);
+
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">char</span>** p = argv; *++p; p += <span style="color:#3677a9">2</span>)
+    {
+        <span style="color:#6ab825;font-weight:bold">short</span> m_tag;
+        sscanf(p[<span style="color:#3677a9">0</span>], <span style="color:#ed9d13">&#34;%hi&#34;</span>, &amp;m_tag);
+        <span style="color:#6ab825;font-weight:bold">char</span>* tag = lookup(hDll, m_tag);
+        
+        <span style="color:#6ab825;font-weight:bold">if</span> (p[<span style="color:#3677a9">1</span>][<span style="color:#3677a9">0</span>] == <span style="color:#ed9d13">&#39;1&#39;</span>)
+            unpackMe(tag+<span style="color:#3677a9">6</span>, *(DWORD*)(tag+<span style="color:#3677a9">2</span>), g_szKey);
+        FILE* dp = fopen(p[<span style="color:#3677a9">2</span>], <span style="color:#ed9d13">&#34;wb&#34;</span>);
+        fwrite(tag+<span style="color:#3677a9">6</span>, <span style="color:#3677a9">1</span>, *(DWORD*)(tag+<span style="color:#3677a9">2</span>), dp);
+        fclose(dp);
+    }
+}
+</code></pre></div><h2 id="resource-0x101">Resource 0x101</h2>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:004009A9                 push    ebp
+.text:004009AA                 mov     ebp, esp
+.text:004009AC                 sub     esp, 104h
+.text:004009B2                 push    esi
+.text:004009B3                 mov     esi, ecx
+.text:004009B5                 mov     ebp_138h, esi
+.text:004009BB                 call    is_initialized?
+.text:004009C0                 test    al, al
+.text:004009C2                 jz      short loc_4009CE
+.text:004009C4                 call    LoadResources
+.text:004009C9                 jmp     loc_400BA5
+.text:004009CE ; ---------------------------------------------------------------------------
+.text:004009CE
+.text:004009CE loc_4009CE:                             ; CODE XREF: sub_4009A9+19↑j
+.text:004009CE                 call    has_all_extracted?
+.text:004009D3                 test    al, al
+.text:004009D5                 jz      short loc_4009E1
+.text:004009D7                 call    FreeResources
+.text:004009DC                 jmp     loc_400BA5
+</code></pre><p><strong>LoadResources</strong> fetches resources - 0x102, 0x103 and 0x104</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:004009E1                 push    0BB01h
+.text:004009E6                 call    is_marked?
+.text:004009EB                 pop     ecx
+.text:004009EC                 test    al, al
+.text:004009EE                 jz      loc_400A75
+.text:004009F4                 push    0BB02h
+.text:004009F9                 call    is_marked?
+.text:004009FE                 pop     ecx
+.text:004009FF                 test    al, al
+.text:00400A01                 jz      short loc_400A75
+.text:00400A03                 push    0BB03h
+.text:00400A08                 call    is_marked?
+.text:00400A0D                 pop     ecx
+.text:00400A0E                 test    al, al
+.text:00400A10                 jz      short loc_400A75
+.text:00400A12                 push    0FF01h
+.text:00400A17                 call    is_marked?
+.text:00400A1C                 pop     ecx
+.text:00400A1D                 test    al, al
+.text:00400A1F                 jz      short loc_400A75
+.text:00400A21                 push    offset aUser32Dll ; &quot;user32.dll&quot;
+.text:00400A26                 push    LoadLibraryA
+.text:00400A2B                 call    dword ptr [esi+111h]
+.text:00400A31                 call    eax
+.text:00400A33                 push    40h
+.text:00400A35                 push    offset aInfo    ; &quot;Info&quot;
+.text:00400A3A                 push    offset aThatsAllCongra ; &quot;Thats all. Congratulations!&quot;
+.text:00400A3F                 push    0
+.text:00400A41                 push    offset aMessageboxa ; &quot;MessageBoxA&quot;
+.text:00400A46                 push    eax
+.text:00400A47                 mov     eax, ebp_138h
+.text:00400A4C                 push    GetProcAddress
+.text:00400A51                 call    dword ptr [eax+111h]
+.text:00400A57                 call    eax
+.text:00400A59                 call    eax
+.text:00400A5B                 mov     ecx, ebp_138h
+.text:00400A61                 mov     eax, 0FFFFh
+.text:00400A66                 mov     [ecx+10Bh], ax   ; mark finished
+</code></pre><p>So, resources 0xbb01, 0xbb02, 0xbb03 and 0xff01 must be marked to complete the entire challenge. Initially none of these are marked.<br>
+Also, dwTagToExtract is 1. So the following code is executed</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00400AA8                 mov     esi, offset aSvchostExe ; &quot;\\svchost.exe&quot;
+.text:00400AAD                 movsd
+.text:00400AAE                 movsd
+.text:00400AAF                 movsd
+.text:00400AB0                 lea     eax, [ebp+szSystem32Path]
+.text:00400AB6                 push    eax
+.text:00400AB7                 movsb
+.text:00400AB8                 call    spawn_svchost
+.text:00400ABD                 mov     esi, ebp_138h
+.text:00400AC3                 pop     ecx
+.text:00400AC4                 push    2
+.text:00400AC6                 pop     eax
+.text:00400AC7                 mov     [esi+109h], ax
+</code></pre><p>a RunPE technique is used to execute the PE file, resource 0x151.<br>
+If dwTagToExtract is 0xbb01, then <strong>drv.zip</strong> is extracted</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00400ADC                 push    1
+.text:00400ADE                 push    offset aDrvZip  ; &quot;drv.zip&quot;
+.text:00400AE3                 mov     eax, 152h
+.text:00400AE8                 call    extract_resource
+</code></pre><p>If dwTagToExtract is 0xaa01, then <strong>PuncherMachine</strong> and <strong>PunchCardReader</strong> are extracted</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00400B11                 push    1
+.text:00400B13                 push    offset aPunchcardreade ; &quot;PunchCardReader.exe&quot;
+.text:00400B18                 mov     eax, 154h
+.text:00400B1D                 call    extract_resource
+.text:00400B22                 push    1
+.text:00400B24                 push    offset aPunchermachine ; &quot;PuncherMachine.exe&quot;
+.text:00400B29                 mov     eax, 153h
+.text:00400B2E                 call    extract_resource
+.text:00400B33                 push    1               ; bUnpack
+.text:00400B35                 push    4               ; &quot;\\?\GLOBALROOT\Device\45736574\&quot;
+.text:00400B37                 call    get_resource
+</code></pre><h2 id="resource-0x102---a-virtual-machine">Resource 0x102 - A Virtual Machine</h2>
+<p>Here is my analysis of the resource 0x102.</p>
+<h4 id="ldrtype-index-size">ldr(type, index, size)</h4>
+<pre><code>if type == 0:
+    if size == 0:
+        return (byte) regs[index]
+    elif size == 1:
+        return (word) regs[index]
+    else:
+        return (dword) regs[index]
+elif type == 1:
+    if size == 0:
+        return *(byte*) regs[index]
+    elif size == 1:
+        return *(word*) regs[index]
+    else:
+        return *(dword*) regs[index]
+elif type == 2:
+    if size == 0:
+        return _get_int8()
+    elif size == 1:
+        return _get_int16()
+    else:
+        return _get_int32()
+elif type == 3:
+    return vm[0x45a] + _get_int32()
+</code></pre><h4 id="strtypesizedataindex">str(type,size,data,index)</h4>
+<pre><code>if type == 1:
+    regs[index] = data
+elif type == 2:
+    ssize = size == 0 ? 'byte' : size == 1 ? 'word' : 'dword'
+    *([ssize]*) regs[index] = data
+</code></pre><h4 id="call">call()</h4>
+<pre><code>o = read1()
+fn = ldr(o.type, o.index, 2)
+sesp = esp
+esp = stack_top
+call fn(eax=regs[0])
+stack_top=esp
+esp = sesp
+regs[0]=eax
+</code></pre><h4 id="call_stdlib">CALL_STDLIB()</h4>
+<pre><code>o = read2()
+iFnHash = ldr(o.ldr_type, o.str_index, 2)
+iModHash = ldr(o.str_type, o.ldr_index, 2)
+if o.ldr_type == 3:
+    iFnHash = *(dword) iFnHash
+if o.str_type == 3:
+    iModHash = *(dword) iModHash
+if iModHash == 0:
+    hModBase = vm[0x409]
+else:
+    hModBase = ResolveModule(iModHash)
+if hModBase == 0:
+    hModBase = _probably_LoadModule(iModHash)
+fn = ResolveExport(hModBase, iFnHash)
+sesp = esp
+esp = stack_top
+call fn(eax=regs[0])
+stack_top=esp
+esp = sesp
+regs[0]=eax
+</code></pre><h4 id="push">PUSH()</h4>
+<pre><code>o = read1()
+data = ldr(o.type, o.index, o.word_size)
+vm.stack.push(data)
+</code></pre><h4 id="pop_reg">POP_REG()</h4>
+<pre><code>o = read1()
+regs[o.index] = pop()
+</code></pre><h4 id="cmp">CMP()</h4>
+<pre><code>o = read2()
+d = ldr(o.ldr_type, o.ldr_index, o.str_type)
+r = regs[o.str_index]
+if o.word_size == 0:
+    vm.flags = r == d
+elif o.word_size == 1:
+    vm.flags = r != d
+elif o.word_size == 2:
+    vm.flags = r &gt;= d
+</code></pre><h4 id="jmp">JMP()</h4>
+<pre><code>o = read1()
+d = ldr(2, 0, 2)
+if o == 0:
+    vm.next_insn_offset = d
+elif o == 1:
+    if vm.flags:
+        vm.flags = 0
+        vm.next_insn_offset = d
+</code></pre><h4 id="call_vm">CALL_VM()</h4>
+<pre><code>d = ldr(2, 0, 2)
+vm.stack.push(vm.next_insn_offset)
+vm.next_insn_offset = d
+</code></pre><h4 id="ret_vm">RET_VM()</h4>
+<pre><code>vm.next_insn_offset = vm.stack.pop()
+</code></pre><h4 id="alu">ALU()</h4>
+<pre><code>o = read2()
+d = ldr(o.ldr_type, o.ldr_index, o.str_type)
+if o.word_size == 0:
+    regs[o.str_index] ^= d
+elif o.word_size == 1:
+    regs[o.str_index] += d
+elif o.word_size == 2:
+    regs[o.str_index] -= d
+elif o.word_size == 3:
+    regs[o.str_index] &lt;&lt;= d
+elif o.word_size == 4:
+    regs[o.str_index] &gt;&gt;= d
+elif o.word_size == 5:
+    rol = lambda a, b, c: a&lt;&lt;b|a&gt;&gt;8*c-b
+    regs[o.str_index] = rol(regs[o.str_index], d, 2**o.str_type)
+elif o.word_size == 6:
+    ror = lambda a, b, c: a&lt;&lt;b|a&gt;&gt;8*c-b
+    regs[o.str_index] = ror(regs[o.str_index], d, 2**o.str_type)
+elif o.word_size == 7:
+    regs[o.str_index] %= d
+</code></pre><h4 id="malloc">MALLOC()</h4>
+<pre><code>o = read1()
+d = ldr(o.type, o.index, o.word_size)
+regs[0] = VirtualAlloc(size=d, flags=0x40)
+</code></pre><h4 id="free">FREE()</h4>
+<pre><code>o = read1()
+d = ldr(o.type, o.index, o.word_size)
+free(d)
+</code></pre><h4 id="emulate">EMULATE()</h4>
+<pre><code>o = read2()
+d1 = ldr(o.ldr_type, o.str_index, 2)
+d2 = ldr(o.str_type, o.ldr_index, o.word_size)
+mem = alloc(size=d2&lt;&lt;2, flags=0x40)
+for i in xrange(d2):
+    mem[i] = vm.stack.pop()
+vm2 = {}
+vm2.init()
+vm2.run(d1, vm.kernel32, d2, mem)
+vm2.free()
+</code></pre><pre><code>RunVM(lpRes, hModule, nElem, lpArray)
+{
+    if (hModule || vm.bModuleLoaded)
+        vm.hModule = hModule
+    else
+        vm.hModule = ResolveModule(&quot;kernel32&quot;)
+    mem = alloc(lpRes.size, flags=0x40)
+    memcpy(mem, lpRes, lpRes.size)
+    vm[0x45a] = mem+[lpRes+6]
+    vm[0x3fd] = mem
+    vm[0x401] = lpRes.size
+    vm.insn_base = mem+0x12
+    stk = alloc(0x400000, flags=4)
+    if (vm.stack_base)
+        free(vm.stack_base)
+    vm.stack_base = stk
+    vm.stack_top = stk+4*0xfffff
+    memset(vm.regs, 0, 0x10*4)
+    vm.regs[6] = vm.stack_top
+    vm.regs[7] = vm[0x3fd]
+    vm.regs[8] = vm[0x401]
+    vm.regs[9] = vm.hModule
+    for i in xrange(vm.nArgs):
+        vm.regs[i+10] = vm.lpArgs[i]
+    if (lpRes.sign != 0x1337)
+        LoopVM()    // decrypt vm code
+    vm.insn_base = &amp;lpResource.code_offset
+    Return LoopVM()
+}
+
+LoopVM()
+{
+    vm.insn_base = lpRes.insn_base
+    while (vm.bRunning)
+    {
+        vm.func[_get_byte()]()
+    }
+    return vm.regs[0]
+}
+</code></pre><h3 id="vm-layout">VM Layout</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Offset</th>
+<th>Function Pointer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">+0</td>
+<td>STOP</td>
+</tr>
+<tr>
+<td style="text-align:right">+4</td>
+<td>MOV</td>
+</tr>
+<tr>
+<td style="text-align:right">+8</td>
+<td>CALL</td>
+</tr>
+<tr>
+<td style="text-align:right">+0xc</td>
+<td>CALL_STDLIB</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x10</td>
+<td>PUSH</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x14</td>
+<td>POP_REG</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x20</td>
+<td>CMP</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x24</td>
+<td>JMP</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x28</td>
+<td>CALL_VM</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x28</td>
+<td>RET_VM</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x30</td>
+<td>ALU</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x34</td>
+<td>MALLOC</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x38</td>
+<td>FREE</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x40</td>
+<td>EMULATE</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x44</td>
+<td>STOP</td>
+</tr>
+<tr>
+<td style="text-align:right">&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x3f8</td>
+<td>STOP</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x3fc</td>
+<td>bRunning</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x3fd</td>
+<td>lpResource</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x401</td>
+<td>lpResource.size</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x405</td>
+<td>bModuleLoaded? ([lpResource+0xe])</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x409</td>
+<td>hModule (kernel32)</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x40d</td>
+<td>nArgs</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x411</td>
+<td>lpArgs</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x415</td>
+<td>flags</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x416</td>
+<td>regs</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x42e</td>
+<td>stack_top</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x456</td>
+<td>insn_base</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x45a</td>
+<td>data_base</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x45e</td>
+<td>next_insn_offset</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x462</td>
+<td>stack_top</td>
+</tr>
+<tr>
+<td style="text-align:right">+0x466</td>
+<td>stack_base</td>
+</tr>
+</tbody>
+</table>
+<h3 id="instruction-encoding">Instruction Encoding</h3>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6ab825;font-weight:bold">struct</span> insn8
+{
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> index: <span style="color:#3677a9">4</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> type: <span style="color:#3677a9">2</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> word_size:<span style="color:#3677a9">2</span>;
+};
+
+<span style="color:#6ab825;font-weight:bold">struct</span> insn16
+{
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> str_index: <span style="color:#3677a9">4</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> ldr_index: <span style="color:#3677a9">4</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> ldr_type: <span style="color:#3677a9">2</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> str_type: <span style="color:#3677a9">2</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> word_size: <span style="color:#3677a9">3</span>;
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> __pad:<span style="color:#3677a9">1</span>;
+};
+</code></pre></div><h3 id="file-layout-0x102">File Layout (0x102)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Offset</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">+0</td>
+<td>signature</td>
+</tr>
+<tr>
+<td style="text-align:right">+2</td>
+<td>code_offset</td>
+</tr>
+<tr>
+<td style="text-align:right">+6</td>
+<td>data_offset</td>
+</tr>
+<tr>
+<td style="text-align:right">+0xa</td>
+<td>size</td>
+</tr>
+<tr>
+<td style="text-align:right">+0xe</td>
+<td>bModuleLoaded?</td>
+</tr>
+</tbody>
+</table>
+<p>If signature is not 0x1337, then code is encrypted, which must be decrypted using the signature as the xor key. Let’s look at the disassembly of resource 0x103.</p>
+<pre><code>00    ldr X, R7             
+        str X, R0             
+03    ldr X, byte ptr [R0]  
+        str X, R1             
+06    ldr X, 0x1            
+        add R0, X             
+0a    ldr X, byte ptr [R0]  
+        str X, R2             
+0d    ldr X, 0x1            
+        add R0, X             
+11    ldr X, dword ptr [R0] 
+        str X, R3             
+14    ldr X, R8             
+        str X, R0             
+17    ldr X, R7             
+        add R0, X             
+1a    ldr X, R7             
+        add R3, X             
+1d    ldr X, byte ptr [R3]  
+        str X, R4             
+20    ldr X, R1             
+        xor R4, X             
+23    ldr X, R2             
+        add R1, X             
+26    ldr X, R4             
+        str X, byte ptr [R3]  
+29    ldr X, 0x1            
+        add R3, X             
+2d    ldr X, R0             
+        cmp.ge X, R3          
+30    ldr X, 0x1d           
+        jmp.cc X              
+36    ldr X, R7             
+        str X, R0             
+39    ldr X, 0x37           
+        str X, byte ptr [R0]  
+3d    ldr X, 0x1            
+        add R0, X             
+41    ldr X, 0x13           
+        str X, byte ptr [R0]  
+45    hlt
+</code></pre><p>Yeah, it&rsquo;s a xor encryption</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">key = b.sign[<span style="color:#3677a9">0</span>]
+incr = b.sign[<span style="color:#3677a9">1</span>]
+
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(b.code_offset, b.code_offset+b.size):
+    b[i] = (b[i]^key) + incr &amp; <span style="color:#3677a9">0xff</span>
+</code></pre></div><h2 id="resource-0x151">Resource 0x151</h2>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:004019FB                 mov     eax, 0DF09C20Dh
+.text:00401A00                 mov     esi, [ebp+hWnd]
+.text:00401A03                 mov     ecx, offset dword_412EF0
+.text:00401A08                 mov     hWnd, esi
+.text:00401A0E                 call    initialize
+.text:00401A13                 lea     ecx, [ebp+uMsg]
+.text:00401A16                 push    ecx             ; lpThreadId
+.text:00401A17                 push    0               ; dwCreationFlags
+.text:00401A19                 push    offset dword_412EF0 ; lpParameter
+.text:00401A1E                 push    offset StartAddress ; lpStartAddress
+.text:00401A23                 push    0               ; dwStackSize
+.text:00401A25                 push    0               ; lpThreadAttributes
+.text:00401A27                 call    ds:CreateThread
+.text:00401A2D                 mov     hDlg, esi
+.text:00401A33                 call    AcquireDebugPriv
+.text:00401A38                 call    GetResource
+</code></pre><p>The function <strong>GetResource</strong> fetches resources 0xbb01 and 0xbb02. 0xbb01 is xor encrypted using <strong>&ldquo;PIPE&rdquo;</strong>. Decoding gives three sha160 hashes.<br>
+<strong>initialize</strong> initializes <strong>dword_412EF0</strong> with <strong>_resolve_sha1</strong> and <strong>dword_412EF4</strong> with <code>LoadLibraryA</code>.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:0040228A                 mov     eax, [ebp+var_10]
+.text:0040228D                 mov     eax, [eax]
+.text:0040228F                 mov     ecx, [edi+8]
+.text:00402292                 push    0
+.text:00402294                 push    eax
+.text:00402295                 push    0
+.text:00402297                 push    ecx
+.text:00402298                 call    ebx
+.text:0040229A                 push    offset Edit_Handler
+.text:0040229F                 push    GWLP_WNDPROC
+.text:004022A1                 push    eax
+.text:004022A2                 mov     _loadLib_sha1, edi
+.text:004022A8                 call    esi             ; SetWindowLong
+.text:004022AA                 mov     [edi+0Ch], eax
+;
+; ....
+;
+.text:004022ED                 push    offset lstrcmpA
+.text:004022F2                 push    eax
+.text:004022F3                 call    ecx
+.text:004022F5                 mov     edx, [edi+4]
+.text:004022F8                 push    eax
+.text:004022F9                 call    edx
+.text:004022FB                 jmp     short loc_4022FF
+.text:004022FD ; ---------------------------------------------------------------------------
+.text:004022FD
+.text:004022FD loc_4022FD:                             ; CODE XREF: sub_402170+175↑j
+.text:004022FD                                         ; sub_402170+17B↑j
+.text:004022FD                 xor     eax, eax
+.text:004022FF
+.text:004022FF loc_4022FF:                             ; CODE XREF: sub_402170+18B↑j
+.text:004022FF                 mov     [edi+114h], eax ; lstrcmpA
+</code></pre><p>Here the message handler for the first text box is changed to <strong>Edit_Handler</strong>. Let&rsquo;s see what <strong>Edit_Handler</strong> does</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:004023EC                 mov     ecx, eax
+.text:004023EE                 call    base64_size
+.text:004023F3                 mov     edi, eax
+.text:004023F5                 push    edi             ; size_t
+.text:004023F6                 call    operator new(uint)
+.text:004023FB                 add     esp, 4
+.text:004023FE                 push    ebx
+.text:004023FF                 lea     ecx, [ebp+szInput]
+.text:00402402                 mov     esi, eax
+.text:00402404                 push    ecx
+.text:00402405                 mov     ecx, [ebp+var_4C]
+.text:00402408                 mov     [ebp+var_5C], esi
+.text:0040240B                 call    toBase64
+.text:00402410                 xor     eax, eax
+.text:00402412                 mov     byte ptr [esi+edi-1], 0
+</code></pre><p>Okay, so the input is first converted to base64</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00402420 loc_402420:                             ; CODE XREF: Edit_Handler+BB↑j
+.text:00402420                                         ; Edit_Handler+CB↓j
+.text:00402420                 mov     dl, al
+.text:00402422                 and     dl, 1
+.text:00402425                 sub     [eax+esi], dl
+.text:00402428                 inc     eax
+.text:00402429                 cmp     eax, edi
+.text:0040242B                 jl      short loc_402420
+</code></pre><p>Subtracts the parity of the offset of each byte from the bytes.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:0040242D                 mov     eax, _loadLib_sha1   ; 0x00412EF0
+.text:00402432                 mov     edx, [eax+114h]
+.text:00402438                 lea     ecx, [eax+118h]
+.text:0040243E                 push    ecx
+.text:0040243F                 push    esi
+.text:00402440                 call    edx  ; lstrcmpA
+.text:00402442                 test    eax, eax
+.text:00402444                 jnz     short loc_40246E
+.text:00402446                 mov     [ebp+var_4C], eax
+.text:00402449                 push    5               ; unk
+.text:0040244B                 lea     eax, [ebp+var_4C]
+.text:0040244E                 push    eax             ; buffer
+.text:0040244F                 push    0BB01h          ; tag
+.text:00402454                 push    2               ; cmd
+.text:00402456                 call    Send
+</code></pre><p>So, the string is located at <strong>0x00412EF0+0x118</strong> which is resource <strong>0xbb02</strong></p>
+<pre><code class="language-x86asm" data-lang="x86asm">.data:00413008 BB02            db 44h dup(?)           ; DATA XREF: GetResources+B6↑o
+</code></pre><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">bb02 = <span style="color:#24909d">bytearray</span>(<span style="color:#ed9d13">&#34;020f0674311f64230178163c340f282e50&#34;</span>.decode(<span style="color:#ed9d13">&#34;hex&#34;</span>), <span style="color:#ed9d13">&#39;ascii&#39;</span>)
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#24909d">len</span>(bb02)):
+    bb02[i] ^= <span style="color:#24909d">ord</span>(<span style="color:#ed9d13">&#39;PIPE&#39;</span>[i &amp; <span style="color:#3677a9">3</span>])
+    bb02[i] += i&amp;<span style="color:#3677a9">1</span>
+
+<span style="color:#6ab825;font-weight:bold">print</span> bb02.decode(<span style="color:#ed9d13">&#34;base64&#34;</span>)
+</code></pre></div><p>which outputs <code>Devin Castle</code>. So, <code>Devin Castle</code> is the <strong>first password</strong></p>
+<h2 id="the-protocol">The Protocol</h2>
+<pre><code>                   +-----------------+    Fetch Resource         +-------------------------+
+                   |                 +-------------------------&gt; |        Thread2          |
+                   |   GUI Thread    |                           |  (EsetCrackme2015.exe)  |
+                   |                 |Length, Resource Data      |                         |
+                   |                 |  &lt;------------------------+                         |
+                   |                 |   Notify Validation       |                         |
+                   |                 +-------------------------&gt; |                         |
+                   +-----------------+                           +------------+------------+
+                                                                              |
+                                                                  Command-2   |   Mark Resource
+                                                                              |   Set last resource to id
+                                                                              v
+                        +-------------------+                    +------------+------------+
+                        |                   |                    |                         |
+               TRUE     |  0xbb01, 0xbb02,  |                    |        Thread1          |
+            +-----------+  0xbb03, 0xff01   |   call [edi+0x406] |    (Event Signaled)     |
+            |           |      marked?      +&lt;-------------------+                         |
+            |           |                   |                    +-------------------------+
+            |           +---------+---------+
+            |                     |
+            v               FALSE |         +-----------------+               +------------------+
+    +-------+---------+           |         |                 |   TRUE        |                  |
+    |                 |           +--------&gt;+  Last Resource  +--------------&gt;+ Extract drv.zip  |
+    |    Congrats!    |                     |     0xbb01?     |               |                  |
+    |                 |                     |                 |               +------------------+
+    +-----------------+                     +--------+--------+
+                                                     |
+                                                     | FALSE
+                                                     |
+                                                     v
+                                            +--------+--------+               +--------------------------+
+                 +----------+     FALSE     |                 |               |                          |
+                 |  RETURN  | &lt;-------------+  Last Resource  |   TRUE        |  Extract -               |
+                 +----------+               |     0xaa10?     +-------------&gt; |                          |
+                                            |                 |               |  1. PunchCardReader      |
+                                            +-----------------+               |  2. PuncherMachine       |
+                                                                              |  3. PunchCard.bmp        |
+                                                                              |                          |
+                                                                              +--------------------------+
+
+</code></pre><h2 id="punchermachine">PuncherMachine</h2>
+<p>Running DetectItEasy on PuncherMachine.exe it shows that its obfuscated by Obfuscar.
+The symbols are renamed and the interesting fact is that the sequence of statements are put into a FSM, i.e. the implicit jump to from the current statement to the next statement is controlled by a FSM.</p>
+<p>For example, if the code contains</p>
+<p>stmt1;
+stmt2;
+stmt3;</p>
+<p>The obfuscated code will look like</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">state = <span style="color:#3677a9">6</span>
+<span style="color:#6ab825;font-weight:bold">for</span> (;;)
+{
+    <span style="color:#6ab825;font-weight:bold">switch</span> (state ^ <span style="color:#3677a9">5</span>)
+    {
+        <span style="color:#6ab825;font-weight:bold">case</span> <span style="color:#3677a9">1</span>:
+            <span style="color:#999;font-style:italic">// stmt2;
+</span><span style="color:#999;font-style:italic"></span>            state = <span style="color:#3677a9">2</span>;
+            <span style="color:#6ab825;font-weight:bold">continue</span>;
+
+        <span style="color:#6ab825;font-weight:bold">case</span> <span style="color:#3677a9">7</span>:
+            <span style="color:#999;font-style:italic">// stmt3;
+</span><span style="color:#999;font-style:italic"></span>            state = <span style="color:#3677a9">0</span>;
+            <span style="color:#6ab825;font-weight:bold">continue</span>;
+
+        <span style="color:#6ab825;font-weight:bold">case</span> <span style="color:#3677a9">3</span>:
+            <span style="color:#999;font-style:italic">// stmt1;
+</span><span style="color:#999;font-style:italic"></span>            state = <span style="color:#3677a9">4</span>;
+            <span style="color:#6ab825;font-weight:bold">continue</span>;
+
+        <span style="color:#6ab825;font-weight:bold">default</span>:
+            <span style="color:#6ab825;font-weight:bold">goto</span> finish;
+    }
+}
+
+finish:
+</code></pre></div><p>Of course, the constants used for representing states won’t be this small.<br>
+The code first computes the MD5 of all Instance, Public, Static, and NonPublic methods in the assembly. The MD5 generated is <strong>3C C0 21 F8 BC 62 3E C0 F5 45 0C 55 41 8B A1 20</strong></p>
+<p>The resources <strong>0xFF01</strong>, <strong>0xFF02</strong> are fetched (command 1) and decrypted (AES Algorithm) using the above MD5 as the key. The decrypted contents of <strong>0xFF02</strong> is <strong>&ldquo;95eceaa118dd081119e26be1c44da2cb&rdquo;</strong>, a MD5 hash.</p>
+<p>The program prompts for selecting an image. Once the image is selected, it calculates its MD5 hash and matches with the decrypted MD5 hash (0xFF02). If the hashes mismatch, the program displays “Calibration Error”. Otherwise, it fetches the resources <strong>0xFF04</strong> and <strong>0xFF00</strong> and decrypts them using the same key.</p>
+<p>The resource <strong>0xFF04</strong> is a <strong>.NET DLL</strong> file. It contains two classes - <code>DynMethod.DynMethodFactory</code> and <code>IlEmitHelp.ILEmitParticle</code>. The resource 0xFF00 contains <strong>86 64-bit</strong> integers.</p>
+<p>Now two textboxes appear with a button &ldquo;Calibrate It&rdquo;. Here is the Deobfuscated algorithm</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">List&lt;<span style="color:#6ab825;font-weight:bold">char</span>&gt; lstChars = <span style="color:#6ab825;font-weight:bold">new</span> List&lt;<span style="color:#6ab825;font-weight:bold">char</span>&gt;();
+List&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt; lstInts = <span style="color:#6ab825;font-weight:bold">new</span> List&lt;<span style="color:#6ab825;font-weight:bold">int</span>&gt;();
+Hashtable H;
+<span style="color:#6ab825;font-weight:bold">delegate</span> <span style="color:#6ab825;font-weight:bold">ulong</span> HashIt(<span style="color:#6ab825;font-weight:bold">string</span>);
+
+Button.Click
+{
+    <span style="color:#6ab825;font-weight:bold">if</span> (validate(text1.Text, text2.Text))
+    {
+        <span style="color:#999;font-style:italic">// good jump
+</span><span style="color:#999;font-style:italic"></span>    }
+    <span style="color:#6ab825;font-weight:bold">else</span>
+    {
+        MessageBox.Show(<span style="color:#ed9d13">&#34;Calibration Error!&#34;</span>, <span style="color:#ed9d13">&#34;Error&#34;</span>);
+    }
+}
+
+
+<span style="color:#999;font-style:italic">/*
+</span><span style="color:#999;font-style:italic">    * lstChars and lstInts are initialized when the MD5 of the image is validated
+</span><span style="color:#999;font-style:italic">    */</span>
+<span style="color:#6ab825;font-weight:bold">void</span> Init()
+{
+    <span style="color:#6ab825;font-weight:bold">string</span> temp = <span style="color:#ed9d13">&#34;0123456789ABCDEFGHIJKLMNOPQR/STUVWXYZabcdefghijklmnopqrstuvwxyz:#@\\\&#34;.&lt;(+|$*);,%_&gt;? -&amp;&#34;</span>;
+    <span style="color:#6ab825;font-weight:bold">for</span>(<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; temp.Length; ++i)
+        lstChars.Add(temp[i]);
+
+    <span style="color:#6ab825;font-weight:bold">int</span>[] arr = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">int</span>[] {
+        <span style="color:#3677a9">0</span>x200, <span style="color:#3677a9">0</span>x100, <span style="color:#3677a9">0</span>x80, <span style="color:#3677a9">0</span>x40, <span style="color:#3677a9">0</span>x20, <span style="color:#3677a9">0</span>x10, <span style="color:#3677a9">8</span>, <span style="color:#3677a9">4</span>, <span style="color:#3677a9">2</span>,
+        <span style="color:#3677a9">1</span>, <span style="color:#3677a9">0</span>x900, <span style="color:#3677a9">0</span>x880, <span style="color:#3677a9">0</span>x840, <span style="color:#3677a9">0</span>x820, <span style="color:#3677a9">0</span>x810, <span style="color:#3677a9">0</span>x808, <span style="color:#3677a9">0</span>x804,
+        <span style="color:#3677a9">0</span>x802, <span style="color:#3677a9">0</span>x801, <span style="color:#3677a9">0</span>x500, <span style="color:#3677a9">0</span>x480, <span style="color:#3677a9">0</span>x440, <span style="color:#3677a9">0</span>x420, <span style="color:#3677a9">0</span>x410,
+        <span style="color:#3677a9">0</span>x408, <span style="color:#3677a9">0</span>x404, <span style="color:#3677a9">0</span>x402, <span style="color:#3677a9">0</span>x401, <span style="color:#3677a9">0</span>x300, <span style="color:#3677a9">0</span>x280, <span style="color:#3677a9">0</span>x240,
+        <span style="color:#3677a9">0</span>x220, <span style="color:#3677a9">0</span>x210, <span style="color:#3677a9">0</span>x208, <span style="color:#3677a9">0</span>x204, <span style="color:#3677a9">0</span>x202, <span style="color:#3677a9">0</span>x201, <span style="color:#3677a9">0</span>xB00,
+        <span style="color:#3677a9">0</span>xA80, <span style="color:#3677a9">0</span>xA40, <span style="color:#3677a9">0</span>xA20, <span style="color:#3677a9">0</span>xA10, <span style="color:#3677a9">0</span>xA08, <span style="color:#3677a9">0</span>xA04, <span style="color:#3677a9">0</span>xA02,
+        <span style="color:#3677a9">0</span>xA01, <span style="color:#3677a9">0</span>xD00, <span style="color:#3677a9">0</span>xC80, <span style="color:#3677a9">0</span>xC40, <span style="color:#3677a9">0</span>xC20, <span style="color:#3677a9">0</span>xC10, <span style="color:#3677a9">0</span>xC08,
+        <span style="color:#3677a9">0</span>xC04, <span style="color:#3677a9">0</span>xC02, <span style="color:#3677a9">0</span>xC01, <span style="color:#3677a9">0</span>x680, <span style="color:#3677a9">0</span>x640, <span style="color:#3677a9">0</span>x620, <span style="color:#3677a9">0</span>x610,
+        <span style="color:#3677a9">0</span>x608, <span style="color:#3677a9">0</span>x604, <span style="color:#3677a9">0</span>x602, <span style="color:#3677a9">0</span>x601, <span style="color:#3677a9">0</span>x82, <span style="color:#3677a9">0</span>x42, <span style="color:#3677a9">0</span>x22, <span style="color:#3677a9">0</span>x12,
+        <span style="color:#3677a9">0</span>xA, <span style="color:#3677a9">6</span>, <span style="color:#3677a9">0</span>x842, <span style="color:#3677a9">0</span>x812, <span style="color:#3677a9">0</span>x80A, <span style="color:#3677a9">0</span>x806, <span style="color:#3677a9">0</span>x442, <span style="color:#3677a9">0</span>x422,
+        <span style="color:#3677a9">0</span>x412, <span style="color:#3677a9">0</span>x40A, <span style="color:#3677a9">0</span>x242, <span style="color:#3677a9">0</span>x222, <span style="color:#3677a9">0</span>x212, <span style="color:#3677a9">0</span>x20A, <span style="color:#3677a9">0</span>x206, <span style="color:#3677a9">0</span>, <span style="color:#3677a9">0</span>x400, <span style="color:#3677a9">0</span>x800
+    };
+
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; arr.Length; ++i)
+        lstInts.Add(arr[i]);
+}
+
+<span style="color:#6ab825;font-weight:bold">bool</span> validate(<span style="color:#6ab825;font-weight:bold">string</span> str1, <span style="color:#6ab825;font-weight:bold">string</span> str2)
+{
+    List&lt;<span style="color:#6ab825;font-weight:bold">uint</span>&gt; iList = <span style="color:#6ab825;font-weight:bold">new</span> List&lt;<span style="color:#6ab825;font-weight:bold">uint</span>&gt;();
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; str1.Length; i += <span style="color:#3677a9">8</span>)
+    {
+        iList.Add(Convert.ToInt32(str1.Substring(i, <span style="color:#3677a9">8</span>), <span style="color:#3677a9">16</span>));
+    }
+    <span style="color:#6ab825;font-weight:bold">if</span> (str2.Length &gt; lstChars.Count)
+    {
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
+    }
+    
+    HashIt computeHash = GetMethod(iList.toArray());
+    InitHashtable();
+    Hashtable A = <span style="color:#6ab825;font-weight:bold">new</span> Hashtable();
+
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; lstChars.Count; ++i)
+    {
+        <span style="color:#6ab825;font-weight:bold">ulong</span> hash = computeHash(i &lt; str2.Length ? lstChars[i]+str2[i] : lstChars[i]);
+        <span style="color:#6ab825;font-weight:bold">if</span> (! H.containsKey(hash))
+        {
+            <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
+        }
+        A.Add(lstChars[i], H[hash]);
+    }
+
+    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">true</span>;
+}
+
+HashIt GetMethod(List&lt;<span style="color:#6ab825;font-weight:bold">uint</span>&gt; lst)
+{
+    MethodInfo methInfo = <span style="color:#6ab825;font-weight:bold">typeof</span>(DynMethod.DynMethodFactory).GetMethod(<span style="color:#ed9d13">&#34;createMethod&#34;</span>);
+    DynamicMethod dynMeth = methInfo.Invoke(<span style="color:#6ab825;font-weight:bold">null</span>, <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">object</span>[] { lst });
+    <span style="color:#6ab825;font-weight:bold">return</span> dynMeth.CreateDelegate(<span style="color:#6ab825;font-weight:bold">typeof</span>(HashIt));
+}
+
+<span style="color:#6ab825;font-weight:bold">void</span> InitHashtable()
+{
+    H = <span style="color:#6ab825;font-weight:bold">new</span> Hashtable();
+    <span style="color:#6ab825;font-weight:bold">byte</span>[] data = GetDecryptedResource(<span style="color:#3677a9">0</span>xFF00);
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; lstChars.Count; ++i)
+    {
+        H.Add(BitConverter.ToUInt64(data, i*<span style="color:#3677a9">8</span>), lstInts[i]);
+    }
+}
+</code></pre></div><p>Now in <code>DynMethodFactory.CreateMethod</code>, we have</p>
+<p>For all opcodes except <strong>break</strong>, a hashtable is created whose key consists of the hash and the corresponding value is an <code>OpCodes</code> instance. Here is the algorithm that maps an opcode to its hash</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#447fcf">hash</span>(<span style="color:#6ab825;font-weight:bold">char</span>* name)
+{
+    <span style="color:#6ab825;font-weight:bold">unsigned</span> ans = <span style="color:#3677a9">0</span>;
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; name[i]; ++i)
+    {
+        ans += name[i];
+        ans += ans &lt;&lt; <span style="color:#3677a9">10</span>;
+        ans ^= ans &gt;&gt; <span style="color:#3677a9">6</span>;
+    }
+    ans += ans &lt;&lt; <span style="color:#3677a9">3</span>;
+    ans ^= ans &gt;&gt; <span style="color:#3677a9">11</span>;
+    <span style="color:#6ab825;font-weight:bold">return</span> ans + (ans &lt;&lt; <span style="color:#3677a9">15</span>);
+}
+</code></pre></div><p>Now the createMethod takes an array of unsigned ints and produces the following code. Let’s name the array <strong>arr</strong> and the hashtable as <strong>table</strong></p>
+<pre><code>    nop
+    ldc.i8 0x2AAAAAAAAAAAAB67      ; int1
+    stloc.0
+    ldc.i4.0
+    stloc.1
+    br.s L0
+L1:
+    nop
+    ldloc.0
+    table[arr[0]]
+    ldloc.1
+    callvirt [string!get_Chars]
+    conv.u8
+    add
+    stloc.0
+    ldloc.0
+    ldc.i8 0x2AAAAAAAAAAAAB6F      ; int2
+    table[arr[1]]
+    stloc.0
+    nop
+    ldloc.1
+    ldc.i4.1
+    add
+    stloc.1
+L0:
+    ldloc.1
+    ldarg.0
+    callvirt [string!get_Length]
+    clt
+    stloc.3
+    ldloc.3
+    brtrue.s L1
+</code></pre><p><code>get_Chars</code> takes two parameters - string, offset and returns the character at the given offset. Clearly, <strong>arr[0]</strong> must be the hash of the instruction <strong>ldarg.0</strong> as the first parameter must be a string.</p>
+<p>The hashtable H&rsquo;s keys are the contents of the decrypted resource 0xFF00. And each key is an unsigned int64. Notice that the integers labelled int1 and int2 differ by 8. So the candidate choices for arr[1] are <strong>ADD</strong>, <strong>MUL</strong>, <strong>OR</strong>. We cannot use <em>SUB</em>, <em>XOR</em>, <em>DIV</em> as the resulting value would decrease to less than 64 bits and no unary operators can be used as there are two uint64 operands on the stack.</p>
+<p>To get the string str2 in validate routine, I have used bruteforce. Here&rsquo;s my code</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#999;font-style:italic">// run.cs
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System</span>;
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System.IO</span>;
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System.Reflection</span>;
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System.Reflection.Emit</span>;
+
+<span style="color:#6ab825;font-weight:bold">public</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">CalibrationCode</span>
+{
+    <span style="color:#6ab825;font-weight:bold">delegate</span> <span style="color:#6ab825;font-weight:bold">bool</span> HashChecker(<span style="color:#6ab825;font-weight:bold">ulong</span> hash);
+    <span style="color:#6ab825;font-weight:bold">delegate</span> <span style="color:#6ab825;font-weight:bold">ulong</span> Hash(<span style="color:#6ab825;font-weight:bold">string</span> s);
+    <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">void</span> Main()
+    {
+        OpCode[] candidates = {
+            OpCodes.Add, OpCodes.Mul, OpCodes.Or
+        };
+        <span style="color:#6ab825;font-weight:bold">var</span> hashes = <span style="color:#6ab825;font-weight:bold">new</span> <span style="color:#6ab825;font-weight:bold">ulong</span>[<span style="color:#3677a9">86</span>];
+        <span style="color:#6ab825;font-weight:bold">var</span> <span style="color:#6ab825;font-weight:bold">set</span> =  <span style="color:#ed9d13">&#34;0123456789ABCDEFGHIJKLMNOPQR/STUVWXYZabcdefghijklmnopqrstuvwxyz:#@\\\&#34;.&lt;(+|$*);,%_&gt;? -&amp;&#34;</span>;
+
+        <span style="color:#6ab825;font-weight:bold">using</span> (<span style="color:#6ab825;font-weight:bold">var</span> fS = <span style="color:#6ab825;font-weight:bold">new</span> FileStream(<span style="color:#ed9d13">&#34;FF00.bin_dec.bin&#34;</span>,
+            FileMode.Open, FileAccess.Read))
+        {
+            <span style="color:#6ab825;font-weight:bold">using</span> (<span style="color:#6ab825;font-weight:bold">var</span> binR = <span style="color:#6ab825;font-weight:bold">new</span> BinaryReader(fS))
+            {
+                <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; <span style="color:#3677a9">86</span>; ++i)
+                    hashes[i] = binR.ReadUInt64();
+            }
+        }
+
+        HashChecker isHashPresent = (hash) =&gt; {
+            <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; <span style="color:#3677a9">86</span>; ++i)
+                <span style="color:#6ab825;font-weight:bold">if</span> (hashes[i] == hash)
+                    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">true</span>;
+            <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">false</span>;
+        };
+
+        <span style="color:#6ab825;font-weight:bold">var</span> charAt = <span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">string</span>).GetMethod(<span style="color:#ed9d13">&#34;get_Chars&#34;</span>);
+        <span style="color:#6ab825;font-weight:bold">var</span> len = <span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">string</span>).GetMethod(<span style="color:#ed9d13">&#34;get_Length&#34;</span>);
+
+        <span style="color:#6ab825;font-weight:bold">foreach</span> (<span style="color:#6ab825;font-weight:bold">var</span> op <span style="color:#6ab825;font-weight:bold">in</span> candidates)
+        {
+            DynamicMethod dynMeth = <span style="color:#6ab825;font-weight:bold">new</span> DynamicMethod(<span style="color:#ed9d13">&#34;Hash&#34;</span>,
+                <span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">ulong</span>), <span style="color:#6ab825;font-weight:bold">new</span> Type[] { <span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">string</span>) });
+            <span style="color:#6ab825;font-weight:bold">var</span> ilGen = dynMeth.GetILGenerator();
+
+            ilGen.DeclareLocal(<span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">ulong</span>), <span style="color:#6ab825;font-weight:bold">true</span>);
+            ilGen.DeclareLocal(<span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">int</span>), <span style="color:#6ab825;font-weight:bold">true</span>);
+            ilGen.DeclareLocal(<span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">int</span>), <span style="color:#6ab825;font-weight:bold">true</span>);
+            ilGen.Emit(OpCodes.Ldarg_0);
+            ilGen.Emit(OpCodes.Call, len);
+            ilGen.Emit(OpCodes.Stloc_2);
+            ilGen.Emit(OpCodes.Ldc_I8, <span style="color:#3677a9">3074457345618258791L</span>);
+            ilGen.Emit(OpCodes.Stloc_0);
+            ilGen.Emit(OpCodes.Ldc_I4_0);
+            ilGen.Emit(OpCodes.Stloc_1);
+            Label l0 = ilGen.DefineLabel();
+            Label l1 = ilGen.DefineLabel();
+            ilGen.Emit(OpCodes.Br_S, l0);
+            ilGen.MarkLabel(l1);
+            ilGen.Emit(OpCodes.Ldarg_0);
+            ilGen.Emit(OpCodes.Ldloc_1);
+            ilGen.Emit(OpCodes.Call, charAt);
+            ilGen.Emit(OpCodes.Conv_I8);
+            ilGen.Emit(OpCodes.Ldloc_0);
+            ilGen.Emit(OpCodes.Add);
+            ilGen.Emit(OpCodes.Ldc_I8, <span style="color:#3677a9">3074457345618258799L</span>);
+            ilGen.Emit(op);
+            ilGen.Emit(OpCodes.Stloc_0);
+            ilGen.Emit(OpCodes.Ldloc_1);
+            ilGen.Emit(OpCodes.Ldc_I4_1);
+            ilGen.Emit(OpCodes.Add);
+            ilGen.Emit(OpCodes.Stloc_1);
+            ilGen.MarkLabel(l0);
+            ilGen.Emit(OpCodes.Ldloc_1);
+            ilGen.Emit(OpCodes.Ldloc_2);
+            ilGen.Emit(OpCodes.Blt_S, l1);
+            ilGen.Emit(OpCodes.Ldloc_0);
+            ilGen.Emit(OpCodes.Ret);
+
+            Hash hashIt = (Hash) dynMeth.CreateDelegate(<span style="color:#6ab825;font-weight:bold">typeof</span>(Hash));
+            <span style="color:#999;font-style:italic">// check it now.
+</span><span style="color:#999;font-style:italic"></span>            <span style="color:#6ab825;font-weight:bold">string</span> code = <span style="color:#ed9d13">&#34;&#34;</span>;
+
+            <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; <span style="color:#6ab825;font-weight:bold">set</span>.Length; ++i)
+            {
+                <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> j = <span style="color:#3677a9">0</span>; j &lt; <span style="color:#6ab825;font-weight:bold">set</span>.Length; ++j)
+                {
+                    <span style="color:#6ab825;font-weight:bold">string</span> str = <span style="color:#6ab825;font-weight:bold">string</span>.Format(<span style="color:#ed9d13">&#34;{0}{1}&#34;</span>, <span style="color:#6ab825;font-weight:bold">set</span>[i], <span style="color:#6ab825;font-weight:bold">set</span>[j]);
+                    <span style="color:#6ab825;font-weight:bold">if</span> (isHashPresent(hashIt(str)))
+                        code += <span style="color:#6ab825;font-weight:bold">set</span>[j];
+                }
+            }
+
+            Console.WriteLine(<span style="color:#ed9d13">&#34;[+] Using {0} =&gt; {1}&#34;</span>, op.Name, code);
+        }
+    }
+}
+</code></pre></div><p>Which gives the output</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">x0r19x91@x0r19x91 /cygdrive/c/Users/x0r19x91/Desktop/ESET/crackme
+$ ./run
+[+] Using <span style="color:#40ffff">add</span> =&gt;
+[+] Using <span style="color:#40ffff">mul</span> =&gt; Infant Jesus of Prague
+[+] Using <span style="color:#40ffff">or</span> =&gt;
+</code></pre></div><p>So, the value of str2 in validate routine is <code>Infant Jesus of Prague</code> which is the third password. For str1, we need the hash values of <strong>LDARG.0</strong> and <strong>MUL</strong><br>
+Executing <code>hash()</code> and concatenating, we get str1 - <strong>0364ABE72D29C96C</strong></p>
+<p>The program now sends MarkCommand (2) for the resource 0xFF00 to the EsetCrackmePipe. Command2 means mark the resource in the marked array.</p>
+<p>Now a multiline textbox appears and a button labelled &lsquo;Punch it!&rsquo;. For each line in the multiline textbox, it encodes that line into an image and saves it with the name &lsquo;punch_card_X.bmp&rsquo; where X is the index of the line.</p>
+<h2 id="punchcardreader">PunchCardReader</h2>
+<p>The program first computes the MD5 of its assembly - <strong>a26d11dee294284f38db8a724c119d74</strong>. Then in Form_Load event, it fetches the resource <strong>0xFF05</strong> (command 1) and decrypts (AES) using the MD5 as the key.</p>
+<p>The resource 0xFF05 is another <strong>.NET DLL</strong>. In the click event of the &ldquo;Read punch cards&rdquo; button, the program first decodes the images (&ldquo;punch_card_X.bmp&rdquo;) generated by PuncherMachine. It then invokes the method returned by <code>DynMethod.createMethod</code>, using the decoded strings as arguments.</p>
+<p>In createMethod, a hashtable is created with keys as IL opcode names, with the corresponding IL opcode instances. And a dynamic method is returned which contains</p>
+<pre><code>.local uint
+.local uint
+.local uint
+.local uint
+.local uint
+.local uint
+.local byte[]
+.local uint
+.local bool
+.local bool
+
+nop
+ldc.i4 57005
+stloc.0
+ldc.i4 48879
+stloc.1
+ldc.i4 51966
+stloc.2
+ldc.i4 47806
+stloc.3
+ldc.i4 64206
+stloc.s 4
+
+ldloc.0
+ldloc.1
+OPCODE[instr[0]]                    ; t0 = i[0](57005, 48879)
+ldloc.2
+ldloc.3
+OPCODE[instr[1]]                    ; t1 = i[1](51966, 47806)
+xor
+ldloc.s 4
+xor
+ldc.i4 -229612108
+xor
+stloc.s 5                           ; t0 ^ t1 ^ 64206 ^ -229612108
+
+call Encoding.ASCII
+ldstr &quot;ESET&quot;
+callvirt GetBytes
+stloc.s 6
+
+ldloc.s 6
+ldc.i4.0
+call BitConverter.ToUInt32
+stloc.s 7                           ; 0x54455345
+
+ldloc.s 5
+ldloc.s 7
+ceq
+ldc.i4.0
+ceq
+stloc.s 9
+ldloc.s 9
+brtrue.s L0
+ldc.i4.1
+stloc.s 8
+br.s L1
+
+L0:
+    ldc.i4.0
+    stloc.s 8
+    br.s L1
+
+L1:
+    ldloc.s 8
+    OPCODE[instr[2]]
+</code></pre><p>So, two things are clear now. First the number of instructions is 3, i.e., we have to enter three lines in the PuncherMachine. Secondly, the last instruction (instr[2]) has to be <strong>ret</strong></p>
+<p>Now, the task is, find operators O1 and O2 such that the following holds</p>
+<pre><code>O1(57005, 48879) ^ O2(51966, 47806) ^ 64206 ^ -229612108 == ‘ESET’[::-1].encode(‘hex’)
+
+i.e., O1(57005, 48879) ^ O2(51966, 47806) ^ 64206 ^ -229612108 == 0x54455345
+    =&gt;  O1(57005, 48879) ^ O2(51966, 47806) == 64206 ^ -229612108 ^ 0x54455345
+    =&gt;  O1(57005, 48879) ^ O2(51966, 47806) == 0xa615cc3f
+</code></pre><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System</span>;
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System.Reflection</span>;
+<span style="color:#6ab825;font-weight:bold">using</span> <span style="color:#447fcf;text-decoration:underline">System.Reflection.Emit</span>;
+
+<span style="color:#6ab825;font-weight:bold">public</span> <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">FindInstructions</span>
+{
+    <span style="color:#6ab825;font-weight:bold">delegate</span> <span style="color:#6ab825;font-weight:bold">bool</span> Solver();
+
+    <span style="color:#6ab825;font-weight:bold">static</span> <span style="color:#6ab825;font-weight:bold">void</span> Main()
+    {
+        OpCode[] candidates = {
+            OpCodes.Add, OpCodes.Mul, OpCodes.Or, OpCodes.Xor
+        };
+        <span style="color:#6ab825;font-weight:bold">foreach</span> (<span style="color:#6ab825;font-weight:bold">var</span> op1 <span style="color:#6ab825;font-weight:bold">in</span> candidates)
+        {
+            <span style="color:#6ab825;font-weight:bold">foreach</span> (<span style="color:#6ab825;font-weight:bold">var</span> op2 <span style="color:#6ab825;font-weight:bold">in</span> candidates)
+            {
+                <span style="color:#6ab825;font-weight:bold">var</span> methSolve = <span style="color:#6ab825;font-weight:bold">new</span> DynamicMethod(<span style="color:#ed9d13">&#34;Solver&#34;</span>, <span style="color:#6ab825;font-weight:bold">typeof</span>(<span style="color:#6ab825;font-weight:bold">bool</span>), <span style="color:#6ab825;font-weight:bold">new</span> Type[<span style="color:#3677a9">0</span>]);
+                <span style="color:#6ab825;font-weight:bold">var</span> ilGen = methSolve.GetILGenerator();
+                ilGen.Emit(OpCodes.Ldc_I4, <span style="color:#3677a9">57005</span>);
+                ilGen.Emit(OpCodes.Ldc_I4, <span style="color:#3677a9">48879</span>);
+                ilGen.Emit(op1);
+                ilGen.Emit(OpCodes.Ldc_I4, <span style="color:#3677a9">51966</span>);
+                ilGen.Emit(OpCodes.Ldc_I4, <span style="color:#3677a9">47806</span>);
+                ilGen.Emit(op2);
+                ilGen.Emit(OpCodes.Xor);
+                ilGen.Emit(OpCodes.Ldc_I4, <span style="color:#3677a9">0</span>xa615cc3f);
+                ilGen.Emit(OpCodes.Ceq);
+                ilGen.Emit(OpCodes.Ret);
+                Solver solve = (Solver) methSolve.CreateDelegate(<span style="color:#6ab825;font-weight:bold">typeof</span>(Solver));
+                <span style="color:#6ab825;font-weight:bold">if</span> (solve())
+                {
+                    Console.WriteLine(
+                        <span style="color:#ed9d13">&#34;First OpCode - {0}\nSecond OpCode - {1}&#34;</span>,
+                        op1.Name, op2.Name
+                    );
+                }
+            }
+        }
+    }
+}
+</code></pre></div><p>Executing it, we get the first opcode - <strong>mul</strong> and the second opcode - <strong>add</strong></p>
+<p>So, the first and second instructions are MUL, and ADD. Now we have to enter the strings - <strong>MUL</strong>, <strong>ADD</strong>, <strong>RET</strong> into the PuncherMachine to get three punch cards.</p>
+<p>Now PunchCardReader sends command 2 (Mark Resource) for resource 0xFF01, and displays a message dialog &ldquo;Verification passed &hellip;&rdquo;&quot;</p>
+<p>Now that we have marked resources 0xBB01 and 0xFF01, we still have resources 0xBB02 and 0xBB03 left to be marked.</p>
+<p>Decoding resource 0xBB01 by xoring with the key &ldquo;PIPE&rdquo;, we get three hashes.<br>
+If the hash of the second password matches <strong>0F30181CF3A9857360A313DB95D5A169BED7CC37</strong> and that of the third password matches <strong>0B6A1C6651D1EB5BD21DF5921261697AA1593B7E</strong>, the resources 0xBB02 and 0xBB03 get marked.</p>
+<p>Till now I’ve used a bitmap 600x259 consisting of a white background and bypassing <code>IEnumerable.SequenceEquals</code> for PuncherMachine, forcing it to return true while validating the image.</p>
+<p>The only way to send a mark resource message for resources 0xBB02 and 0xBB03 is by matching the respective hashes. Finding by brute force is unacceptable.</p>
+<p>So, the passwords must be encoded in the program itself. The crackme driver decodes the resources <strong>0xAA02</strong>, <strong>0xAA06</strong> using <strong>RC4</strong>, the key is <strong>3531_4ever</strong></p>
+<p>The driver creates a device <strong>\Device\45736574</strong> i.e., <code>&quot;Eset&quot;.encode(&quot;hex&quot;)</code> and the main executable on receiving 0xAA10 mark command, extracts the resource <strong>0x155</strong> with name &ldquo;PunchCard.bmp&rdquo; into the path <strong>\?\GLOBALROOT\Device\45736574\PunchCard.bmp</strong></p>
+<h2 id="the-driver">The Driver</h2>
+<p>The AddDevice routine of the driver extension sets up a FAT disk. In LoadFatEntries, it queries the FAT params like &ldquo;Parameters&rdquo;, &ldquo;DiskSize&rdquo;, etc. from the Registry otherwise sets up with default values. Default Disk size is 0x1E00000 bytes or 30MB. RootDirectoryEntries is set to 0x200 and 2 sectors per cluster. It then spawns two threads.</p>
+<p>The first thread sends a fetch command for resource 0xaa02 (<strong>ESETConst</strong>), decrypts it with rc4 key <strong>3531_4ever</strong> and spawns a new thread which reads the value of &ldquo;ESETConst&rdquo; registry key and stores in a global variable str (at end of data section)</p>
+<p>Thread2 initializes another virtual machine</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:9C6B5329                 call    ds:ExAllocatePool
+.text:9C6B532F                 mov     ecx, [ebp+var_14]
+.text:9C6B5332                 mov     [ecx+64h], eax
+.text:9C6B5335                 mov     edx, [ebp+var_14]
+.text:9C6B5338                 mov     dword ptr [edx+68h], 21ACh
+.text:9C6B533F                 push    21ACh           ; MaxCount
+.text:9C6B5344                 push    offset vm_code  ; Src
+.text:9C6B5349                 mov     eax, [ebp+var_14]
+.text:9C6B534C                 mov     ecx, [eax+64h]
+.text:9C6B534F                 push    ecx             ; Dst
+.text:9C6B5350                 call    memcpy
+.text:9C6B5355                 add     esp, 0Ch
+.text:9C6B5358                 push    21ACh           ; size
+.text:9C6B535D                 mov     edx, [ebp+var_14]
+.text:9C6B5360                 mov     eax, [edx+64h]
+.text:9C6B5363                 push    eax             ; buf
+.text:9C6B5364                 call    RC4Decrypt
+.text:9C6B5369                 push    2B5h            ; NumberOfBytes
+.text:9C6B536E                 push    0               ; PoolType
+.text:9C6B5370                 call    ds:ExAllocatePool
+.text:9C6B5376                 mov     ecx, [ebp+var_14]
+.text:9C6B5379                 mov     [ecx+70h], eax
+.text:9C6B537C                 mov     edx, [ebp+var_14]
+.text:9C6B537F                 mov     dword ptr [edx+74h], 2B5h
+.text:9C6B5386                 push    2B5h            ; MaxCount
+.text:9C6B538B                 push    offset code_to_exec ; Src
+.text:9C6B5390                 mov     eax, [ebp+var_14]
+.text:9C6B5393                 mov     ecx, [eax+70h]
+.text:9C6B5396                 push    ecx             ; Dst
+.text:9C6B5397                 call    memcpy
+.text:9C6B539C                 add     esp, 0Ch
+.text:9C6B539F                 push    2B5h            ; size
+.text:9C6B53A4                 mov     edx, [ebp+var_14]
+.text:9C6B53A7                 mov     eax, [edx+70h]
+.text:9C6B53AA                 push    eax             ; buf
+.text:9C6B53AB                 call    RC4Decrypt
+</code></pre><p>So, it sets up offset +0x64 with the VM and +0x70 with the code to execute on the vm. It then fetches resource 0xaa06 which seems to be some patch to the code to execute. After decrypting 0xaa06 (rc4)</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:9C6B561E                 mov     eax, [ebp+Length]
+.text:9C6B5621                 push    eax             ; MaxCount
+.text:9C6B5622                 mov     ecx, [ebp+P]
+.text:9C6B5625                 push    ecx             ; Src
+.text:9C6B5626                 mov     edx, [ebp+var_14]
+.text:9C6B5629                 mov     eax, [edx+70h]
+.text:9C6B562C                 add     eax, 26Dh
+.text:9C6B5631                 push    eax             ; Dst
+.text:9C6B5632                 call    memcpy
+</code></pre><p>The patched code is placed at +0x26d wrt the code to execute. Here’s the script that saves the patched code</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic">#!/usr/bin/env python</span>
+
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">Crypto.Cipher</span> <span style="color:#6ab825;font-weight:bold">import</span> ARC4
+
+key = <span style="color:#ed9d13">&#39;3531_4ever&#39;</span>
+d = <span style="color:#24909d">open</span>(<span style="color:#ed9d13">&#34;0xaa06.bin&#34;</span>, <span style="color:#ed9d13">&#34;rb&#34;</span>).read()
+d = ARC4.new(key).decrypt(d)
+
+code = <span style="color:#ed9d13">&#39;&#39;&#39;CAE23DEDCDE3016FB7080893AA91A5E3F599D4A36E81E7013512F4D971C64AF57B4428D746C58D05256B06684CB6CE8BDCDB85C77C1FC782C06150714B5C1AD028067029AC959DDEA4BF3F1210EAFA3100CC38BC08D90E933537D8683CD5707544A2D586B3257F7CDBE684B3F65F564A0F699A4C0F0C548D6352FF91DE8A13BFB8E13BDFBFDD3483CB3E93F7549251163DE2FDD7071D63D25EB771AB97B2DA722506805CE813D4E6066970E6E02C2C1823C4A58F2AB2641B87F784D84A7CF5B65B912EC8E5E10A1E5D5C52E382DF2BEB32CC673F6D6843D39615DBEC15095C5FDD20375678DFD28589FD01A92F3E47DCFABE014BC07C336D4A69489E07902A6E4CE44B760705FB531FECC745FCE1EC247A1698D8B186CCF36AF58FA01A1A4EE61926488B72B26B3EDF0B578CB25EE9359B99113A62FD17B03410A84D67239D157E01886B1168C10D064B909ACBFB123776E2F80E6C366BD63CC8EE86DCD754BF023FA2CD7ACD6C4A56643A26D1A29128518C9866EF0EBDF6407653A475A5DB1544CEFCFC33EE441A565975CA1CEC192B0D2A35B07FD68A0D12CBAA45F01490948464D15326F03C489F3D65B0E7F9A103236356CBAE883B0C4CD5348B80B08344CC61CA3E3DB4E1D49D7EA16BAC68E5AAD801AAF7B752A75B18BE07989BEA79D832F435F08B25AD387A8B893470CD0FD7748B5C3D13C63A5BF05DC484836BE4516D8D0D162E184311894E12E5A7BDAA8AFE219DFF6CE97621D9FDCF3B3E388A354BADB6231787E081AAF0FE26EA4AACCF1F5EF7632B4A33104B2C593014C639F71735179FDD5899394FA9D69BC217E578E961DE0769DB942855E1E2FDB608ADE61D30D7750F2CA67E839006372B71250DE6052293E108D6C62A884096513541464CDC38C2EBEE985AF75B6E211BA8CE4AEC8C2EC6FF5C7FD86EA27C65191A5E10CC179220622AD66AB656E4E020552DC14B8F544EB0&#39;&#39;&#39;</span>
+code = code.decode(<span style="color:#ed9d13">&#39;hex&#39;</span>)
+code = ARC4.new(key).decrypt(code)
+code = <span style="color:#24909d">list</span>(code)
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#24909d">len</span>(d)):
+    code[<span style="color:#3677a9">0x26d</span>+i] = d[i]
+
+<span style="color:#24909d">open</span>(<span style="color:#ed9d13">&#34;code.bin&#34;</span>, <span style="color:#ed9d13">&#39;wb&#39;</span>).write(<span style="color:#ed9d13">&#39;&#39;</span>.join(code))
+</code></pre></div><p><img src="/images/eset/i0.PNG" alt="i0"  /></p>
+<p>It seems like the size of the VM (0x2b5) is placed at offset +0x2. Here’s the Driver VM layout</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#6ab825;font-weight:bold">struct</span> res_t
+{
+    <span style="color:#6ab825;font-weight:bold">char</span> sign[<span style="color:#3677a9">2</span>];
+    <span style="color:#6ab825;font-weight:bold">int</span> size;
+    <span style="color:#6ab825;font-weight:bold">int</span> code_off;
+    <span style="color:#6ab825;font-weight:bold">int</span> data_off;
+    <span style="color:#6ab825;font-weight:bold">int</span> bModuleLoaded;
+    <span style="color:#6ab825;font-weight:bold">char</span> stream[];
+} __attribute__((packed));
+</code></pre></div><pre><code>00    ldr X, 0
+        cmp.eq X, R12
+04    ldr X, 0x8a
+        jmp.cc X
+0a    ldr X, 0
+        cmp.eq X, R13
+0e    ldr X, 0x11e
+        jmp.cc X
+14    ldr X, R12
+        str X, R2
+17    ldr X, &amp;[0x295]
+        str X, R3
+1e    ldr X, &amp;[0x268]
+        str X, R4
+25    ldr X, R2
+        str X, R5
+28    ldr X, R13
+        add R5, X
+2b    ldr X, R3
+        str X, R14
+2e    ldr X, &amp;[0x291]
+        str X, R0
+35    ldr X, dword ptr [R0]
+        add R14, X
+38    ldr X, R4
+        str X, R15
+3b    ldr X, 0x4
+        add R15, X
+3f    ldr X, R5
+        cmp.neq X, R2
+42    ldr X, 0x4b
+        jmp.cc X
+48    ldr X, R12
+        str X, R2
+4b    ldr X, R15
+        cmp.neq X, R4
+4e    ldr X, 0x5b
+        jmp.cc X
+54    ldr X, &amp;[0x268]
+        str X, R4
+5b    ldr X, R14
+        cmp.eq X, R3
+5e    ldr X, 0x100
+        jmp.cc X
+64    ldr X, byte ptr [R2]
+        str X, R0
+67    ldr X, byte ptr [R3]
+        xor R0, X
+6a    ldr X, 0x1
+        add R0, X
+6e    ldr X, 0x1
+        rolb R0, X
+72    ldr X, byte ptr [R4]
+        xor R0, X
+75    ldr X, R0
+        str X, byte ptr [R3]
+78    ldr X, 0x1
+        add R2, X
+7c    ldr X, 0x1
+        add R3, X
+80    ldr X, 0x1
+        add R4, X
+84    ldr X, 0x3f
+        jmp X
+8a    ldr X, &amp;[0x271]
+        str X, R3
+91    ldr X, &amp;[0x268]
+        str X, R4
+98    ldr X, R3
+        str X, R14
+9b    ldr X, &amp;[0x26d]
+        str X, R0
+a2    ldr X, dword ptr [R0]
+        add R14, X
+a5    ldr X, R4
+        str X, R15
+a8    ldr X, 0x4
+        add R15, X
+ac    ldr X, R15
+        cmp.neq X, R4
+af    ldr X, 0xbc
+        jmp.cc X
+b5    ldr X, &amp;[0x268]
+        str X, R4
+bc    ldr X, R14
+        cmp.eq X, R3
+bf    ldr X, 0xe8
+        jmp.cc X
+c5    ldr X, 0
+        str X, R0
+c9    ldr X, byte ptr [R3]
+        xor R0, X
+cc    ldr X, 0x1
+        add R0, X
+d0    ldr X, 0x1
+        rolb R0, X
+d4    ldr X, byte ptr [R4]
+        xor R0, X
+d7    ldr X, R0
+        str X, byte ptr [R3]
+da    ldr X, 0x1
+        add R3, X
+de    ldr X, 0x1
+        add R4, X
+e2    ldr X, 0xac
+        jmp X
+e8    ldr X, &amp;[0x26d]
+        str X, R0
+ef    ldr X, dword ptr [R0]
+        str X, R0
+f2    ldr X, R0
+        push X
+f4    ldr X, &amp;[0x271]
+        push X
+fa    ldr X, 0x112
+        jmp X
+100    ldr X, &amp;[0x291]
+        str X, R0
+107    ldr X, dword ptr [R0]
+        str X, R0
+10a    ldr X, R0
+        push X
+10c    ldr X, &amp;[0x295]
+        push X
+112    ldr X, R11
+        push X
+114    ldr X, R10
+        push X
+116    emulate
+11e    hlt
+</code></pre><p>The arguments are - R12 contains str (the global variable containing &ldquo;ESETConst&rdquo; value), R13 contains len(str). The notation <strong>&amp;[X]</strong> defines the <strong>address of offset X</strong></p>
+<p>So, if nothing is passed to &ldquo;ESETConst&rdquo;, the control jumps to <strong>0x8a</strong>. This loop decrypts a 0x12 byte key</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">l = [<span style="color:#3677a9">0x82</span>, <span style="color:#3677a9">0x99</span>, <span style="color:#3677a9">0x8f</span>, <span style="color:#3677a9">0x92</span>, <span style="color:#3677a9">0x11</span>, <span style="color:#3677a9">0x9e</span>, <span style="color:#3677a9">0x18</span>, <span style="color:#3677a9">0x94</span>, <span style="color:#3677a9">0xb1</span>, <span style="color:#3677a9">0x8e</span>, <span style="color:#3677a9">0x8f</span>, <span style="color:#3677a9">0x11</span>, <span style="color:#3677a9">0x16</span>, <span style="color:#3677a9">0x9c</span>, <span style="color:#3677a9">0x11</span>, <span style="color:#3677a9">0x1a</span>, <span style="color:#3677a9">0x16</span>, <span style="color:#3677a9">0x9d</span>, <span style="color:#3677a9">0xa8</span>]
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">rol</span>(x):
+    <span style="color:#6ab825;font-weight:bold">return</span> (x &lt;&lt; <span style="color:#3677a9">1</span> | x &gt;&gt; <span style="color:#3677a9">7</span>) &amp; <span style="color:#3677a9">0xff</span>
+
+k = <span style="color:#ed9d13">&#39;ETSE&#39;</span>
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#24909d">len</span>(l)):
+    t = rol(l[i]+<span style="color:#3677a9">1</span>)
+    l[i] = <span style="color:#24909d">chr</span>(<span style="color:#24909d">ord</span>(k[i&amp;<span style="color:#3677a9">3</span>])^t)
+
+<span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#39;&#39;</span>.join(l)
+</code></pre></div><p>It prints out <code>Barbakan Krakowski</code> which is the second password!</p>
+<blockquote>
+<p>Solved Finally!</p>
+</blockquote>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+            <a href="/tags/eset/">eset</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/code-injection-mstasklist/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Code Injection: Windows Taskbar</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/google-ctf-2020-.net/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Google CTF 2020 - .NET</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/analysing-jigsaw-ransomware/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Analysing Jigsaw Ransomware</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/deobfuscating-movfuscator-part-2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deobfuscating MoVfuscator - Part 2</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/understanding-the-movfuscator/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Understanding the Movfuscator</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

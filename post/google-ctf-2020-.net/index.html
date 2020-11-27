@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Google CTF 2020 - .NET'><title>Google CTF 2020 - .NET</title>
+
+<link rel='canonical' href='http://localhost:1313/post/google-ctf-2020-.net/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Google CTF 2020 - .NET'>
+<meta property='og:description' content='Google CTF 2020 - .NET'>
+<meta property='og:url' content='http://localhost:1313/post/google-ctf-2020-.net/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:tag' content='google' /><meta property='article:published_time' content='2020-08-31T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-08-31T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Google CTF 2020 - .NET">
+<meta name="twitter:description" content="Google CTF 2020 - .NET">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+            
+                <a href="/categories/google/">google</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/google-ctf-2020-.net/">Google CTF 2020 - .NET</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Google CTF 2020 - .NET
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 31, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>I will be describing in detail what I did and what I should have done.</p>
+<h1 id="what-i-did">What I Did</h1>
+<h2 id="saturday-evening">Saturday Evening</h2>
+<p>On Saturday evening, I started with this challenge. It&rsquo;s a plain .NET executable, so I opened with dnSpy and started debugging.</p>
+<p><img src="/images/2020/google/i0.png" alt="i0"  /></p>
+<p>So, this is definitely a binary written in C++/CLI.<br>
+<img src="/images/2020/google/i1.png" alt="i1"  /></p>
+<p>Reading the docs for Harmony, it&rsquo;s clear that the above code introduces a new prefix to the methods.</p>
+<p><code>NUFFRA -&gt; FYRKANTIG, GRONKULLA -&gt; RIKTIG_OGLA, SPARSAM -&gt; GRUNDTAL_NORRVIKEN, FLARDFULL -&gt; DAGSTORP</code></p>
+<p>where <code>a -&gt; b</code> means a is executed when b is called, and then b is executed.</p>
+<p><img src="/images/2020/google/i2.png" alt="i2"  /></p>
+<p>Now i tried to step into <code>&lt;Module&gt;.NativeGRUNDTAL_NORRVIKEN</code> using dnSpy, but I couldn&rsquo;t. Because it was pointing to unmanaged code.</p>
+<p><img src="/images/2020/google/i3.png" alt="i3"  /></p>
+<p>I didn&rsquo;t see the RVA that dnSpy showed for this function. Following this RVA would landed me to the native code. What I did was, I opened the method body in hex editor and tried to locate the offset <code>0x2e90</code></p>
+<p><img src="/images/2020/google/i4.png" alt="i4"  /></p>
+<p>The offset <code>0x2e90</code> points to the following function</p>
+<p><img src="/images/2020/google/i5.png" alt="i5"  /></p>
+<p>Now the fun begins here. Following the function at <code>0x0404961</code>, it jumps to the address <code>0x600004F</code>. Now I got stuck, since I couldn&rsquo;t resolve the address, I tried to make a logical guess what the function could be.</p>
+<p>The loop that iterates n times, where n is the return value of <code>0x0404961</code>. So, the possibility that the function can be <code>strlen</code>, since we know from dnSpy that the function at <code>0x403a90</code> takes a <code>std::string*</code>. Checking out the xrefs of <code>0x0404961</code> we get another one in <code>0x4039D0</code>, which calls the target function <code>0x0404961</code> in the same way. So, <code>0x0404961</code> being <code>strlen</code> has a fair possibility.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00402370 ToCustomBase64  proc near               ; CODE XREF: ToCustomBase64_+22↓p
+.text:00402370
+.text:00402370 arg_0           = byte ptr  8
+.text:00402370
+.text:00402370                 push    ebp
+.text:00402371                 mov     ebp, esp
+.text:00402373                 mov     dl, [ebp+arg_0]
+.text:00402376                 lea     ecx, [edx-30h]
+.text:00402379                 cmp     cl, 9
+.text:0040237C                 ja      short loc_402383
+.text:0040237E                 lea     eax, [edx-30h]
+.text:00402381                 pop     ebp
+.text:00402382                 retn
+; ... snip ...
+.text:0040239B loc_40239B:                             ; CODE XREF: ToCustomBase64+24↑j
+.text:0040239B                 cmp     dl, 7Bh ; '{'
+.text:0040239E                 jnz     short loc_4023A4
+.text:004023A0                 mov     al, 3Eh ; '&gt;'
+.text:004023A2                 pop     ebp
+.text:004023A3                 retn
+.text:004023A4 ; ---------------------------------------------------------------------------
+.text:004023A4
+.text:004023A4 loc_4023A4:                             ; CODE XREF: ToCustomBase64+2E↑j
+.text:004023A4                 or      eax, 0FFFFFFFFh
+.text:004023A7                 mov     ecx, 3Fh ; '?'
+.text:004023AC                 cmp     dl, 7Dh ; '}'
+.text:004023AF                 cmovz   eax, ecx
+.text:004023B2                 pop     ebp
+.text:004023B3                 retn
+</code></pre><p>Let&rsquo;s analyze this block, then the function is clear.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">.text:00402373                 mov     dl, [ebp+arg_0]
+.text:00402376                 lea     ecx, [edx-30h]
+.text:00402379                 cmp     cl, 9
+.text:0040237C                 ja      short loc_402383
+.text:0040237E                 lea     eax, [edx-30h]
+</code></pre><p>So, this function takes a char, whose address is returned by <code>0x00404E02</code>, so a strong possibility of <code>0x00404E02</code> is <code>char&amp; std::string::operator[]</code>.</p>
+<p>In this piece of code, we have <code>ecx ule 9</code> for <code>0x40237e</code> to be executed. Where <code>ule</code> is <code>unsigned less or equal</code>. So, if $$ecx \lt 0$$ then ecx has bit 31 set, implying $$ecx = 2^{31} + a$$, so obviously <code>ecx &gt; 9</code>. Therefore the only possibility is $$0 \le ecx \le 9$$</p>
+<p>So, this block accepts digits and maps them to their integer equivalents.</p>
+<p><code>ToCustomBase64</code> maps the input string <code>'[0-9A-Za-z\{\}]+'</code> to <code>[0-63]</code>. Digits are mapped to <code>[0-9]</code>, uppercase letters are mapped to <code>[10-35]</code>, lowercase letters to <code>[36-61]</code>, <code>{</code> to <code>62</code> and <code>}</code> to <code>63</code></p>
+<p>Next the transformed input is passed to <code>FYRKANTIGImpl</code>. Similarly, I traced the offset to <code>0x004044B0</code></p>
+<p><img src="/images/2020/google/i7.png" alt="i7"  /></p>
+<p>We have <code>lea     ecx, [ebp+src]</code> before the call implying that the function <code>sub_404F0C</code> is a method of <code>[ebp+src]</code>. Something like this <code>[ebp+src].sub_404F0C(byte_4081D0)</code>. So, it can be assumed that <code>sub_404F0C</code> is a <code>std::string::string(char*)</code> constructor. It then xor&rsquo;s <code>[ebp+dst]</code> with <code>[ebp+src]</code>. Now I got stuck at <code>sub_403F10</code></p>
+<p><img src="/images/2020/google/i8.png" alt="i8"  /></p>
+<h2 id="sunday-evening">Sunday Evening</h2>
+<p>I started debugging with IDA, it crashed. I moved onto x32dbg, but it crashed too&hellip; <em>hope lost&hellip;</em>  Now I had to use <a class="link" href="https://github.com/hugsy/defcon_27_windbg_workshop/blob/master/windbg_cheatsheet.md#breakpointshttps://github.com/hugsy/defcon_27_windbg_workshop/blob/master/windbg_cheatsheet.md#breakpoints"  target="_blank" rel="noopener"
+    >WinDBG</a>, my last option.</p>
+<p>I started debugging with windbg. First I cleared the <code>PEB.IsDebuggerPresent</code> flag and then put a breakpoint on <code>0x00403F65</code>. I traced the call to the following code</p>
+<pre><code class="language-x86asm" data-lang="x86asm">        pszEnd      =   08h
+        pszStart    =   0Ch
+061e8218  push    ebp
+061e8219  mov     ebp, esp
+061e821b  push    edi
+061e821c  push    esi
+061e821d  push    ebx
+061e821e  sub     esp, 20h
+061e8221  mov     ebx, dword ptr fs:[0E20h]
+061e8228  mov     dword ptr [ebp-28h], offset clr!InlinedCallFrame::vftable
+061e822f  mov     dword ptr [ebp-2Ch], 0FFF5AFAEh
+061e8236  mov     eax, dword ptr [ebx+0Ch]
+061e8239  mov     dword ptr [ebp-24h], eax
+061e823c  mov     dword ptr [ebp-14h], ebp
+061e823f  mov     dword ptr [ebp-18h], 0
+061e8246  lea     eax, [ebp-28h]
+061e8249  mov     dword ptr [ebx+0Ch], eax
+061e824c  mov     dword ptr [ebp-10h], ecx
+061e824f  mov     eax, dword ptr [ebp+pszStart]
+061e8252  cmp     eax, dword ptr [ebp+pszEnd]
+061e8255  je      061e82c0
+
+061e8257  mov     esi, dword ptr [ebp+pszStart]
+061e825a  inc     esi
+061e825b  cmp     esi, dword ptr [ebp+pszEnd]
+061e825e  je      061e82c0
+
+061e8260  mov     edi, esi
+061e8262  sub     edi, dword ptr [ebp+pszStart]
+
+061e8265  lea     eax, [edi+1]
+061e8268  push    eax
+061e8269  mov     ecx, dword ptr [ebp-10h]
+061e826c  mov     dword ptr [ebp-20h], 1227420h
+061e8273  mov     dword ptr [ebp-1Ch], esp
+061e8276  mov     dword ptr [ebp-18h], 61E8287h
+061e827d  mov     byte ptr [ebx+8], 0
+061e8281  call    dword ptr ds:[122767Ch]           ; ucrtbase!rand
+061e8287  mov     byte ptr [ebx+8], 1
+061e828b  cmp     dword ptr [clr!g_TrapReturningThreads (755c2048)], 0
+061e8292  je      061e829b
+061e8294  push    eax
+061e8295  call    clr!JIT_RareDisableHelper (74f3c2b0)
+061e829a  pop     eax
+061e829b  mov     dword ptr [ebp-18h], 0
+061e82a2  mov     edx, eax
+061e82a4  cmp     edx, edi
+061e82a6  je      061e82b9
+
+061e82a8  mov     eax, dword ptr [ebp+pszStart]
+061e82ab  add     eax, edx
+061e82ad  mov     edx, eax
+061e82af  movsx   ecx, byte ptr [esi]
+061e82b2  movsx   eax, byte ptr [edx]
+061e82b5  mov     byte ptr [esi], al
+061e82b7  mov     byte ptr [edx], cl
+
+061e82b9  inc     esi
+061e82ba  inc     edi
+061e82bb  cmp     esi, dword ptr [ebp+pszEnd]
+061e82be  jne     061e8265
+
+061e82c0  mov     edi, dword ptr [ebp-24h]
+061e82c3  mov     dword ptr [ebx+0Ch], edi
+061e82c6  lea     esp, [ebp-0Ch]
+061e82c9  pop     ebx
+061e82ca  pop     esi
+061e82cb  pop     edi
+061e82cc  pop     ebp
+061e82cd  ret     8
+</code></pre><p>The call at <code>0x061e8281</code> lands right here:</p>
+<p><img src="/images/2020/google/i9.png" alt="i9"  /></p>
+<p>It points to rva 0x6bdc which is <code>rand</code>. So, what we have here is something like this</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">srand(<span style="color:#3677a9">0</span>x23c);
+<span style="color:#999;font-style:italic">// pEnd is actually pStart+len-2
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> j = <span style="color:#3677a9">1</span>; j &lt; <span style="color:#3677a9">28</span>; j++)
+{
+    <span style="color:#6ab825;font-weight:bold">int</span> pos = rand() % (j+<span style="color:#3677a9">1</span>);
+    <span style="color:#6ab825;font-weight:bold">if</span> (pos != j)
+    {
+        <span style="color:#6ab825;font-weight:bold">var</span> tmp = ans[pos];
+        ans[pos] = ans[j];
+        ans[j] = tmp;
+    }
+}
+</code></pre></div><p><img src="/images/2020/google/i10.png" alt="i10"  /></p>
+<p>The functions <code>0x403b9c</code>, <code>0x404df6</code> and <code>0x404e89</code> are useless since they don&rsquo;t reference <code>esi</code> which is the transformed input param.</p>
+<p>The next function of interest is <code>0x404eee</code>. Tracing it with windbg leads to <code>0x403AE0</code>. Now all functions are resolved but <code>0x0404C3E</code>. Tracing it, we land into <code>std::swap</code>. So, <code>0x403ae0</code> can be represented as</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#6ab825;font-weight:bold">static</span> List&lt;<span style="color:#6ab825;font-weight:bold">uint</span>&gt; Shuffle2(List&lt;<span style="color:#6ab825;font-weight:bold">uint</span>&gt; inp)
+{
+    <span style="color:#6ab825;font-weight:bold">var</span> ans = <span style="color:#6ab825;font-weight:bold">new</span> List&lt;<span style="color:#6ab825;font-weight:bold">uint</span>&gt;(inp);
+    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; inp.Count-<span style="color:#3677a9">1</span>; i += <span style="color:#3677a9">3</span>)
+    {
+        <span style="color:#6ab825;font-weight:bold">if</span> (i != <span style="color:#3677a9">0</span>x1c &amp;&amp; i != <span style="color:#3677a9">0</span>x1b)
+        {
+            <span style="color:#6ab825;font-weight:bold">var</span> t = ans[i];
+            ans[i] = ans[i+<span style="color:#3677a9">1</span>];
+            ans[i+<span style="color:#3677a9">1</span>] = t;
+        }
+    }
+    <span style="color:#6ab825;font-weight:bold">return</span> ans;
+}
+</code></pre></div><p><img src="/images/2020/google/i11.png" alt="i11"  /></p>
+<p>Now <code>GRUNDTAL_NORRVIKEN</code> is called with the result of <code>Shuffle2</code>. We know that it has a prefix call to <code>SPARSAM</code>. So, <code>SPARSAM</code> will be called and then the control returns to <code>GRUNDTAL_NORRVIKEN</code></p>
+<p><img src="/images/2020/google/i12.png" alt="i12"  /></p>
+<p>Note that it&rsquo;s setting a ref param <code>__result</code>. According to Harmony&rsquo;s docs, <strong>if a prefix assigns a value to <code>__result</code>, then the original function is skipped</strong>. So, <code>SPARSAM</code> replaces <code>GRUNDTAL_NORRVIKEN</code>. <code>DAGSTORP</code> is a plain xor, <code>FLARDFULL</code> does nothing. <code>SMORBOLL</code> computes a checksum and checks if the byte at index 28 matches the checksum. <code>HEROISK</code> calls <code>VAXMYRA</code> which ensures that all the bytes returned by <code>DAGSTORP</code> are unique and then validates a sequence of constraints.</p>
+<h2 id="solver">Solver</h2>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic">#!/usr/bin/env python</span>
+
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">string</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">z3</span> <span style="color:#6ab825;font-weight:bold">import</span> *
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">checksum</span>(l):
+    n = <span style="color:#3677a9">16</span>
+    i = <span style="color:#3677a9">0</span>
+    <span style="color:#6ab825;font-weight:bold">while</span> i &lt; <span style="color:#3677a9">30</span>:
+        <span style="color:#6ab825;font-weight:bold">if</span> i != <span style="color:#3677a9">28</span>:
+            n += l[i]
+            <span style="color:#6ab825;font-weight:bold">if</span> (i % <span style="color:#3677a9">2</span> == <span style="color:#3677a9">0</span>):
+                n += l[i]
+            <span style="color:#6ab825;font-weight:bold">if</span> (i % <span style="color:#3677a9">3</span> == <span style="color:#3677a9">0</span>):
+                n += -<span style="color:#3677a9">2</span>*l[i]
+            <span style="color:#6ab825;font-weight:bold">if</span> (i % <span style="color:#3677a9">5</span> == <span style="color:#3677a9">0</span>):
+                n += -<span style="color:#3677a9">3</span>*l[i]
+            <span style="color:#6ab825;font-weight:bold">if</span> (i % <span style="color:#3677a9">7</span> == <span style="color:#3677a9">0</span>):
+                n += <span style="color:#3677a9">4</span>*l[i]
+        i += <span style="color:#3677a9">1</span>
+    <span style="color:#6ab825;font-weight:bold">return</span> n &amp; <span style="color:#3677a9">63</span>
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">doCmp</span>(a, b, c):
+    <span style="color:#6ab825;font-weight:bold">return</span> ULE(a-b, c)
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">xse</span>(n):
+    <span style="color:#6ab825;font-weight:bold">return</span> SignExt(<span style="color:#3677a9">24</span>, Extract(<span style="color:#3677a9">7</span>, <span style="color:#3677a9">0</span>, n))
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">se</span>(n):
+    <span style="color:#6ab825;font-weight:bold">return</span> n
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">ze</span>(n):
+    <span style="color:#6ab825;font-weight:bold">return</span> n
+
+fuckingBase = string.digits + string.ascii_uppercase + string.ascii_lowercase + <span style="color:#ed9d13">&#34;{}&#34;</span>
+invFuck = {}
+<span style="color:#6ab825;font-weight:bold">for</span> i, j <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">enumerate</span>(fuckingBase):
+    invFuck[j] = i
+
+flag = [BitVec(<span style="color:#ed9d13">&#39;i</span><span style="color:#ed9d13">%d</span><span style="color:#ed9d13">&#39;</span> % i, <span style="color:#3677a9">8</span>) <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(<span style="color:#3677a9">30</span>)]
+g = Solver()
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> flag[<span style="color:#3677a9">4</span>:-<span style="color:#3677a9">1</span>]:
+    g.add(<span style="color:#3677a9">0</span> &lt;= i, i &lt; <span style="color:#3677a9">64</span>)
+
+<span style="color:#6ab825;font-weight:bold">for</span> i, j <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">enumerate</span>(<span style="color:#ed9d13">&#34;CTF{&#34;</span>):
+    g.add(flag[i] == invFuck[j])
+
+g.add(flag[-<span style="color:#3677a9">1</span>] == invFuck[<span style="color:#ed9d13">&#39;}&#39;</span>])
+
+f = []
+t = [
+    <span style="color:#3677a9">0x1F</span>, <span style="color:#3677a9">0x23</span>, <span style="color:#3677a9">0x3F</span>, <span style="color:#3677a9">0x3F</span>, <span style="color:#3677a9">0x1B</span>, <span style="color:#3677a9">0x07</span>, <span style="color:#3677a9">0x37</span>, <span style="color:#3677a9">0x21</span>, <span style="color:#3677a9">0x04</span>, <span style="color:#3677a9">0x33</span>, <span style="color:#3677a9">0x09</span>, <span style="color:#3677a9">0x3B</span>, <span style="color:#3677a9">0x39</span>, <span style="color:#3677a9">0x28</span>, <span style="color:#3677a9">0x30</span>, <span style="color:#3677a9">0x0C</span>,
+    <span style="color:#3677a9">0x0E</span>, <span style="color:#3677a9">0x2E</span>, <span style="color:#3677a9">0x3F</span>, <span style="color:#3677a9">0x25</span>, <span style="color:#3677a9">0x2A</span>, <span style="color:#3677a9">0x27</span>, <span style="color:#3677a9">0x3E</span>, <span style="color:#3677a9">0x0B</span>, <span style="color:#3677a9">0x27</span>, <span style="color:#3677a9">0x1C</span>, <span style="color:#3677a9">0x38</span>, <span style="color:#3677a9">0x31</span>, <span style="color:#3677a9">0x1E</span>, <span style="color:#3677a9">0x3D</span>
+]
+<span style="color:#999;font-style:italic"># xor</span>
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">range</span>(<span style="color:#3677a9">30</span>):
+    f.append(xse(flag[i])^t[i])
+
+<span style="color:#999;font-style:italic"># shuffle done by rand() impl - </span>
+f[<span style="color:#3677a9">0</span>], f[<span style="color:#3677a9">1</span>] = f[<span style="color:#3677a9">1</span>], f[<span style="color:#3677a9">0</span>]
+f[<span style="color:#3677a9">1</span>], f[<span style="color:#3677a9">2</span>] = f[<span style="color:#3677a9">2</span>], f[<span style="color:#3677a9">1</span>]
+f[<span style="color:#3677a9">0</span>], f[<span style="color:#3677a9">3</span>] = f[<span style="color:#3677a9">3</span>], f[<span style="color:#3677a9">0</span>]
+f[<span style="color:#3677a9">2</span>], f[<span style="color:#3677a9">4</span>] = f[<span style="color:#3677a9">4</span>], f[<span style="color:#3677a9">2</span>]
+f[<span style="color:#3677a9">3</span>], f[<span style="color:#3677a9">5</span>] = f[<span style="color:#3677a9">5</span>], f[<span style="color:#3677a9">3</span>]
+f[<span style="color:#3677a9">3</span>], f[<span style="color:#3677a9">6</span>] = f[<span style="color:#3677a9">6</span>], f[<span style="color:#3677a9">3</span>]
+f[<span style="color:#3677a9">0</span>], f[<span style="color:#3677a9">8</span>] = f[<span style="color:#3677a9">8</span>], f[<span style="color:#3677a9">0</span>]
+f[<span style="color:#3677a9">6</span>], f[<span style="color:#3677a9">9</span>] = f[<span style="color:#3677a9">9</span>], f[<span style="color:#3677a9">6</span>]
+f[<span style="color:#3677a9">7</span>], f[<span style="color:#3677a9">10</span>] = f[<span style="color:#3677a9">10</span>], f[<span style="color:#3677a9">7</span>]
+f[<span style="color:#3677a9">7</span>], f[<span style="color:#3677a9">11</span>] = f[<span style="color:#3677a9">11</span>], f[<span style="color:#3677a9">7</span>]
+f[<span style="color:#3677a9">0</span>], f[<span style="color:#3677a9">12</span>] = f[<span style="color:#3677a9">12</span>], f[<span style="color:#3677a9">0</span>]
+f[<span style="color:#3677a9">3</span>], f[<span style="color:#3677a9">13</span>] = f[<span style="color:#3677a9">13</span>], f[<span style="color:#3677a9">3</span>]
+f[<span style="color:#3677a9">10</span>], f[<span style="color:#3677a9">14</span>] = f[<span style="color:#3677a9">14</span>], f[<span style="color:#3677a9">10</span>]
+f[<span style="color:#3677a9">6</span>], f[<span style="color:#3677a9">15</span>] = f[<span style="color:#3677a9">15</span>], f[<span style="color:#3677a9">6</span>]
+f[<span style="color:#3677a9">15</span>], f[<span style="color:#3677a9">16</span>] = f[<span style="color:#3677a9">16</span>], f[<span style="color:#3677a9">15</span>]
+f[<span style="color:#3677a9">3</span>], f[<span style="color:#3677a9">17</span>] = f[<span style="color:#3677a9">17</span>], f[<span style="color:#3677a9">3</span>]
+f[<span style="color:#3677a9">5</span>], f[<span style="color:#3677a9">18</span>] = f[<span style="color:#3677a9">18</span>], f[<span style="color:#3677a9">5</span>]
+f[<span style="color:#3677a9">12</span>], f[<span style="color:#3677a9">19</span>] = f[<span style="color:#3677a9">19</span>], f[<span style="color:#3677a9">12</span>]
+f[<span style="color:#3677a9">14</span>], f[<span style="color:#3677a9">20</span>] = f[<span style="color:#3677a9">20</span>], f[<span style="color:#3677a9">14</span>]
+f[<span style="color:#3677a9">3</span>], f[<span style="color:#3677a9">21</span>] = f[<span style="color:#3677a9">21</span>], f[<span style="color:#3677a9">3</span>]
+f[<span style="color:#3677a9">5</span>], f[<span style="color:#3677a9">22</span>] = f[<span style="color:#3677a9">22</span>], f[<span style="color:#3677a9">5</span>]
+f[<span style="color:#3677a9">8</span>], f[<span style="color:#3677a9">23</span>] = f[<span style="color:#3677a9">23</span>], f[<span style="color:#3677a9">8</span>]
+f[<span style="color:#3677a9">17</span>], f[<span style="color:#3677a9">24</span>] = f[<span style="color:#3677a9">24</span>], f[<span style="color:#3677a9">17</span>]
+f[<span style="color:#3677a9">23</span>], f[<span style="color:#3677a9">25</span>] = f[<span style="color:#3677a9">25</span>], f[<span style="color:#3677a9">23</span>]
+f[<span style="color:#3677a9">22</span>], f[<span style="color:#3677a9">26</span>] = f[<span style="color:#3677a9">26</span>], f[<span style="color:#3677a9">22</span>]
+f[<span style="color:#3677a9">10</span>], f[<span style="color:#3677a9">27</span>] = f[<span style="color:#3677a9">27</span>], f[<span style="color:#3677a9">10</span>]
+
+<span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">xrange</span>(<span style="color:#3677a9">0</span>, <span style="color:#3677a9">29</span>, <span style="color:#3677a9">3</span>):
+    <span style="color:#6ab825;font-weight:bold">if</span> i != <span style="color:#3677a9">0x1c</span> <span style="color:#6ab825;font-weight:bold">and</span> i != <span style="color:#3677a9">0x1b</span>:
+        f[i], f[i+<span style="color:#3677a9">1</span>] = f[i+<span style="color:#3677a9">1</span>], f[i]
+
+g.add(checksum(f) == f[<span style="color:#3677a9">28</span>])
+g.add(Distinct(f))
+g.add(f[<span style="color:#3677a9">1</span>] == <span style="color:#3677a9">25</span>)
+g.add(f[<span style="color:#3677a9">2</span>] == <span style="color:#3677a9">23</span>)
+g.add(f[<span style="color:#3677a9">9</span>] == <span style="color:#3677a9">9</span>)
+g.add(f[<span style="color:#3677a9">20</span>] == <span style="color:#3677a9">45</span>)
+g.add(f[<span style="color:#3677a9">26</span>] == <span style="color:#3677a9">7</span>)
+g.add(f[<span style="color:#3677a9">8</span>] &gt;= <span style="color:#3677a9">15</span>)
+g.add(f[<span style="color:#3677a9">12</span>] &lt;= <span style="color:#3677a9">4</span>)
+g.add(f[<span style="color:#3677a9">14</span>] &gt;= <span style="color:#3677a9">48</span>)
+g.add(f[<span style="color:#3677a9">29</span>] &gt;= <span style="color:#3677a9">1</span>)
+
+num = se(f[<span style="color:#3677a9">4</span>])
+num2 = se(f[<span style="color:#3677a9">3</span>])
+num3 = se(f[<span style="color:#3677a9">2</span>])
+num4 = se(f[<span style="color:#3677a9">1</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">0</span>])+ ze(num4) + ze(num) + ze(num3) + ze(num2), <span style="color:#3677a9">130</span>, <span style="color:#3677a9">10</span>))
+num4 = se(f[<span style="color:#3677a9">9</span>])
+num5 = se(f[<span style="color:#3677a9">8</span>])
+num6 = se(f[<span style="color:#3677a9">7</span>])
+num7 = se(f[<span style="color:#3677a9">6</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">5</span>])+ ze(num7) + ze(num6) + ze(num5) + ze(num4), <span style="color:#3677a9">140</span>, <span style="color:#3677a9">10</span>))
+num8 = se(f[<span style="color:#3677a9">14</span>])
+num9 = se(f[<span style="color:#3677a9">13</span>])
+num10 = se(f[<span style="color:#3677a9">12</span>])
+num11 = se(f[<span style="color:#3677a9">11</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">10</span>]) + ze(num11) + ze(num10) + ze(num9) + ze(num8), <span style="color:#3677a9">150</span>, <span style="color:#3677a9">10</span>))
+num12 = se(f[<span style="color:#3677a9">19</span>])
+num13 = se(f[<span style="color:#3677a9">18</span>])
+num14 = se(f[<span style="color:#3677a9">17</span>])
+num15 = se(f[<span style="color:#3677a9">16</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">15</span>]) + ze(num15) + ze(num14) + ze(num13) + ze(num12), <span style="color:#3677a9">160</span>, <span style="color:#3677a9">10</span>))
+num16 = se(f[<span style="color:#3677a9">24</span>])
+num17 = se(f[<span style="color:#3677a9">23</span>])
+num18 = se(f[<span style="color:#3677a9">22</span>])
+num19 = se(f[<span style="color:#3677a9">21</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">20</span>]) + ze(num19) + ze(num18) + ze(num17) + ze(num16), <span style="color:#3677a9">170</span>, <span style="color:#3677a9">10</span>))
+num20 = se(f[<span style="color:#3677a9">25</span>])
+num21 = se(f[<span style="color:#3677a9">20</span>])
+num22 = se(f[<span style="color:#3677a9">15</span>])
+num23 = se(f[<span style="color:#3677a9">10</span>])
+num24 = se(f[<span style="color:#3677a9">5</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">0</span>] )+ ze(num24) + ze(num23) + ze(num22) + ze(num21) + ze(num20), <span style="color:#3677a9">172</span>, <span style="color:#3677a9">6</span>))
+num25 = se(f[<span style="color:#3677a9">26</span>])
+num26 = se(f[<span style="color:#3677a9">21</span>])
+num27 = se(f[<span style="color:#3677a9">16</span>])
+num28 = se(f[<span style="color:#3677a9">11</span>])
+num29 = se(f[<span style="color:#3677a9">6</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">1</span>] )+ ze(num29) + ze(num28) + ze(num27) + ze(num26) + ze(num25), <span style="color:#3677a9">162</span>, <span style="color:#3677a9">6</span>))
+num30 = se(f[<span style="color:#3677a9">27</span>])
+num31 = se(f[<span style="color:#3677a9">22</span>])
+num32 = se(f[<span style="color:#3677a9">17</span>])
+num33 = se(f[<span style="color:#3677a9">12</span>])
+num34 = se(f[<span style="color:#3677a9">7</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">2</span>] )+ ze(num34) + ze(num33) + ze(num32) + ze(num31) + ze(num30), <span style="color:#3677a9">152</span>, <span style="color:#3677a9">6</span>))
+num35 = se(f[<span style="color:#3677a9">23</span>])
+num36 = se(f[<span style="color:#3677a9">18</span>])
+num37 = se(f[<span style="color:#3677a9">13</span>])
+num38 = se(f[<span style="color:#3677a9">8</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">3</span>] )+ ze(num38) + ze(num37) + ze(num36) + ze(num35), <span style="color:#3677a9">142</span>, <span style="color:#3677a9">6</span>))
+num39 = se(f[<span style="color:#3677a9">29</span>])
+num40 = se(f[<span style="color:#3677a9">24</span>])
+num41 = se(f[<span style="color:#3677a9">19</span>])
+num42 = se(f[<span style="color:#3677a9">14</span>])
+num43 = se(f[<span style="color:#3677a9">9</span>])
+g.add(doCmp(se(f[<span style="color:#3677a9">4</span>] )+ ze(num43) + ze(num42) + ze(num41) + ze(num40) + ze(num39), <span style="color:#3677a9">132</span>, <span style="color:#3677a9">6</span>))
+num44 = f[<span style="color:#3677a9">27</span>] * <span style="color:#3677a9">3</span>
+num45 = (f[<span style="color:#3677a9">7</span>] + num44) * <span style="color:#3677a9">3</span> - f[<span style="color:#3677a9">5</span>] * <span style="color:#3677a9">13</span>
+g.add(doCmp(num45, <span style="color:#3677a9">57</span>, <span style="color:#3677a9">28</span>))
+num44 = f[<span style="color:#3677a9">20</span>] * <span style="color:#3677a9">5</span>
+num44 = (f[<span style="color:#3677a9">14</span>] &lt;&lt; <span style="color:#3677a9">2</span>) - num44
+num45 = f[<span style="color:#3677a9">22</span>] * <span style="color:#3677a9">3</span> + num44
+g.add(doCmp(num45, <span style="color:#3677a9">12</span>, <span style="color:#3677a9">70</span>))
+num44 = f[<span style="color:#3677a9">18</span>] * <span style="color:#3677a9">2</span>
+num44 = (f[<span style="color:#3677a9">15</span>] - num44) * <span style="color:#3677a9">3</span>
+num46 = f[<span style="color:#3677a9">16</span>] * <span style="color:#3677a9">2</span>
+num46 = (f[<span style="color:#3677a9">14</span>] + num46) * <span style="color:#3677a9">2</span> + num44 - f[<span style="color:#3677a9">17</span>] * <span style="color:#3677a9">5</span>
+g.add(f[<span style="color:#3677a9">13</span>] + num46 == <span style="color:#3677a9">0</span>)
+num46 = f[<span style="color:#3677a9">6</span>] * <span style="color:#3677a9">2</span>
+g.add(f[<span style="color:#3677a9">5</span>] == num46)
+g.add(f[<span style="color:#3677a9">29</span>] + f[<span style="color:#3677a9">7</span>] == <span style="color:#3677a9">59</span>)
+num47 = f[<span style="color:#3677a9">17</span>] * <span style="color:#3677a9">6</span>
+g.add(f[<span style="color:#3677a9">0</span>] == num47)
+num47 = f[<span style="color:#3677a9">9</span>] * <span style="color:#3677a9">4</span>
+g.add(f[<span style="color:#3677a9">8</span>] == num47)
+num47 = f[<span style="color:#3677a9">13</span>] * <span style="color:#3677a9">3</span>
+g.add((f[<span style="color:#3677a9">11</span>] &lt;&lt; <span style="color:#3677a9">1</span>) == num47)
+g.add(f[<span style="color:#3677a9">13</span>] + f[<span style="color:#3677a9">29</span>] + f[<span style="color:#3677a9">11</span>] + f[<span style="color:#3677a9">4</span>] == f[<span style="color:#3677a9">19</span>])
+num48 = f[<span style="color:#3677a9">12</span>] * <span style="color:#3677a9">13</span>
+g.add(f[<span style="color:#3677a9">10</span>] == num48)
+
+<span style="color:#999;font-style:italic"># from:</span>
+<span style="color:#999;font-style:italic"># https://stackoverflow.com/questions/11867611/z3py-checking-all-solutions-for-equation</span>
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">get_models</span>(s, M):
+    result = []
+    <span style="color:#6ab825;font-weight:bold">while</span> <span style="color:#24909d">len</span>(result) &lt; M <span style="color:#6ab825;font-weight:bold">and</span> s.check() == sat:
+        m = s.model()
+        <span style="color:#6ab825;font-weight:bold">yield</span> m
+        result.append(m)
+        block = []
+        <span style="color:#6ab825;font-weight:bold">for</span> d <span style="color:#6ab825;font-weight:bold">in</span> m:
+            <span style="color:#6ab825;font-weight:bold">if</span> d.arity() &gt; <span style="color:#3677a9">0</span>:
+                <span style="color:#6ab825;font-weight:bold">raise</span> Z3Exception(<span style="color:#ed9d13">&#39;uninterpreted functions are not supported&#39;</span>)
+            c = d()
+            <span style="color:#6ab825;font-weight:bold">if</span> is_array(c) <span style="color:#6ab825;font-weight:bold">or</span> c.sort().kind() == Z3_UNINTERPRETED_SORT:
+                <span style="color:#6ab825;font-weight:bold">raise</span> Z3Exception(<span style="color:#ed9d13">&#39;arrays and uninterpreted sorts are not supported&#39;</span>)
+            block.append(c != m[d])
+        s.add(Or(block))
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">check</span>(ans):
+    l = [<span style="color:#ed9d13">&#39;WeirD&#39;</span>, <span style="color:#ed9d13">&#39;Weird&#39;</span>, <span style="color:#ed9d13">&#39;CppClr&#39;</span>, <span style="color:#ed9d13">&#39;Jit&#39;</span>]
+    <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">any</span>(i <span style="color:#6ab825;font-weight:bold">in</span> ans <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> l)
+
+<span style="color:#6ab825;font-weight:bold">for</span> m <span style="color:#6ab825;font-weight:bold">in</span> get_models(g, <span style="color:#3677a9">1337</span>):
+    fuck = []
+    <span style="color:#6ab825;font-weight:bold">for</span> j, i <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">enumerate</span>(flag):
+        fuck.append(m[i].as_long())
+    <span style="color:#999;font-style:italic"># print &#34; &#34;.join(&#34;%02x&#34; % i for i in fuck)</span>
+    x = <span style="color:#ed9d13">&#34;&#34;</span>.join(fuckingBase[i] <span style="color:#6ab825;font-weight:bold">for</span> i <span style="color:#6ab825;font-weight:bold">in</span> fuck)
+    <span style="color:#6ab825;font-weight:bold">if</span> check(x):
+        <span style="color:#6ab825;font-weight:bold">print</span> x
+</code></pre></div><p>Which prints the flag - <code>CTF{CppClrIsWeirdButReallyFun}</code></p>
+<h1 id="my-mistakes">My Mistakes&hellip;</h1>
+<ol>
+<li>Failed to notice the RVA pointed out by dnSpy for unmanaged functions.</li>
+<li>Failed to recognize that the transition from unmanaged to managed code is done by using metadata tokens.</li>
+</ol>
+<p>If I knew these, the challenge could be solved in one hour, 30 mins max.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+            <a href="/tags/google/">google</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/code-injection-mstasklist/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Code Injection: Windows Taskbar</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/analysing-jigsaw-ransomware/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Analysing Jigsaw Ransomware</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/eset-crackme-challenge/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ESET Crackme Challenge</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/deobfuscating-movfuscator-part-2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Deobfuscating MoVfuscator - Part 2</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/understanding-the-movfuscator/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Understanding the Movfuscator</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reversing on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/categories/reversing/</link>
+    <description>Recent content in reversing on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/reversing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Code Injection: Windows Taskbar</title>
+      <link>http://localhost:1313/post/code-injection-mstasklist/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/code-injection-mstasklist/</guid>
+      <description>&lt;h2 id=&#34;description&#34;&gt;Description&lt;/h2&gt;
+&lt;p&gt;I will be describing how to inject arbritary code into explorer.exe using the Taskbar.&lt;br&gt;
+I was looking in the taskbar &lt;code&gt;MSTaskListWClass&lt;/code&gt;, and I found a valid pointer in the &amp;ldquo;Extra Window Bytes&amp;rdquo; for the &amp;ldquo;Running applications&amp;rdquo; window.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Google CTF 2020 - .NET</title>
+      <link>http://localhost:1313/post/google-ctf-2020-.net/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/google-ctf-2020-.net/</guid>
+      <description>I will be describing in detail what I did and what I should have done.
+What I Did Saturday Evening On Saturday evening, I started with this challenge. It&amp;rsquo;s a plain .NET executable, so I opened with dnSpy and started debugging.
+So, this is definitely a binary written in C++/CLI.
+Reading the docs for Harmony, it&amp;rsquo;s clear that the above code introduces a new prefix to the methods.
+NUFFRA -&amp;gt; FYRKANTIG, GRONKULLA -&amp;gt; RIKTIG_OGLA, SPARSAM -&amp;gt; GRUNDTAL_NORRVIKEN, FLARDFULL -&amp;gt; DAGSTORP</description>
+    </item>
+    
+    <item>
+      <title>Analysing Jigsaw Ransomware</title>
+      <link>http://localhost:1313/post/analysing-jigsaw-ransomware/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/analysing-jigsaw-ransomware/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;SHA1: 27d99fbca067f478bb91cdbcb92f13a828b00859&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>ESET Crackme Challenge</title>
+      <link>http://localhost:1313/post/eset-crackme-challenge/</link>
+      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/eset-crackme-challenge/</guid>
+      <description>&lt;p&gt;While searching the internet for good crackmes, I found this one!&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://join.eset.com/en/challenges/crack-me&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ESET Crackme&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Deobfuscating MoVfuscator - Part 2</title>
+      <link>http://localhost:1313/post/deobfuscating-movfuscator-part-2/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/deobfuscating-movfuscator-part-2/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ll be analyzing another MoVfuscated binary, from Swamp CTF 2019 using IDA Free&lt;br&gt;
+Deep on the web, I discovered a secret key validation.&lt;br&gt;
+It appeared to be from the future, and it only had one sentence: &amp;ldquo;Risk speed for security&amp;rdquo;.&lt;br&gt;
+Something seems fishy, you should try to break the key and find the secret inside!&lt;br&gt;
+-= Created by noopnoop =-&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Understanding the Movfuscator</title>
+      <link>http://localhost:1313/post/understanding-the-movfuscator/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/understanding-the-movfuscator/</guid>
+      <description>&lt;p&gt;MoVfuscator is the PoC for the &lt;strong&gt;Turing Completeness of Mov instruction&lt;/strong&gt;.&lt;br&gt;
+Yes, you guessed it right. It uses only mov&amp;rsquo;s, except for a few places.&lt;br&gt;
+This makes reversing difficult, because the control flow is obfuscated.&lt;br&gt;
+I&amp;rsquo;ll be analyzing the challenge &lt;strong&gt;Mov&lt;/strong&gt; of &lt;strong&gt;UTCTF&#39;19&lt;/strong&gt; using IDA Free.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BSides CTF 2019 - opendoor</title>
+      <link>http://localhost:1313/post/bsides-ctf-2019-opendoor/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/bsides-ctf-2019-opendoor/</guid>
+      <description>&lt;p&gt;This one is a pretty interesting challenge. My solution is just static analysis.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>crackmes.one - hell86</title>
+      <link>http://localhost:1313/post/crackmes.one-hell86/</link>
+      <pubDate>Sun, 13 Jan 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/crackmes.one-hell86/</guid>
+      <description>&lt;p&gt;This is a beautiful challenge by ttlhacker from &lt;a class=&#34;link&#34; href=&#34;https://crackmes.one&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;crackmes.one&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HackLu 2018 - Forgetful Commander</title>
+      <link>http://localhost:1313/post/hacklu-2018-forgetful-commander/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/hacklu-2018-forgetful-commander/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ll do static analysis using radare.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InCTF 2018 - Decoy</title>
+      <link>http://localhost:1313/post/inctf-2018-decoy/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-2018-decoy/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s a beautiful challenge. But there is an interesting thing about this challenge.
+The author has tried to make a binary tree out of the basic blocks.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InCTF 2018 - mast3r</title>
+      <link>http://localhost:1313/post/inctf-2018-mast3r/</link>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-2018-mast3r/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/inctf18_mast3r.png&#34; alt=&#34;Image0&#34;  /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InCTF 2018 - Ultimate GOal</title>
+      <link>http://localhost:1313/post/inctf-2018-ultimate-goal/</link>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-2018-ultimate-goal/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/inctf18_ultimategoal.png&#34; alt=&#34;Image0&#34;  /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>INCTF - Confuse Me</title>
+      <link>http://localhost:1313/post/inctf-confuse-me/</link>
+      <pubDate>Wed, 12 Sep 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-confuse-me/</guid>
+      <description>&lt;p&gt;Fire up Radare and open the binary&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Minesweeper - Revealing the Mines</title>
+      <link>http://localhost:1313/post/minesweeper-revealing-the-mines/</link>
+      <pubDate>Fri, 29 Jun 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/minesweeper-revealing-the-mines/</guid>
+      <description>&lt;p&gt;We all know about &lt;a class=&#34;link&#34; href=&#34;http://www.minesweeper.info/downloads/games/Winmine__XP.exe&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Minesweeper&lt;/a&gt;. Its all about random numbers (pseudorandom though). Is it possible to win every time ?&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

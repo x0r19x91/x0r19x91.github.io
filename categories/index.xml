@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>automata</title>
+      <link>http://localhost:1313/categories/automata/</link>
+      <pubDate>Fri, 27 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/automata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>http://localhost:1313/categories/math/</link>
+      <pubDate>Fri, 27 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reversing</title>
+      <link>http://localhost:1313/categories/reversing/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/reversing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>win32</title>
+      <link>http://localhost:1313/categories/win32/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/win32/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google</title>
+      <link>http://localhost:1313/categories/google/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eset</title>
+      <link>http://localhost:1313/categories/eset/</link>
+      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/categories/eset/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>movfuscator</title>
+      <link>http://localhost:1313/categories/movfuscator/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/categories/movfuscator/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>turing-completeness</title>
+      <link>http://localhost:1313/categories/turing-completeness/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/categories/turing-completeness/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ctf</title>
+      <link>http://localhost:1313/categories/ctf/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/categories/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crackmes.one</title>
+      <link>http://localhost:1313/categories/crackmes.one/</link>
+      <pubDate>Sun, 13 Jan 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/categories/crackmes.one/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://localhost:1313/categories/golang/</link>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

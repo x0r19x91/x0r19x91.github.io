@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ctf on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/tags/ctf/</link>
+    <description>Recent content in ctf on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Oct 2018 00:00:00 +0530</lastBuildDate><atom:link href="http://localhost:1313/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackLu 2018 - Forgetful Commander</title>
+      <link>http://localhost:1313/post/hacklu-2018-forgetful-commander/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/hacklu-2018-forgetful-commander/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ll do static analysis using radare.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InCTF 2018 - Decoy</title>
+      <link>http://localhost:1313/post/inctf-2018-decoy/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-2018-decoy/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s a beautiful challenge. But there is an interesting thing about this challenge.
+The author has tried to make a binary tree out of the basic blocks.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InCTF 2018 - mast3r</title>
+      <link>http://localhost:1313/post/inctf-2018-mast3r/</link>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-2018-mast3r/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/inctf18_mast3r.png&#34; alt=&#34;Image0&#34;  /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>InCTF 2018 - Ultimate GOal</title>
+      <link>http://localhost:1313/post/inctf-2018-ultimate-goal/</link>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-2018-ultimate-goal/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/inctf18_ultimategoal.png&#34; alt=&#34;Image0&#34;  /&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>INCTF - Confuse Me</title>
+      <link>http://localhost:1313/post/inctf-confuse-me/</link>
+      <pubDate>Wed, 12 Sep 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/post/inctf-confuse-me/</guid>
+      <description>&lt;p&gt;Fire up Radare and open the binary&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

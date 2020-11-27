@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?port=1313&amp;mindelay=10&amp;v=2" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Analyzing MoVfuscated Binaries - Part 2'><title>Deobfuscating MoVfuscator - Part 2</title>
+
+<link rel='canonical' href='http://localhost:1313/post/deobfuscating-movfuscator-part-2/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Deobfuscating MoVfuscator - Part 2'>
+<meta property='og:description' content='Analyzing MoVfuscated Binaries - Part 2'>
+<meta property='og:url' content='http://localhost:1313/post/deobfuscating-movfuscator-part-2/'>
+<meta property='og:site_name' content='x0r19x91&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='reversing' /><meta property='article:tag' content='movfuscator' /><meta property='article:tag' content='turing-completeness' /><meta property='article:published_time' content='2019-04-09T00:00:00&#43;05:30'/><meta property='article:modified_time' content='2019-04-09T00:00:00&#43;05:30'/>
+<meta name="twitter:title" content="Deobfuscating MoVfuscator - Part 2">
+<meta name="twitter:description" content="Analyzing MoVfuscated Binaries - Part 2">
+    </head>
+    <body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="http://localhost:1313/">x0r19x91&#39;s blog</a></h1>
+        <h2 class="site-description">My little corner in the web</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="http://localhost:1313/" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="/categories/reversing/">reversing</a>
+            
+        
+            
+                <a href="/categories/movfuscator/">movfuscator</a>
+            
+        
+            
+                <a href="/categories/turing-completeness/">turing-completeness</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/post/deobfuscating-movfuscator-part-2/">Deobfuscating MoVfuscator - Part 2</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        Analyzing MoVfuscated Binaries - Part 2
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 09, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <p>I&rsquo;ll be analyzing another MoVfuscated binary, from Swamp CTF 2019 using IDA Free<br>
+Deep on the web, I discovered a secret key validation.<br>
+It appeared to be from the future, and it only had one sentence: &ldquo;Risk speed for security&rdquo;.<br>
+Something seems fishy, you should try to break the key and find the secret inside!<br>
+-= Created by noopnoop =-</p>
+<p>We know that the MoVfuscator stack consists of an array of addresses.<br>
+Let <code>stack[i]</code> store the value <code>&amp;A[i]</code>. Then we have the invariant <code>stack[i]-&amp;stack[i] == 0x200064</code></p>
+<p><code>fp</code> and <code>NEW_STACK</code> are pointers to the array <code>stack</code>. <code>fp</code> denotes the frame pointer, and <code>NEW_STACK</code> denotes the stack top pointer.</p>
+<p>We also know that the stack grows towards lower address. So, how do we push and pop ?</p>
+<h2 id="push">Push</h2>
+<pre><code>    &amp;stack[i]   = stack[i] - 0x200064
+    &amp;stack[i+1] = &amp;stack[i] - 4
+                = stack[i] - 0x200068
+    stack[i+1]  = *(stack[i] - 0x200068)
+    stack[i+2]  = *(stack[i+1] - 0x200068)
+    ...
+</code></pre><p><img src="/images/swamp/push.png" alt="push"  /></p>
+<h2 id="pop">Pop</h2>
+<pre><code>    &amp;stack[i]   = stack[i] - 0x200064
+    &amp;stack[i-1] = &amp;stack[i] + 4
+                = stack[i] - 0x200060
+    stack[i-1]  = *(stack[i] - 0x200060)
+    stack[i-2]  = *(stack[i-1] - 0x200060)
+    ...
+</code></pre><p><img src="/images/swamp/pop.png" alt="pop"  /></p>
+<h2 id="function-call">Function Call</h2>
+<h3 id="user-defined-functions">User Defined Functions</h3>
+<p><img src="/images/swamp/call.png" alt="call_user"  /></p>
+<p>It pushes the return address, and then sets the <code>target</code> variable to <code>branch_temp</code>. So, the above sequence, skips through until it reaches 0x805036A</p>
+<h3 id="external-functions">External Functions</h3>
+<p><img src="/images/swamp/ecall.png" alt="ecall"  /></p>
+<p>These functions are called through a <strong>SIGSEGV</strong>.</p>
+<p>Every movfuscator instruction except the ALU ops are conditional. That is the operation depends on <code>on</code> variable. So, how are jumps, conditionals implemented ?</p>
+<p>Jumps and conditionals are implemented using a <code>target</code> variable. Whenever you see <code>target</code> being compared with a virtual address, you can tell it is the <strong>beginning of a basic block</strong>.</p>
+<ol start="3">
+<li>Loops<br>
+For example, let&rsquo;s consider the following for loop</li>
+</ol>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">    <span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">int</span> i = <span style="color:#3677a9">0</span>; i &lt; <span style="color:#3677a9">10</span>; i++)
+    {
+        <span style="color:#999;font-style:italic">// ...
+</span><span style="color:#999;font-style:italic"></span>    }
+</code></pre></div><p>It would compile to something like this</p>
+<pre><code class="language-x86asm" data-lang="x86asm">        mov i, 0
+        jmp L2
+    L1:
+        ; ...
+        add i, 1
+    L2:
+        cmp i, 10
+        jl L1
+</code></pre><p>And the movfuscator equivalent is</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    master_loop:
+        ; ...
+        mov target, offset L2
+
+    L1:
+        cmp target, offset L1
+        jnz L2
+
+        ; ... loop body ...
+        mov target, offset L2
+
+    L2:
+        cmp target, offset L2
+        jnz next_block
+
+        ; ... loop check ...
+        mov target, offset L1
+
+        ; ... remaining code ...
+        ; throw a SIGILL to jump to master_loop
+</code></pre><p>In fact, there is only one loop (the <code>master_loop</code>).  So, it&rsquo;s the <code>target</code> variable that controls the flow.</p>
+<p>The <code>master_loop</code> executes the following</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    master_loop:
+        mov esp, NEW_STACK
+        mov eax, sesp
+        mov edx, 4
+        add eax, edx
+        push eax
+        push dword [eax-4]
+        push 0x804854e          ; return address after calling 0x805036a
+        mov target, 0x805036a   ; main()
+        ; ...
+</code></pre><p>Every basic block begins with the following sequence of instructions</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    mov eax, target
+    cmp eax, 0xABCD
+</code></pre><p>For example,
+<img src="/images/swamp/basic_block.png" alt="main_start"  /></p>
+<p>The block is executed if the comparison is true. The function prologue consists of a sequence of register saves into the stack.</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    .text:08050544                 mov     eax, fp
+    .text:08050549                 mov     stack_temp, eax
+    .text:0805054E                 mov     eax, offset NEW_STACK
+    .text:08050553                 mov     edx, on
+    .text:08050559                 mov     data_p, eax
+    .text:0805055E                 mov     eax, sel_data[edx*4]
+    .text:08050565                 mov     edx, NEW_STACK
+    .text:0805056B                 mov     edx, [edx-200068h]
+    .text:08050571                 mov     [eax], edx
+    .text:08050573                 mov     eax, NEW_STACK
+    .text:08050578                 mov     edx, on
+    .text:0805057E                 mov     data_p, eax
+    .text:08050583                 mov     eax, sel_data[edx*4]
+    .text:0805058A                 mov     edx, stack_temp
+    .text:08050590                 mov     [eax], edx
+     ... snip ...
+    .text:08050709                 mov     eax, NEW_STACK
+    .text:0805070E                 mov     edx, on
+    .text:08050714                 mov     data_p, eax
+    .text:08050719                 mov     eax, sel_data[edx*4]
+    .text:08050720                 mov     edx, stack_temp
+    .text:08050726                 mov     [eax], edx
+    .text:08050728                 mov     edx, dword_81FD234
+    .text:0805072E                 mov     [eax+4], edx
+
+    .text:08050731                 mov     eax, offset fp
+    .text:08050736                 mov     edx, on
+    .text:0805073C                 mov     data_p, eax
+    .text:08050741                 mov     eax, sel_data[edx*4]
+    .text:08050748                 mov     edx, NEW_STACK
+    .text:0805074E                 mov     [eax], edx
+</code></pre><p>These instructions push <strong>fp</strong>, <strong>R1</strong>, <strong>R2</strong>, <strong>R3</strong>, <strong>F1</strong>, <strong>dword_81FD234</strong>, <strong>D1</strong> in order.
+Then assigns <strong>fp</strong> to the current stack pointer. This looks like</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    push fp
+    push R1
+    push R2
+    push R3
+    push F1
+    push D2
+    push D1
+    mov fp, esp
+</code></pre><p>Now we can write the deobfuscated assembly</p>
+<h2 id="deobfuscated-code">Deobfuscated Code</h2>
+<pre><code class="language-x86asm" data-lang="x86asm">    _start:
+        mov sesp, esp
+        mov esp, NEW_STACK
+        mov [esp-16+0], SIGSEGV
+        mov [esp-16+4], offset sa_dispatch
+        mov [esp-16+8], 0
+        call _sigaction
+        mov [esp-12+0], SIGILL
+        mov [esp-12+4], offset sa_loop
+        mov [esp-12+8], 0
+        call _sigaction
+
+    master_loop:
+        mov esp, NEW_STACK
+        mov eax, sesp
+        mov edx, 4
+        add eax, edx
+        push ecx
+        push dword [ecx-4]
+        push 0x804854e
+        mov target, 0x805036a
+
+    _804854E:
+        cmp target, 0x804854e
+        jnz check_element
+
+        push 0
+        call _exit
+
+    check_element:
+        cmp target, 0x8048794
+        jnz _80493B8
+
+        push fp
+        push R1
+        push R2
+        push R3
+        push F1
+        push D2
+        push D1
+        mov fp, esp
+        sub esp, 12
+        lea R3, [fp+9*4]
+        lea R2, [fp+9*4]
+        mov dl, [R2]
+        mov [R3], dl
+        mov R3, [fp+8*4]
+        mov R2, 0x15
+        add R3, R2
+        mov [fp-4], R3
+        mov R3, [fp-4]
+        mov R2, 2
+        xor R3, R2
+        mov [fp-8], R3
+        mov R3, [fp-8]
+        mov R2, 0x1e
+        sub R3, R2
+        mov [fp-12], R3
+        movsx R3, byte [fp-12]
+        movsx R2, byte [fp+9*4]
+        cmp R3, R2
+        mov R0, 0
+        cmovnz target, 0x80493B8
+        cmovz target, 0x804959C
+
+    _80493B8:
+        cmp target, 0x80493B8
+        mov R0, 1
+
+        jnz _804959C
+
+    _804959C:
+        cmp target, 0x804959C
+        jnz waste_time
+
+        mov esp, fp
+        ; pop regs ...
+        pop fp
+        mov target, [esp]
+
+
+    waste_time:
+        cmp target, 0x8049a88
+        jnz _8049fc7
+
+        ; ...
+        mov target, 0x804fa1c
+
+    _8049fc7:
+        cmp target, 0x8049fc7
+        jnz main
+        ; ...
+
+    main:
+        cmp target, 0x805036a
+        jnz _8051028
+
+        push fp, R1, R2, R3, F1, D1
+        mov fp, esp
+        sub esp, 20*4
+        lea R3, [fp-9*4]
+        mov R2, 0x80540f0
+        push 29
+        push R2
+        push R3
+        call __inline_memcpy
+        mov [fp-20*4], 29
+        lea R3, [fp-19*4]
+        mov R2, offset input
+        push 40
+        push R2
+        push R3
+        call __inline_memcpy
+        mov [fp-4], 0
+        push offset aGiveTheKeyIfYo
+        call _puts
+        add esp, 4
+        push offset stdin@@GLIBC_2_0
+        push 0x28
+        lea R3, [fp-19*4]
+        push R3
+        call _fgets
+
+        lea esp, [esp+4*3]
+
+        mov [fp-4], 0
+        mov target, 0x8052455
+
+    _8051028:
+        cmp target, 0x8051028
+        jnz _8051985
+
+        push 0x8051012
+        mov target, 0x8049a88  ; waste_time
+
+    _8051012:
+        cmp target, 0x8051012
+        jnz _8051985
+
+        push esp
+        mov R3, [fp-4]
+        lea R2, [fp-19*4]
+        add R2, R3
+        movsz R0, byte [R2]
+        push R0
+
+        lea R2, [fp-9*4]
+        add R3, R2
+        movsx R0, byte [R3]
+        push R0
+
+        push 0x8051985
+        mov target, 0x8048794   ; check_element
+
+    _8051985:
+        cmp target, 0x8051985
+        jnz _8051f38
+
+        lea esp, [esp+8]
+
+        cmp R0, 0
+        cmovz target, 0x8051fa6
+
+        push 1
+        call _exit
+
+    _8051f38:
+        lea esp, [esp+8]
+
+    _8051fa6:
+        cmp target, 0x8051fa6
+        jnz _8052180
+
+    _8052180:
+        cmp target, 0x8052180
+        jnz _8052455
+
+        mov R3, [fp-4]
+        mov R2, 1
+        add R3, R2
+        mov [fp-4], R3
+
+    _8052455:
+        cmp target, 0x8052455
+        jnz _805294d
+
+        mov R3, [fp-4]
+        mov R2, [fp-20*4]
+        cmp R3, R2
+        cmovl target, 0x8051028
+
+    _805294D:
+        cmp target, 0x805294d
+        jnz _8052b1f
+
+        push offset aGoodJob
+        call _puts
+
+        lea esp, [esp+4]
+
+    _8052B1F:
+        mov R0, 0
+        cmp target, 0x8052b1f
+        jnz next
+
+        mov esp, fp
+        pop R1, R2, R3, F1, D1
+        pop fp
+        mov target, [esp]  ; return addr
+
+    next:
+        ; raise SIGILL now
+</code></pre><h2 id="analysis">Analysis</h2>
+<p>Cleaning up a bit, we have <strong>main</strong> as</p>
+<pre><code class="language-x86asm" data-lang="x86asm">    check_element:
+        push fp, R1, R2, R3, F1, D2, D1
+        mov fp, esp
+        sub esp, 12
+
+        lea R3, [fp+9*4]    ; arg2
+        lea R2, [fp+9*4]
+        mov dl, [R2]
+        mov [R3], dl
+
+        mov R3, [fp+8*4]    ; arg1
+        mov R2, 0x15
+        add R3, R2
+        mov [fp-4], R3
+
+        mov R3, [fp-4]
+        mov R2, 2
+        xor R3, R2
+        mov [fp-8], R3
+
+        mov R3, [fp-8]
+        mov R2, 0x1e
+        sub R3, R2
+        mov [fp-12], R3
+
+        movsx R3, byte [fp-12]
+        movsx R2, byte [fp+9*4]
+        cmp R3, R2
+        mov R0, 0
+        jz L3
+        mov R0, 1
+    L3:
+        mov esp, fp
+        ; pop regs
+        pop fp
+        ret
+
+    main:
+        push fp, R1 ...
+        mov fp, esp
+        sub esp, 80
+
+        lea R3, [fp-36]
+        mov R2, 0x80540f0
+        push 29
+        push R2
+        push R3
+        call __inline_memcpy
+
+        mov [fp-80], 29
+
+        lea R3, [fp-76]
+        mov R2, offset input
+        push 40
+        push R2
+        push R3
+        call __inline_memcpy
+
+        mov [fp-4], 0
+        push offset aGiveTheKeyIfYo ; &quot;Give the key, if you think you are worthy.&quot;
+        call puts
+        add esp, 4
+
+        push offset stdin@GLIBC_2_0
+        push 0x28
+        lea R3, [fp-76]
+        push R3
+        call fgets
+        add esp, 12
+
+        mov [fp-4], 0
+        jmp _8052455
+
+    _8051028:
+        call waste_time
+
+        mov R3, [fp-4]
+        lea R2, [fp-76]
+        add R2, R3
+        movsx R0, byte [R2]
+        push R0
+
+        lea R2, [fp-36]
+        add R3, R2
+        movsx R0, byte [R3]
+        push R0
+
+        call check_element
+        add esp, 8
+
+        cmp R0, 0
+        jz _8051fa6
+
+        push 1
+        call exit
+
+    _8051fa6:
+        mov R3, [fp-4]
+        mov R2, 1
+        add R3, R2
+        mov [fp-4], R3
+
+    _8052455:
+        mov R3, [fp-4]
+        mov R2, [fp-80]
+        cmp R3, R2
+        jl _8051028
+
+    _805294D:
+        push offset aGoodJob
+        call puts
+        add esp, 4
+
+        mov esp, fp
+        pop R1, R2, R3, F1, D1
+        pop fp
+        ret
+</code></pre><p>So, we have a for loop that iterates 29 times, calling <strong>waste_time</strong> first and then <strong>check_element</strong> with two params - magic[i] and input[i] where <strong>magic</strong> is the array of 29 bytes at <strong>0x80540f0</strong> and input is the array at <strong>fp-76</strong>.<br>
+<strong>check_element</strong> checks whether <strong>(magic[i]+0x15^2)-0x1e == input[i]</strong>. On mismatch the program terminates with exit code 1.</p>
+<h2 id="solution">Solution</h2>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    magic = [
+        <span style="color:#3677a9">0x71</span>, <span style="color:#3677a9">0x73</span>, <span style="color:#3677a9">0x68</span>, <span style="color:#3677a9">0x72</span>, <span style="color:#3677a9">0x86</span>, <span style="color:#3677a9">0x72</span>, <span style="color:#3677a9">0x37</span>,
+        <span style="color:#3677a9">0x37</span>, <span style="color:#3677a9">0x6B</span>, <span style="color:#3677a9">0x6A</span>, <span style="color:#3677a9">0x7B</span>, <span style="color:#3677a9">0x6F</span>, <span style="color:#3677a9">0x38</span>, <span style="color:#3677a9">0x79</span>, <span style="color:#3677a9">0x72</span>,
+        <span style="color:#3677a9">0x3C</span>, <span style="color:#3677a9">0x6A</span>, <span style="color:#3677a9">0x71</span>, <span style="color:#3677a9">0x37</span>, <span style="color:#3677a9">0x7D</span>, <span style="color:#3677a9">0x6A</span>, <span style="color:#3677a9">0x82</span>, <span style="color:#3677a9">0x3B</span>,
+        <span style="color:#3677a9">0x38</span>, <span style="color:#3677a9">0x7B</span>, <span style="color:#3677a9">0x70</span>, <span style="color:#3677a9">0x79</span>, <span style="color:#3677a9">0x72</span>, <span style="color:#3677a9">0x84</span>
+    ]
+    f = <span style="color:#6ab825;font-weight:bold">lambda</span> i: <span style="color:#24909d">chr</span>((i+<span style="color:#3677a9">0x15</span>^<span style="color:#3677a9">2</span>)-<span style="color:#3677a9">0x1e</span>)
+    <span style="color:#6ab825;font-weight:bold">print</span> <span style="color:#ed9d13">&#34;&#34;</span>.join(<span style="color:#24909d">map</span>(f, x))
+</code></pre></div><p>So, the flag is <code>flag{g00d_th1ng5_f0r_w41ting}</code></p>
+<h2 id="references">References</h2>
+<p><a class="link" href="https://drwho.virtadpt.net/files/mov.pdf"  target="_blank" rel="noopener"
+    >MoV is Turing complete</a></p>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/reversing/">reversing</a>
+        
+            <a href="/tags/movfuscator/">movfuscator</a>
+        
+            <a href="/tags/turing-completeness/">turing-completeness</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
+    integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+    integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector(`.article-content`));"></script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/post/understanding-the-movfuscator/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Understanding the Movfuscator</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/code-injection-mstasklist/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Code Injection: Windows Taskbar</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/google-ctf-2020-.net/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Google CTF 2020 - .NET</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/analysing-jigsaw-ransomware/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Analysing Jigsaw Ransomware</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/post/eset-crackme-challenge/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ESET Crackme Challenge</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 x0r19x91&#39;s blog</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.1.0">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/page/</link>
+    <description>Recent content in Pages on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Projects</title>
+      <link>http://localhost:1313/projects/</link>
+      <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/</guid>
+      <description>AutoIt Extractor View and Extract Resources in an AutoIt Compiled Executable
+ Supports executable files, autoit compiled binaries (*.a3x), upx packed files Files can be drag-n-dropped into the UI (or on the icon) Lists all the resources, including embedded files Supports all AutoIt versions, including AutoHotKey encoded scripts Doesn&amp;rsquo;t execute the target binary like Exe2Aut Decompiles some scripts properly, even when myAut2Exe fails  Link: https://gitlab.com/x0r19x91/autoit-extractor
+UnAutoIt Cross Platform AutoIt Extractor</description>
+    </item>
+    
+    <item>
+      <title>Archives</title>
+      <link>http://localhost:1313/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/about/</guid>
+      <description>Hi!
+I am Suvaditya Sur, also known as x0r19x91, a self taught reverse engineer and a malware analyst. I love computer science and discrete mathematics. I work as a software engineer and I play ctfs with zer0pts in my free time
+You can reach out to me at @x0r19x91 on twitter dm.
+Or you may mail me at x0r19x91 at gmail dot com</description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>http://localhost:1313/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

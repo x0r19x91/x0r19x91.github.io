@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on x0r19x91&#39;s blog</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on x0r19x91&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>automata</title>
+      <link>http://localhost:1313/tags/automata/</link>
+      <pubDate>Fri, 27 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/automata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>http://localhost:1313/tags/math/</link>
+      <pubDate>Fri, 27 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reversing</title>
+      <link>http://localhost:1313/tags/reversing/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/reversing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>win32</title>
+      <link>http://localhost:1313/tags/win32/</link>
+      <pubDate>Tue, 06 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/win32/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google</title>
+      <link>http://localhost:1313/tags/google/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>malware</title>
+      <link>http://localhost:1313/tags/malware/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/tags/malware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>eset</title>
+      <link>http://localhost:1313/tags/eset/</link>
+      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/eset/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>movfuscator</title>
+      <link>http://localhost:1313/tags/movfuscator/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/tags/movfuscator/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>turing-completeness</title>
+      <link>http://localhost:1313/tags/turing-completeness/</link>
+      <pubDate>Tue, 09 Apr 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/tags/turing-completeness/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crackmes.one</title>
+      <link>http://localhost:1313/tags/crackmes.one/</link>
+      <pubDate>Sun, 13 Jan 2019 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/tags/crackmes.one/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ctf</title>
+      <link>http://localhost:1313/tags/ctf/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/tags/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://localhost:1313/tags/golang/</link>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 +0530</pubDate>
+      
+      <guid>http://localhost:1313/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
